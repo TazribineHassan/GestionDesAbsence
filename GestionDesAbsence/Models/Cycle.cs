@@ -8,6 +8,6 @@ namespace GestionDesAbsence.Models
     public class Cycle
     {
         public int Id { get; set; }
-        public string Nom { get; set; }
+        public string Nom { get; set; } 
     }
 }
