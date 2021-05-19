@@ -9,6 +9,6 @@ namespace GestionDesAbsence.Models
     public class Filiere
     {
         [Key]
-        public int id { get; set; }
+        public int Id { get; set; }
     }
 }
