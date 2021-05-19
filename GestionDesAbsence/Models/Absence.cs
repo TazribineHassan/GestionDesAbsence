@@ -9,7 +9,7 @@ namespace GestionDesAbsence.Models
     public class Absence
     {
         [Key]
-        public int id { get; set; }
+        public int Id { get; set; }
 
 
     }

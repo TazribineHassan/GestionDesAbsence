@@ -131,12 +131,19 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Absence.cs" />
     <Compile Include="Models\Administrateur.cs" />
     <Compile Include="Models\Classe.cs" />
+    <Compile Include="Models\Cour.cs" />
     <Compile Include="Models\Cycle.cs" />
     <Compile Include="Models\Etudiant.cs" />
+    <Compile Include="Models\Filiere.cs" />
     <Compile Include="Models\Groupe.cs" />
+    <Compile Include="Models\Local.cs" />
+    <Compile Include="Models\Module.cs" />
     <Compile Include="Models\Professeur.cs" />
+    <Compile Include="Models\Seance.cs" />
+    <Compile Include="Models\Semaine.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
