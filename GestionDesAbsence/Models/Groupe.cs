@@ -10,11 +10,16 @@ namespace GestionDesAbsence.Models
     {
         public Groupe()
         {
-            this.Etudiants = new HashSet<Etudiant>();
+            Etudiants = new HashSet<Etudiant>();
         }
 
         public int Id { get; set; }
         public string Nom { get; set; }
+
+        [ForeignKey("Classe")]
+        public int? id_classe { get; set; }
+
+        public virtual Classe Classe { get; set; }
 
         public virtual ICollection<Etudiant> Etudiants { get; set; }
     }
