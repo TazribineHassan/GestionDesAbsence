@@ -17,10 +17,8 @@ namespace GestionDesAbsence.Models
             Modules = new HashSet<Module>();
         }
 
-        public int Id { get; set; }
-
         [ForeignKey("Semaine")]
-        public int Semaine_id { get; set; }
+        public int Id { get; set; }
 
         public virtual Semaine Semaine { get; set; }
 

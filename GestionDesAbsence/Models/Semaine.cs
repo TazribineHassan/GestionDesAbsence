@@ -8,7 +8,7 @@ namespace GestionDesAbsence.Models
 {
     public class Semaine
     {
-        [Key]
+
         public int id { get; set; }
         public string Code { get; set; }
         public DateTime Date_debut { get; set; }
