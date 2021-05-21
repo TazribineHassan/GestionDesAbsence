@@ -11,6 +11,7 @@ namespace GestionDesAbsence.Models
         public Classe()
         {
             Groupes = new HashSet<Groupe>();
+            Modules = new HashSet<Module>();
         }
 
         public int Id { get; set; }
@@ -21,5 +22,6 @@ namespace GestionDesAbsence.Models
 
         public virtual Cycle Cycle { get; set; }
         public virtual ICollection<Groupe> Groupes { get; set; }
+        public virtual ICollection<Module> Modules { get; set; }
     }
 }
