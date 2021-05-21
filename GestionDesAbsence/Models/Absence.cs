@@ -18,5 +18,9 @@ namespace GestionDesAbsence.Models
         public Nullable<int> Etudiant_id;
         public virtual Etudiant Etudiant { get; set; }
 
+        [ForeignKey("Emploi")]
+        public Nullable<int> Emploi_id;
+        public virtual Emploi Emploi { get; set; }
+
     }
 }

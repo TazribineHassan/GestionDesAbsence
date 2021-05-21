@@ -10,5 +10,8 @@ namespace GestionDesAbsence.Models
     {
         [Key]
         public int Id { get; set; }
+        public string nom { get; set; }
+
+        public virtual ICollection<Emploi> Emplois { get; set; }
     }
 }

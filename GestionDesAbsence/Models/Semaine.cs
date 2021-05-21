@@ -10,5 +10,10 @@ namespace GestionDesAbsence.Models
     {
         [Key]
         public int id { get; set; }
+        public string Code { get; set; }
+        public DateTime Date_debut { get; set; }
+        public DateTime Date_fin { get; set; }
+
+        public virtual Emploi Emploi { get; set; }
     }
 }
