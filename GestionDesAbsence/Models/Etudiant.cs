@@ -10,5 +10,12 @@ namespace GestionDesAbsence.Models
         public int Id { get; set; }
         public string Nom { get; set; }
         public string Prenom { get; set; }
+
+        public virtual ICollection<Absence> Absences { get; set; }
+
+        public Etudiant()
+        {
+            this.Absences = new HashSet<Absence>();
+        }
     }
 }
