@@ -14,6 +14,10 @@ namespace GestionDesAbsence.Models
         public string Prenom { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
+        [ForeignKey("Groupe")]
+        public int? id_fil { get; set; }
+
+        public virtual Groupe Groupe { get; set; }
 
     }
 }
