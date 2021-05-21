@@ -24,4 +24,5 @@ namespace GestionDesAbsence.Models
         public virtual ICollection<Absence> Absences { get; set; }
         
     }
+
 }
