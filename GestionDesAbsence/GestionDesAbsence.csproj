@@ -136,6 +136,7 @@
     <Compile Include="Models\Classe.cs" />
     <Compile Include="Models\Cour.cs" />
     <Compile Include="Models\Cycle.cs" />
+    <Compile Include="Models\Emploi.cs" />
     <Compile Include="Models\Etudiant.cs" />
     <Compile Include="Models\Filiere.cs" />
     <Compile Include="Models\Groupe.cs" />
