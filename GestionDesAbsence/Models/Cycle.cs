@@ -8,7 +8,14 @@ namespace GestionDesAbsence.Models
 {
     public class Cycle
     {
+        public Cycle()
+        {
+            Classes = new HashSet<Classe>(); 
+        }
+
         public int Id { get; set; }
-        public string Nom { get; set; } 
+        public string Nom { get; set; }
+
+        public virtual ICollection<Classe> Classes { get; set; }
     }
 }
