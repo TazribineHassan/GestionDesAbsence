@@ -1,0 +1,114 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<h2 class="alert alert-success text-center">Login</h2>
+
+
+<h3>S'authentifier autant qu'un</h3>
+
+@*Adminstrateur trigger modal*@
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#admin">Adminstrateur</button>
+@*Professeur trigger modal*@
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#prof">Professeur</button>
+@*Etudiant trigger modal*@
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#etudiant">Etudiant</button>
+
+
+
+
+
+<!-- Admin Modal -->
+<div class="modal fade" id="admin" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-uppercase" id="exampleModalCenterTitle">espace adminstrateur</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="CheckAdmin" method="post">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Email:</label>
+                        <input class="form-control" name="email" type="email" required />
+                    </div>
+                    <div class="form-group">
+                        <label>Mot de passe:</label>
+                        <input class="form-control" name="password" type="password" required />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Login</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+ 
+<!-- Prof Modal -->
+<div class="modal fade" id="prof" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-uppercase" id="exampleModalCenterTitle">espace professeur</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="CheckTeacher" method="post">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Email:</label>
+                        <input class="form-control" name="email" type="email" required />
+                    </div>
+                    <div class="form-group">
+                        <label>Mot de passe:</label>
+                        <input class="form-control" name="password" type="password" required />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Login</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+ 
+<!-- Etudiant Modal -->
+<div class="modal fade" id="etudiant" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-uppercase" id="exampleModalCenterTitle">espace etudiant</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="CheckStudent" method="post">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Email:</label>
+                        <input class="form-control" name="email" type="email" required />
+                    </div>
+                    <div class="form-group">
+                        <label>Mot de passe:</label>
+                        <input class="form-control" name="password" type="password" required />
+                    </div>
+                    <div class="text-danger">@ViewBag.Msg</div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Login</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="text-danger">@ViewBag.Msg</div>
+
+
