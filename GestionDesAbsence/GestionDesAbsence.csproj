@@ -2499,12 +2499,9 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-<<<<<<< HEAD
-    <Content Include="Views\Login\Home.cshtml" />
-    <None Include="Views\Login\Index.cshtml" />
-=======
     <Content Include="Views\Shared\_LayoutMain.cshtml" />
->>>>>>> 02eac4eed97b0f4925af71d64c734808853fb2ac
+    <Content Include="Views\Login\Home.cshtml" />
+    <Content Include="Views\Login\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
