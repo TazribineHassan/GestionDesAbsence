@@ -21,7 +21,7 @@ namespace GestionDesAbsence.Models
         public string Password { get; set; }
 
         [ForeignKey("Groupe")]
-        public int? id_fil { get; set; }
+        public int? Id_groupe { get; set; }
 
         public virtual Groupe Groupe { get; set; }
         public virtual ICollection<Absence> Absences { get; set; }

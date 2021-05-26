@@ -165,3 +165,16 @@ C:\Users\saadr\Source\Repos\GestionDesAbsence\GestionDesAbsence\obj\Debug\Gestio
 C:\Users\saadr\Source\Repos\GestionDesAbsence\GestionDesAbsence\obj\Debug\GestionDesAbsence.dll
 C:\Users\saadr\Source\Repos\GestionDesAbsence\GestionDesAbsence\obj\Debug\GestionDesAbsence.pdb
 >>>>>>> 02eac4eed97b0f4925af71d64c734808853fb2ac
+C:\Users\admin\source\repos\GestionDesAbsence\GestionDesAbsence\bin\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\admin\source\repos\GestionDesAbsence\GestionDesAbsence\bin\Unity.Abstractions.dll
+C:\Users\admin\source\repos\GestionDesAbsence\GestionDesAbsence\bin\Unity.Container.dll
+C:\Users\admin\source\repos\GestionDesAbsence\GestionDesAbsence\bin\Unity.Mvc5.dll
+C:\Users\admin\source\repos\GestionDesAbsence\GestionDesAbsence\bin\System.Threading.Tasks.Extensions.dll
+C:\Users\admin\source\repos\GestionDesAbsence\GestionDesAbsence\bin\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\admin\source\repos\GestionDesAbsence\GestionDesAbsence\bin\Unity.Abstractions.pdb
+C:\Users\admin\source\repos\GestionDesAbsence\GestionDesAbsence\bin\Unity.Container.pdb
+C:\Users\admin\source\repos\GestionDesAbsence\GestionDesAbsence\obj\Debug\GestionDesAbsence.Migrations.InitialCreate1.resources
+C:\Users\admin\source\repos\GestionDesAbsence\GestionDesAbsence\obj\Debug\GestionDesAbsence.Migrations.InitialCreate11.resources
+C:\Users\admin\source\repos\GestionDesAbsence\GestionDesAbsence\obj\Debug\GestionDesAbsence.Migrations.IntialCreate_1.resources
+C:\Users\admin\source\repos\GestionDesAbsence\GestionDesAbsence\obj\Debug\GestionDesAbsence.Migrations.IntialCreate.resources
+C:\Users\admin\source\repos\GestionDesAbsence\GestionDesAbsence\obj\Debug\GestionDesAbsence.Migrations.IntialCreate1.resources
