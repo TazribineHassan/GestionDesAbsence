@@ -1,6 +1,6 @@
 ﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+    margin:auto;
+    
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -21,4 +21,24 @@ input,
 select,
 textarea {
     max-width: 280px;
+}
+
+.center {
+
+    min-height: 67vh;
+
+}
+
+.img{
+    width:100px;
+    height:100px;
+}
+
+.bgBlue {
+    background-color: #3b5998;
+}
+
+footer {
+    min-height: 11vh;
+    background-color: #3b5998;
 }
