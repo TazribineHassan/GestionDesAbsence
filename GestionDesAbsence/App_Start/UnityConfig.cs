@@ -13,6 +13,8 @@ namespace GestionDesAbsence
 			var container = new UnityContainer();
 
             container.RegisterType<IProfesseurService, ProfesseurService>();
+            container.RegisterType<ILoginService, LoginService>();
+            
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));
         }
     }

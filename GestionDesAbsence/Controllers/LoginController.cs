@@ -1,4 +1,6 @@
-﻿using System;
+﻿using GestionDesAbsence.Models;
+using GestionDesAbsence.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,6 +10,14 @@ namespace GestionDesAbsence.Controllers
 {
     public class LoginController : Controller
     {
+        ILoginService loginService;
+
+        public LoginController(ILoginService loginService)
+        {
+            this.loginService = loginService;
+        }
+
+
         // GET: Login
         public ActionResult Index()
         {
@@ -35,15 +45,17 @@ namespace GestionDesAbsence.Controllers
         }
 
         [HttpPost]
-        public string CheckTeacher(string email, string password)
+        public ActionResult CheckTeacher(string email, string password)
         {
-            if (email == "teacher@gmail.com" && password == "123")
+            Professeur professeur = loginService.Login(email, password, "Prof") as Professeur;
+            if(professeur != null)
             {
-                return "you're in";
+                ViewBag.Nom = professeur.Nom;
+                return View("Home");
             }
             else
             {
-                return "please check your email";
+                return RedirectToAction("IndexMsg", new { msg = "Email or password are incorrect" });
             }
         }
 

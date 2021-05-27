@@ -2,17 +2,32 @@
     ViewBag.Title = "Index";
 }
 
-<h2 class="alert alert-success text-center">Login</h2>
 
 
-<h3>S'authentifier autant qu'un</h3>
 
 @*Adminstrateur trigger modal*@
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#admin">Adminstrateur</button>
-@*Professeur trigger modal*@
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#prof">Professeur</button>
-@*Etudiant trigger modal*@
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#etudiant">Etudiant</button>
+@*<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#admin">Adminstrateur</button>*@
+<div class="center row align-items-center">
+    <div class="row py-3">
+        <div class="col"></div>
+        <div class="col-md-10 col-sm-10 text-center">
+            <h2 class="text-uppercase">S'authentifier autant qu'un</h2>
+        </div>
+        <div class="col"></div>
+    </div>
+    <div class="row">
+        <div class="col"></div>
+        <div class="col-md-4 col-sm-10 text-center">
+            @*Professeur trigger modal*@
+            <button type="button" class="btn bgBlue text-white" data-toggle="modal" data-target="#prof">Professeur</button>
+        </div>
+        <div class="col-md-4 col-sm-10 text-center">
+            @*Etudiant trigger modal*@
+            <button type="button" class="btn bgBlue text-white" data-toggle="modal" data-target="#etudiant">Etudiant</button>
+        </div>
+        <div class="col"></div>
+    </div>
+</div>
 
 
 
@@ -47,13 +62,13 @@
         </div>
     </div>
 </div>
- 
+
 <!-- Prof Modal -->
-<div class="modal fade" id="prof" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal" id="prof" tabindex="-1" role="dialog" aria-labelledby="prof" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title text-uppercase" id="exampleModalCenterTitle">espace professeur</h5>
+                <h5 class="modal-title text-uppercase" id="prof">espace professeur</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -77,13 +92,13 @@
         </div>
     </div>
 </div>
- 
+
 <!-- Etudiant Modal -->
-<div class="modal fade" id="etudiant" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
+<div class="modal" id="etudiant" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog  modal-dialog-centered" role="document">
         <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title text-uppercase" id="exampleModalCenterTitle">espace etudiant</h5>
+            <div class="modal-header bg-primary">
+                <h5 class="modal-title text-uppercase " id="exampleModalCenterTitle">espace etudiant</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -108,7 +123,10 @@
         </div>
     </div>
 </div>
+@if (@ViewBag.Msg != null) {
+    <div class="alert alert-danger">@ViewBag.Msg</div>
+ }
 
-<div class="text-danger">@ViewBag.Msg</div>
+
 
 

@@ -16,6 +16,12 @@ namespace GestionDesAbsence.ServicesImpl
             return (IEnumerable<Etudiant>)context.Professeurs.ToList();
         }
 
+        public Professeur GetProfesseurByEmail(string email)
+        {
+
+            return context.Professeurs.FirstOrDefault(prof => prof.Email == email); ;
+        }
+
         public Professeur GetProfesseurById(int id)
         {
             return context.Professeurs.Find(id);

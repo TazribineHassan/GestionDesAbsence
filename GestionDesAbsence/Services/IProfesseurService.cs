@@ -12,5 +12,7 @@ namespace GestionDesAbsence.Services
         void Save(Professeur professeur);
         IEnumerable<Etudiant> FindAll();
         Professeur GetProfesseurById(int id);
+        Professeur GetProfesseurByEmail(string email);
+
     }
 }
