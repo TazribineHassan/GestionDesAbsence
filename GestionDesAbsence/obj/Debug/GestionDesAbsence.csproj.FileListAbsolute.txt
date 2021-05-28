@@ -91,3 +91,9 @@ D:\mini projets\GestionDesAbsence\GestionDesAbsence\obj\Debug\GestionDesAbsence.
 D:\mini projets\GestionDesAbsence\GestionDesAbsence\obj\Debug\GestionDesAbsence.dll
 D:\mini projets\GestionDesAbsence\GestionDesAbsence\obj\Debug\GestionDesAbsence.pdb
 D:\mini projets\GestionDesAbsence\GestionDesAbsence\obj\Debug\GestionDesAbsence.csprojAssemblyReference.cache
+C:\Users\admin\source\repos\GestionDesAbsence\GestionDesAbsence\obj\Debug\GestionDesAbsence.csprojAssemblyReference.cache
+C:\Users\admin\source\repos\GestionDesAbsence\GestionDesAbsence\obj\Debug\GestionDesAbsence.Migrations.InitailCreate.resources
+C:\Users\admin\source\repos\GestionDesAbsence\GestionDesAbsence\obj\Debug\GestionDesAbsence.csproj.GenerateResource.cache
+C:\Users\admin\source\repos\GestionDesAbsence\GestionDesAbsence\obj\Debug\GestionDesAbsence.csproj.CoreCompileInputs.cache
+C:\Users\admin\source\repos\GestionDesAbsence\GestionDesAbsence\obj\Debug\GestionDesAbsence.dll
+C:\Users\admin\source\repos\GestionDesAbsence\GestionDesAbsence\obj\Debug\GestionDesAbsence.pdb

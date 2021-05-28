@@ -19,7 +19,7 @@ namespace GestionDesAbsence.Controllers
             this.professeurService = professeurService;
         }
 
-        [Authorize(Roles = "professeur")]
+        [Authorize(Roles = "professeeur")]
         public ActionResult Index()
         {
             /*GestionDesAbsenceContext context = new GestionDesAbsenceContext();
