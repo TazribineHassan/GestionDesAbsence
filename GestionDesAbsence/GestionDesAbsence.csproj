@@ -2538,7 +2538,7 @@
     <Content Include="Views\Login\Home.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Professeur\Index.cshtml" />
-    <Content Include="Views\Professeur\Index__2.cshtml" />
+    <Content Include="Views\Shared\_LayoutProfesseur.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -59,9 +59,8 @@ namespace GestionDesAbsence.Controllers
                 cookie.Expires = DateTime.Now.AddDays(30);
                 Response.Cookies.Add(cookie);
                 cookie.HttpOnly = true;
-
-                ViewBag.Nom = professeur.Nom;
-                return View("Home");
+               //ViewBag.Nom = professeur.Nom;
+                return RedirectToAction("Index", "Professeur", new { nom = professeur.Nom});
             }
             else
             {
