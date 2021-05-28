@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace GestionDesAbsence.Controllers
 {
@@ -50,6 +51,15 @@ namespace GestionDesAbsence.Controllers
             Professeur professeur = loginService.Login(email, password, "Prof") as Professeur;
             if(professeur != null)
             {
+
+                //set the authentication coockie
+                var ticket = new FormsAuthenticationTicket(professeur.Email, true, 3000);
+                string encrypt = FormsAuthentication.Encrypt(ticket);
+                var cookie = new HttpCookie(FormsAuthentication.FormsCookieName, encrypt);
+                cookie.Expires = DateTime.Now.AddDays(30);
+                Response.Cookies.Add(cookie);
+                cookie.HttpOnly = true;
+
                 ViewBag.Nom = professeur.Nom;
                 return View("Home");
             }

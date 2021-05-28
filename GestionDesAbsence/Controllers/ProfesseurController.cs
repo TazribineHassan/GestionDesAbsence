@@ -19,13 +19,30 @@ namespace GestionDesAbsence.Controllers
             this.professeurService = professeurService;
         }
 
+        //[Authorize]
         // GET: Professeur
         public ActionResult Index()
         {
 
-            //professeurService.Save(new Professeur() { Id = 0, Code_prof = "UYGGHJ09UU9007", Nom = "OUARRACHI", Prenom = "Maryem", Email = "maryem@gmail.com", Password = Encryption.Encrypt("professeur") });
+            professeurService.Save(new Professeur(){
+                                                        Id = 0,
+                                                        Code_prof = "UYGGHJ09UU9007",
+                                                        Nom = "OUARRACHI",
+                                                        Prenom = "Maryem",
+                                                        Email = "maryem@gmail.com",
+                                                        Password = Encryption.Encrypt("professeur"),
+                                                        Role_Id = 2
+                                                    });
             
             return View();
         }
+
+        [Authorize(Roles = "professeur")]
+        public ActionResult testAuth()
+        {
+
+            return View("index");
+        }
+
     }
 }
