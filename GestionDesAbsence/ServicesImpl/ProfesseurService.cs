@@ -42,6 +42,7 @@ namespace GestionDesAbsence.ServicesImpl
                          where m.Professeur.Id == professeur.Id 
                          select m;
             var seances = from s in globalEmpoli.Seances select s;
+            var locals = from l in globalEmpoli.Locals select l;
             
             return emploiForProf;
         }

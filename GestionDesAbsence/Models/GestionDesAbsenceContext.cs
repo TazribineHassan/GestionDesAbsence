@@ -22,6 +22,7 @@ namespace GestionDesAbsence.Models
         public DbSet<Groupe> Groupes { get; set; }
         public DbSet<Local> Locals { get; set; }
         public DbSet<Module> Modules { get; set; }
+        public DbSet<Role> Roles { get; set; }
         public DbSet<Professeur> Professeurs { get; set; }
         public DbSet<Seance> Seances { get; set; }
         public DbSet<Semaine> Semaines { get; set; }

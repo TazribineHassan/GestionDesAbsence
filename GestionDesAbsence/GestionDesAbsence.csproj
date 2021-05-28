@@ -164,8 +164,10 @@
     <Compile Include="Models\Local.cs" />
     <Compile Include="Models\Module.cs" />
     <Compile Include="Models\Professeur.cs" />
+    <Compile Include="Models\Role.cs" />
     <Compile Include="Models\Seance.cs" />
     <Compile Include="Models\Semaine.cs" />
+    <Compile Include="MyRoleProvider.cs" />
     <Compile Include="ServicesImpl\LoginService.cs" />
     <Compile Include="ServicesImpl\ProfesseurService.cs" />
     <Compile Include="Services\ILoginService.cs" />

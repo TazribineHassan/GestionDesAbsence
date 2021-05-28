@@ -113,6 +113,18 @@
                     Prenom = c.String(),
                     Email = c.String(),
                     Password = c.String(),
+                    Role_Id = c.Int(nullable: false),
+                })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Roles", t => t.Role_Id, cascadeDelete: true)
+                .Index(t => t.Role_Id);
+
+            CreateTable(
+                "dbo.Roles",
+                c => new
+                {
+                    Id = c.Int(nullable: false, identity: true),
+                    Nom = c.String(),
                 })
                 .PrimaryKey(t => t.Id);
 
@@ -220,6 +232,7 @@
             DropForeignKey("dbo.LocalEmplois", "Emploi_Id", "dbo.Emplois");
             DropForeignKey("dbo.LocalEmplois", "Local_Id", "dbo.Locals");
             DropForeignKey("dbo.Absences", "Emploi_Id", "dbo.Emplois");
+            DropForeignKey("dbo.Professeurs", "Role_Id", "dbo.Roles");
             DropIndex("dbo.SeanceEmplois", new[] { "Emploi_Id" });
             DropIndex("dbo.SeanceEmplois", new[] { "Seance_id" });
             DropIndex("dbo.ModuleEmplois", new[] { "Emploi_Id" });
@@ -232,6 +245,7 @@
             DropIndex("dbo.Groupes", new[] { "id_classe" });
             DropIndex("dbo.Classes", new[] { "id_cycle" });
             DropIndex("dbo.Modules", new[] { "id_Professeur" });
+            DropIndex("dbo.Professeurs", new[] { "Role_Id" });
             DropIndex("dbo.Emplois", new[] { "Id" });
             DropIndex("dbo.Absences", new[] { "Etudiant_Id" });
             DropIndex("dbo.Absences", new[] { "Emploi_Id" });
@@ -242,6 +256,7 @@
             DropTable("dbo.Administrateurs");
             DropTable("dbo.Semaines");
             DropTable("dbo.Seances");
+            DropTable("dbo.Roles");
             DropTable("dbo.Professeurs");
             DropTable("dbo.Etudiants");
             DropTable("dbo.Groupes");
