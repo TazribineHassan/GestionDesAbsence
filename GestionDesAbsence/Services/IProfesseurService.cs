@@ -13,6 +13,6 @@ namespace GestionDesAbsence.Services
         IEnumerable<Etudiant> FindAll();
         Professeur GetProfesseurById(int id);
         Professeur GetProfesseurByEmail(string email);
-        Emploi GetEmploi(Semaine semaine);
+        Emploi GetEmploi(Semaine semaine, Professeur professeur);
     }
 }
