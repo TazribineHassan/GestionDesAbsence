@@ -32,5 +32,13 @@ namespace GestionDesAbsence.ServicesImpl
             context.Professeurs.Add(professeur);
             context.SaveChanges();
         }
+
+
+        public Emploi GetEmploi(Semaine semaine)
+        {
+            var emploi = context.Emplois.FirstOrDefault(x => x.Semaine.id == semaine.id);
+            return emploi;
+        }
+
     }
 }
