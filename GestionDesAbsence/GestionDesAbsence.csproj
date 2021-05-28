@@ -149,11 +149,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202105281438147_InitailCreate.cs" />
-    <Compile Include="Migrations\202105281438147_InitailCreate.designer.cs">
-      <DependentUpon>202105281438147_InitailCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Absence.cs" />
     <Compile Include="Models\Administrateur.cs" />
     <Compile Include="Models\Classe.cs" />
@@ -2542,6 +2537,8 @@
     <Content Include="Views\Professeur\Index__2.cshtml" />
     <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
     <Content Include="Views\Admin\Home.cshtml" />
+    <Content Include="Views\Admin\AllFilieres.cshtml" />
+    <Content Include="Views\Admin\AjouterClasse.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -2553,11 +2550,6 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\202105281438147_InitailCreate.resx">
-      <DependentUpon>202105281438147_InitailCreate.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
