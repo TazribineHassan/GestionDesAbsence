@@ -18,5 +18,15 @@ namespace GestionDesAbsence.Controllers
         {
             return View();
         }
+
+        public ActionResult AllFilieres()
+        {
+            return View();
+        }
+
+        public ActionResult AjouterClasse()
+        {
+            return View();
+        }
     }
 }
