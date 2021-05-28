@@ -1,10 +1,11 @@
 ﻿body {
-    margin:auto;
-    
+    margin: auto;
+    background: #E0EAFC; /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #CFDEF3, #E0EAFC); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #CFDEF3, #E0EAFC); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
-
 /* Set padding to keep content from hitting the edges */
-.body-content {
+.body-content{
     padding-left: 15px;
     padding-right: 15px;
 }
@@ -24,9 +25,8 @@ textarea {
 }
 
 .center {
-
-    min-height: 67vh;
-
+    min-height: 35vh;
+    width:100%;
 }
 
 .img{
@@ -36,9 +36,74 @@ textarea {
 
 .bgBlue {
     background-color: #3b5998;
+
+}
+
+.navbar-width {
+    min-height: 20vh;
 }
 
 footer {
-    min-height: 11vh;
-    background-color: #3b5998;
+    min-height: 10vh;
+   
+}
+#title-color {
+
+    color: red;
+    animation: mymove 5s infinite;
+}
+
+@keyframes mymove {
+    from {
+        color: #85D8CE;
+    }
+
+    to {
+        color: #348AC7;
+    }
+}
+
+#header-color {
+    color: red;
+    animation: mystyle 5s infinite;
+}
+
+@keyframes mystyle {
+    from {
+        color: #f2fcfe;
+    }
+
+    to {
+        color: #ed4264;
+
+    }
+}
+
+.bg-student {
+    background: #085078; 
+    background: -webkit-linear-gradient(to right, #85D8CE, #085078);
+    background: linear-gradient(to right, #85D8CE, #085078);
+    width:120px
+}
+
+.bg-teacher {
+    background: #7474BF;
+    background: -webkit-linear-gradient(to right, #348AC7, #7474BF);
+    background: linear-gradient(to right, #348AC7, #7474BF);
+    width: 120px
+}
+.bg-teacher:hover, .bg-student:hover {
+    box-shadow: 5px 5px #888888;
+}
+
+.bg-student-color {
+    background: #085078; 
+    background: -webkit-linear-gradient(to right, #85D8CE, #085078);
+    background: linear-gradient(to right, #85D8CE, #085078);
+}
+
+.bg-teacher-color {
+    background: #7474BF;
+    background: -webkit-linear-gradient(to right, #348AC7, #7474BF);
+    background: linear-gradient(to right, #348AC7, #7474BF);
 }
