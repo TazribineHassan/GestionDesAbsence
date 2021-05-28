@@ -20,7 +20,6 @@ namespace GestionDesAbsence.Controllers
         }
 
         [Authorize(Roles = "professeur")]
-        // GET: Professeur
         public ActionResult Index()
         {
             /*GestionDesAbsenceContext context = new GestionDesAbsenceContext();
