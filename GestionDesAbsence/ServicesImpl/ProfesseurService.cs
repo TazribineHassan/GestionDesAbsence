@@ -36,15 +36,27 @@ namespace GestionDesAbsence.ServicesImpl
 
         public Emploi GetEmploi(Semaine semaine, Professeur professeur)
         {
-            var globalEmpoli = context.Emplois.FirstOrDefault(emp => emp.Semaine.id == semaine.id);
-            var emploiForProf = new Emploi();
-            var module = from m in globalEmpoli.Modules 
-                         where m.Professeur.Id == professeur.Id 
-                         select m;
-            var seances = from s in globalEmpoli.Seances select s;
-            var locals = from l in globalEmpoli.Locals select l;
+            var result = new Emploi();
+            var emploiForProfesseur = context.Emplois
+                         .Join(context.Modules,
+                               emploi => emploi.Id,
+                               module => module.Id,
+                               (emploi, module) => new {emploi, module}
+                              )
+                          .Join(context.Professeurs,
+                               emploi_module => emploi_module.module.Professeur.Id,
+                               prof => prof.Id,
+                               (emploi_module, prof) => new { 
+                                   emploi = emploi_module.emploi,
+                                   module = emploi_module.module,
+                                   professeur = prof
+                               })
+                          .Where(emploi_module_prof => 
+                                        emploi_module_prof.professeur.Id == professeur.Id
+                                        && emploi_module_prof.emploi.Semaine.id == semaine.id)
+                          ;
             
-            return emploiForProf;
+            return result;
         }
 
     }

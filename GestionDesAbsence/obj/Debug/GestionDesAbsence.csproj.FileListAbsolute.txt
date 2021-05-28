@@ -90,3 +90,4 @@ D:\mini projets\GestionDesAbsence\GestionDesAbsence\obj\Debug\GestionDesAbsence.
 D:\mini projets\GestionDesAbsence\GestionDesAbsence\obj\Debug\GestionDesAbsence.csproj.CopyComplete
 D:\mini projets\GestionDesAbsence\GestionDesAbsence\obj\Debug\GestionDesAbsence.dll
 D:\mini projets\GestionDesAbsence\GestionDesAbsence\obj\Debug\GestionDesAbsence.pdb
+D:\mini projets\GestionDesAbsence\GestionDesAbsence\obj\Debug\GestionDesAbsence.csprojAssemblyReference.cache

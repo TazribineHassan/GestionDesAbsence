@@ -57,7 +57,7 @@ namespace GestionDesAbsence.Controllers
                 string encrypt = FormsAuthentication.Encrypt(ticket);
                 var cookie = new HttpCookie(FormsAuthentication.FormsCookieName, encrypt);
                 cookie.Expires = DateTime.Now.AddDays(30);
-                Response.Cookies.Add(cookie);
+
                 cookie.HttpOnly = true;
 
                 ViewBag.Nom = professeur.Nom;
