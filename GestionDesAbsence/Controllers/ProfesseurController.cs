@@ -23,12 +23,12 @@ namespace GestionDesAbsence.Controllers
         // GET: Professeur
         public ActionResult Index()
         {
-/*            GestionDesAbsenceContext context = new GestionDesAbsenceContext();
+            /*GestionDesAbsenceContext context = new GestionDesAbsenceContext();
 
             context.Roles.Add(new Role() { Nome = "admin" });
             context.Roles.Add(new Role() { Nome = "professeeur" });
             context.Roles.Add(new Role() { Nome = "etudiant" });
-            context.SaveChanges();
+            context.SaveChanges();*/
 
             professeurService.Save(new Professeur()
             {
@@ -39,7 +39,7 @@ namespace GestionDesAbsence.Controllers
                 Email = "maryem@gmail.com",
                 Password = Encryption.Encrypt("professeur"),
                 Role_Id = 2
-            });*/
+            });
 
             return View();
         }

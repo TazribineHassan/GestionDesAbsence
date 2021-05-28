@@ -14,21 +14,21 @@ namespace GestionDesAbsence
     {
         protected void Application_Start()
         {
-            //using (GestionDesAbsenceContext db = new GestionDesAbsenceContext())
-            //{
-            //    if (db.Roles.Count() == 0)
-            //    {
-            //        var adminRole = new Role() { Nome = "admin" };
-            //        var professeurRole = new Role() { Nome = "professeur" };
-            //        var etudiantRole = new Role() { Nome = "etudiant" };
+            using (GestionDesAbsenceContext db = new GestionDesAbsenceContext())
+            {
+                if (db.Roles.Count() == 0)
+                {
+                    var adminRole = new Role() { Nome = "admin" };
+                    var professeurRole = new Role() { Nome = "professeur" };
+                    var etudiantRole = new Role() { Nome = "etudiant" };
 
-            //        db.Roles.Add(adminRole);
-            //        db.Roles.Add(professeurRole);
-            //        db.Roles.Add(etudiantRole);
-            //        db.SaveChanges();
+                    db.Roles.Add(adminRole);
+                    db.Roles.Add(professeurRole);
+                    db.Roles.Add(etudiantRole);
+                    db.SaveChanges();
 
-            //    }
-            //}
+                }
+            }
 
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);

@@ -48,7 +48,8 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="CheckAdmin" method="post">
+            @using (Html.BeginForm("CheckAdmin", "Login", FormMethod.Post))
+            {
                 <div class="modal-body">
                     <div class="form-group">
                         <label>Email:</label>
@@ -63,7 +64,7 @@
                     <button type="submit" class="btn btn-primary">Login</button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </div>
-            </form>
+            }
         </div>
     </div>
 </div>
@@ -78,7 +79,8 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="CheckTeacher" method="post">
+            @using (Html.BeginForm("CheckTeacher", "Login", FormMethod.Post))
+            {
                 <div class="modal-body ">
                     <div class="form-group">
                         <label>Email:</label>
@@ -93,7 +95,7 @@
                     <button type="submit" class="btn btn-outline-info">Login</button>
                     <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>
                 </div>
-            </form>
+            }
         </div>
     </div>
 </div>
@@ -108,7 +110,8 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="CheckStudent" method="post">
+            @using (Html.BeginForm("CheckStudent", "Login", FormMethod.Post))
+            {
                 <div class="modal-body">
                     <div class="form-group">
                         <label>Email:</label>
@@ -123,7 +126,7 @@
                     <button type="submit" class="btn btn-outline-info">Login</button>
                     <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>
                 </div>
-            </form>
+            }
         </div>
     </div>
 </div>
