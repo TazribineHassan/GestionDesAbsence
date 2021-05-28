@@ -23,17 +23,24 @@ namespace GestionDesAbsence.Controllers
         // GET: Professeur
         public ActionResult Index()
         {
+/*            GestionDesAbsenceContext context = new GestionDesAbsenceContext();
 
-            professeurService.Save(new Professeur(){
-                                                        Id = 0,
-                                                        Code_prof = "UYGGHJ09UU9007",
-                                                        Nom = "OUARRACHI",
-                                                        Prenom = "Maryem",
-                                                        Email = "maryem@gmail.com",
-                                                        Password = Encryption.Encrypt("professeur"),
-                                                        Role_Id = 2
-                                                    });
-            
+            context.Roles.Add(new Role() { Nome = "admin" });
+            context.Roles.Add(new Role() { Nome = "professeeur" });
+            context.Roles.Add(new Role() { Nome = "etudiant" });
+            context.SaveChanges();
+
+            professeurService.Save(new Professeur()
+            {
+                Id = 0,
+                Code_prof = "UYGGHJ09UU9007",
+                Nom = "OUARRACHI",
+                Prenom = "Maryem",
+                Email = "maryem@gmail.com",
+                Password = Encryption.Encrypt("professeur"),
+                Role_Id = 2
+            });*/
+
             return View();
         }
 

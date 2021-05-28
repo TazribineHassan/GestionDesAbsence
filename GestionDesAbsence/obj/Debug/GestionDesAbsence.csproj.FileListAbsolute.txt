@@ -271,3 +271,5 @@ D:\mini projets\GestionDesAbsence\GestionDesAbsence\obj\Debug\GestionDesAbsence.
 D:\mini projets\GestionDesAbsence\GestionDesAbsence\obj\Debug\GestionDesAbsence.csproj.CopyComplete
 D:\mini projets\GestionDesAbsence\GestionDesAbsence\obj\Debug\GestionDesAbsence.dll
 D:\mini projets\GestionDesAbsence\GestionDesAbsence\obj\Debug\GestionDesAbsence.pdb
+C:\Users\admin\source\repos\GestionDesAbsence\GestionDesAbsence\obj\Debug\GestionDesAbsence.Migrations.RoleCreate.resources
+C:\Users\admin\source\repos\GestionDesAbsence\GestionDesAbsence\obj\Debug\GestionDesAbsence.Migrations.InitailCreate.resources

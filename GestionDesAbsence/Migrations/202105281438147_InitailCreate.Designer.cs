@@ -7,13 +7,13 @@ namespace GestionDesAbsence.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class IntialCreate : IMigrationMetadata
+    public sealed partial class InitailCreate : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(IntialCreate));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(InitailCreate));
         
         string IMigrationMetadata.Id
         {
-            get { return "202105260128305_IntialCreate"; }
+            get { return "202105281438147_InitailCreate"; }
         }
         
         string IMigrationMetadata.Source
