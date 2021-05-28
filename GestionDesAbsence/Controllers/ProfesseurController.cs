@@ -19,8 +19,8 @@ namespace GestionDesAbsence.Controllers
             this.professeurService = professeurService;
         }
 
-        [Authorize(Roles = "professeeur")]
-        public ActionResult Index(string nom)
+        [Authorize(Roles = "professeur")]
+        public ActionResult Index()
         {
             /*GestionDesAbsenceContext context = new GestionDesAbsenceContext();
 
@@ -29,17 +29,17 @@ namespace GestionDesAbsence.Controllers
             context.Roles.Add(new Role() { Nome = "etudiant" });
             context.SaveChanges();*/
 
-            /*            professeurService.Save(new Professeur()
-                        {
-                            Id = 0,
-                            Code_prof = "UYGGHJ09UU9007",
-                            Nom = "OUARRACHI",
-                            Prenom = "Maryem",
-                            Email = "maryem@gmail.com",
-                            Password = Encryption.Encrypt("professeur"),
-                            Role_Id = 2
-                        });*/
-            ViewBag.nom = nom;
+            /*professeurService.Save(new Professeur()
+            {
+                Id = 0,
+                Code_prof = "UYGGHJ09UU9007",
+                Nom = "OUARRACHI",
+                Prenom = "Maryem",
+                Email = "maryem@gmail.com",
+                Password = Encryption.Encrypt("professeur"),
+                Role_Id = 2
+            });*/
+
             return View();
         }
 

@@ -56,11 +56,17 @@ namespace GestionDesAbsence.Controllers
                 var ticket = new FormsAuthenticationTicket(professeur.Email, true, 3000);
                 string encrypt = FormsAuthentication.Encrypt(ticket);
                 var cookie = new HttpCookie(FormsAuthentication.FormsCookieName, encrypt);
-                cookie.Expires = DateTime.Now.AddDays(30);
+                cookie.Expires = DateTime.Now.AddHours(3);
                 Response.Cookies.Add(cookie);
                 cookie.HttpOnly = true;
+<<<<<<< HEAD
                //ViewBag.Nom = professeur.Nom;
                 return RedirectToAction("Index", "Professeur", new { nom = professeur.Nom});
+=======
+
+                ViewBag.Nom = professeur.Nom;
+                return RedirectToAction("Index", "Professeur");
+>>>>>>> 41ccc256c85efddf0e26ee2882ff92c70df090e0
             }
             else
             {
@@ -80,7 +86,14 @@ namespace GestionDesAbsence.Controllers
             {
                 return RedirectToAction("IndexMsg", new { msg = "Email or password are incorrect" });
             }
-        }        
-        
+        }
+
+        [HttpGet]
+        public ActionResult Logout()
+        {
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Index");
+        }
+
     }
 }
