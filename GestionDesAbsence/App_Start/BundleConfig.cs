@@ -25,7 +25,10 @@ namespace GestionDesAbsence
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/Site.css"));            
+                      "~/Content/Site.css"));              
+            bundles.Add(new StyleBundle("~/Content/Admin/css").Include(
+                      "~/Content/bootstrap.css",
+                      "~/Content/admin.css"));            
             bundles.Add(new ScriptBundle("~/Content/Js").Include(
                      "~/Content/jQuery.min.js",
                      "~/Content/Toasts.js"));

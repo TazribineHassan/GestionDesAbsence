@@ -23,6 +23,11 @@ namespace GestionDesAbsence.Controllers
         public ActionResult Index()
         {
             return View();
+        }        
+        
+        public ActionResult Admin()
+        {
+            return View();
         }
                 
         
@@ -60,8 +65,8 @@ namespace GestionDesAbsence.Controllers
                 Response.Cookies.Add(cookie);
                 cookie.HttpOnly = true;
 
-               //ViewBag.Nom = professeur.Nom;
-                return RedirectToAction("Index", "Professeur", new { nom = professeur.Nom});
+               ViewBag.Nom = professeur.Nom;
+                return RedirectToAction("Index", "Professeur");
 
             }
             else
