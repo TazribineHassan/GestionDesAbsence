@@ -16,6 +16,8 @@ namespace GestionDesAbsence.Models
         public String Nome { get; set; }
 
         public virtual ICollection<Professeur> Professeurs { get; set; }
+        public virtual ICollection<Etudiant> Etudiants { get; set; }
+        public virtual ICollection<Administrateur> Administrateurs { get; set; }
 
     }
 }

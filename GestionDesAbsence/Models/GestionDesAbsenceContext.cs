@@ -18,6 +18,7 @@ namespace GestionDesAbsence.Models
         public DbSet<Classe> Classes { get; set; }
         public DbSet<Cycle> Cycles { get; set; }
         public DbSet<Emploi> Emplois { get; set; }
+        public DbSet<Details_Emploi> details_Emplois { get; set; }
         public DbSet<Etudiant> Etudiants { get; set; }
         public DbSet<Groupe> Groupes { get; set; }
         public DbSet<Local> Locals { get; set; }
