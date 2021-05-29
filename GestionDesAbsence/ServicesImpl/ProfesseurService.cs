@@ -67,5 +67,56 @@ namespace GestionDesAbsence.ServicesImpl
             return emploiForProfesseur;
         }
 
+        public Object GetStudentsList(int id_seance, int id_module, int id_semaine)
+        {
+            var students = context.Modules
+                            .Join(context.Classes,
+                            module => module.Id,
+                            classe => classe.Id,
+                            (module, classe) => new { 
+                                module = module, 
+                                classe = classe })
+                            .Join(context.Groupes,
+                            module_classe => module_classe.classe.Id,
+                            groupe => groupe.Id,
+                            (module_classe, groupe) => new { 
+                                module = module_classe.module, 
+                                classe = module_classe.classe,
+                                groupe = groupe
+                            })
+                            .Join(context.Etudiants,
+                            module_classe_groupe => module_classe_groupe.groupe.Id,
+                            etudiant => etudiant.Id,
+                            (module_classe_groupe, etudiant) => new { 
+                                module = module_classe_groupe.module, 
+                                classe = module_classe_groupe.classe,
+                                groupe = module_classe_groupe.groupe,
+                                etudiant = etudiant
+                            })
+                            .Join(context.details_Emplois,
+                            all => all.module.Id,
+                            details_emploi => details_emploi.Id,
+                            (all, details_emploi) => new {
+                                module = all.module,
+                                classe = all.classe,
+                                groupe = all.groupe,
+                                etudiant = all.etudiant,
+                                details_emploi = details_emploi
+                            })
+                            .Where(all => (all.module.Id == id_module
+                                           && all.details_emploi.Seance_Id == id_seance
+                                           && all.details_emploi.Emploi.Semaine.id == id_semaine))
+                            .ToList();
+
+            return students;
+        }
+
+        public bool UpdateAbsence(int id_absence, bool est_present)
+        {
+            var absence = context.Absences.Find(id_absence);
+            absence.EstPresent = est_present;
+            var result = context.SaveChanges();
+            return result >= 1; //return true if more than one record updated successfully
+        }
     }
 }

@@ -14,5 +14,7 @@ namespace GestionDesAbsence.Services
         Professeur GetProfesseurById(int id);
         Professeur GetProfesseurByEmail(string email);
         Object GetSeancesForProf(Semaine semaine, Professeur professeur);
+        Object GetStudentsList(int id_seance, int id_module, int id_semaine);
+        bool UpdateAbsence(int id_absence, bool est_present);
     }
 }
