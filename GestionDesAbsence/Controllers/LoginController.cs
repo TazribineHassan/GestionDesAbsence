@@ -63,8 +63,6 @@ namespace GestionDesAbsence.Controllers
                //ViewBag.Nom = professeur.Nom;
                 return RedirectToAction("Index", "Professeur", new { nom = professeur.Nom});
 
-                ViewBag.Nom = professeur.Nom;
-                return RedirectToAction("Index", "Professeur");
             }
             else
             {
