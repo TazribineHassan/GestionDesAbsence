@@ -77,12 +77,22 @@ namespace GestionDesAbsence.Controllers
                 // la table des modules
                 var modules = new List<Module>();
                 modules.Add(new Module() { Id = 0, NomModule = "C#", id_Professeur = 1 });
-                //attach model to class 1
 
                 modules.Add(new Module() { Id = 0, NomModule = "Module x", id_Professeur = 2 });
+
                 modules.Add(new Module() { Id = 0, NomModule = "Module y", id_Professeur = 3 });
+
                 db.Modules.AddRange(modules);
                 db.SaveChanges();
+
+                //attach modules to classes
+                //attach model to class 1
+                db.Modules.Find(1).Classes.Add(db.Classes.Find(1));
+                //attach model to class 1
+                db.Modules.Find(2).Classes.Add(db.Classes.Find(1));
+                //attach model to class 2
+                db.Modules.Find(3).Classes.Add(db.Classes.Find(2));
+                db.SaveChanges()
 
                 // la table des locals
                 var locals = new List<Local>();
