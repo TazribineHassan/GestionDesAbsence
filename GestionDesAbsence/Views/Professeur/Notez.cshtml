@@ -1,0 +1,70 @@
+﻿@{
+    ViewBag.Title = "Espace Des Professeurs";
+    Layout = "~/Views/Shared/_LayoutProfesseur.cshtml";
+}
+@using GridMvc.Html
+@model IEnumerable<GestionDesAbsence.Models.Etudiant>
+
+@*user name = @User.Identity.Name*@
+<div class="row justify-content-center py-2 ">
+    <div class="col-md-8 btn btn-outline-success">
+        Semaine 8 - Lundi - 12/04/2021 - [ 08:00 - 10:00]
+    </div>
+</div>
+<div class="row justify-content-center">
+    @*<table class="table col-md-10 table-striped">
+        <thead class="bg-info">
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Nom</th>
+                <th scope="col">Prénom</th>
+                <th scope="col">Présent(e)</th>
+                <th scope="col">Absent(e)</th>
+                <th scope="col">Commentaire</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < 36; i++)
+            {
+                <tr>
+                    <th scope="row">@i</th>
+                    <td>Nom @i</td>
+                    <td>Prénom @i</td>
+                    <td><input type="radio" name="@i+presence" /></td>
+                    <td><input type="radio" name="@i+presence" /></td>
+                    <td> <input type="text" name="commentaire" /> </td>
+                </tr>
+            }
+        </tbody>
+    </table>*@
+    <div class="col-md-10">
+
+        </form>
+            @Html.Grid(Model).Columns(columns =>
+       {
+           columns.Add(c => c.Id).Titled("ID").Filterable(true);
+           columns.Add(c => c.Nom).Titled("Nom").Filterable(true);
+           columns.Add(c => c.Prenom).Titled("Prénom").Filterable(true);
+           columns.Add()
+           .Titled("Absent(e)")
+           .Encoded(false)
+           .Sanitized(false)
+           .RenderValueAs(o => Html.RadioButton(o.Id + "presence", ""));
+           columns.Add()
+           .Titled("Présent(e)")
+           .Encoded(false)
+           .Sanitized(false)
+           .RenderValueAs(o => Html.RadioButton(o.Id + "presence", ""));
+           columns.Add()
+           .Titled("Commentaire")
+           .Encoded(false)
+           .Sanitized(false)
+           .RenderValueAs(o => new HtmlString ("<form action='Marquez'  method='post'>" +
+                                                    "<input type='hidden' name='Id' value="+ o.Id+ " />" +
+                                                    "<button type='submit' class='btn btn-success' value=''>Marquez</button>" +
+                                                "</form>"));
+       }).WithPaging(6).Selectable(true)
+    </div>
+    
+
+</div>
