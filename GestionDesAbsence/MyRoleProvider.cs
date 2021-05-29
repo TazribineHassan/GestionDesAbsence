@@ -41,6 +41,10 @@ namespace GestionDesAbsence
             using (GestionDesAbsenceContext db = new GestionDesAbsenceContext())
             {
                 var user_role = db.Professeurs.Include("Role").Where(p => p.Email == username).FirstOrDefault().Role.Nome;
+                if(user_role == null)
+                    user_role = db.Administrateurs.Include("Role").Where(p => p.Email == username).FirstOrDefault().Role.Nome;
+                if (user_role == null)
+                    user_role = db.Etudiants.Include("Role").Where(p => p.Email == username).FirstOrDefault().Role.Nome;
                 string[] role = { user_role };
                 return role;
             }

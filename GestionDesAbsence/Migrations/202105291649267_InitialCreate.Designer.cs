@@ -13,7 +13,7 @@ namespace GestionDesAbsence.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "202105290159020_InitialCreate"; }
+            get { return "202105291649267_InitialCreate"; }
         }
         
         string IMigrationMetadata.Source

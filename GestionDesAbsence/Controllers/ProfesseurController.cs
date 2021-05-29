@@ -10,7 +10,7 @@ using System.Web.Mvc;
 
 namespace GestionDesAbsence.Controllers
 {
-    [Authorize(Roles = "professeeur")]
+    [Authorize(Roles = "professeur")]
     public class ProfesseurController : Controller
     {
         IProfesseurService professeurService;
@@ -61,11 +61,8 @@ namespace GestionDesAbsence.Controllers
 
                 // La table de l'etudiant
                 var etudiants = new List<Etudiant>();
-                etudiants.Add(new Etudiant() { Id = 0, Cne = "D1324689", Nom = "TAZRIBINE", Prenom = "Hassan", Email = "hassan@gmail.com", Password = Encryption.Encrypt("etudiant"), Id_groupe = 1 });
-                etudiants.Add(new Etudiant() { Id = 0, Cne = "D1324689", Nom = "ROUDDASSE", Prenom = "Saad", Email = "saad@gmail.com", Password = Encryption.Encrypt("etudiant"), Id_groupe = 1 });
-                etudiants.Add(new Etudiant() { Id = 0, Cne = "D1324689", Nom = "MATROUH", Prenom = "Mohamed", Email = "matrouh@gmail.com", Password = Encryption.Encrypt("etudiant"), Id_groupe = 2 });
-                etudiants.Add(new Etudiant() { Id = 0, Cne = "D1324689", Nom = "TEST", Prenom = "Test", Email = "test@gmail.com", Password = Encryption.Encrypt("etudiant"), Id_groupe = 2 });
-                etudiants.Add(new Etudiant() { Id = 0, Cne = "D1324689", Nom = "TEST", Prenom = "Test", Email = "test@gmail.com", Password = Encryption.Encrypt("etudiant"), Id_groupe = 3 });
+                for(int i = 0; i < 100; i++)
+                    etudiants.Add(new Etudiant() { Id = 0, Cne = "D132468" + i , Nom = "TAZRIBINE" + i + "", Prenom = "Hassan" + i + "", Email = "hassan" + i +"@gmail.com", Password = Encryption.Encrypt("etudiant"), Id_groupe = 1 });
                 db.Etudiants.AddRange(etudiants);
                 db.SaveChanges();
 
@@ -90,5 +87,19 @@ namespace GestionDesAbsence.Controllers
             return "well done";
         }
 
+
+        public ActionResult Notez()
+        {
+            GestionDesAbsenceContext context = new GestionDesAbsenceContext();
+
+            return View(context.Etudiants.ToList());
+        }
+
+        [HttpPost]
+        public string Marquez(int ID)
+        {
+
+            return "done" + ID;
+        }
     }
 }

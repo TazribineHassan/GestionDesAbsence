@@ -182,6 +182,7 @@
                 c => new
                     {
                         id = c.Int(nullable: false, identity: true),
+                        Jour = c.String(),
                         Heure_debut = c.String(),
                         Heure_fin = c.String(),
                     })

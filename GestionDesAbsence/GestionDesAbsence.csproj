@@ -151,9 +151,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202105290159020_InitialCreate.cs" />
-    <Compile Include="Migrations\202105290159020_InitialCreate.designer.cs">
-      <DependentUpon>202105290159020_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\202105291649267_InitialCreate.cs" />
+    <Compile Include="Migrations\202105291649267_InitialCreate.designer.cs">
+      <DependentUpon>202105291649267_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Absence.cs" />
@@ -2564,8 +2564,8 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202105290159020_InitialCreate.resx">
-      <DependentUpon>202105290159020_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202105291649267_InitialCreate.resx">
+      <DependentUpon>202105291649267_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
