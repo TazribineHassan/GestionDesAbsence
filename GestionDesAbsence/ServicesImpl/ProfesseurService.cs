@@ -42,27 +42,41 @@ namespace GestionDesAbsence.ServicesImpl
                                module => module.Id,
                                (details_Emplois, module) => new { details_Emplois, module}
                               )
+                            .Join(context.Classes,
+                            emploi_module => emploi_module.module.Id,
+                            classe => classe.Id,
+                            (emploi_module, classe) => new {
+                                module = emploi_module.module,
+                                details_Emplois = emploi_module.details_Emplois,
+                                classe = classe
+                            })
                           .Join(context.Professeurs,
-                               emploi_module => emploi_module.module.Professeur.Id,
+                               emploi_module_classe => emploi_module_classe.module.Professeur.Id,
                                prof => prof.Id,
-                               (emploi_module, prof) => new {
-                                   details_Emplois = emploi_module.details_Emplois,
-                                   module = emploi_module.module,
+                               (emploi_module_classe, prof) => new {
+                                   details_Emplois = emploi_module_classe.details_Emplois,
+                                   module = emploi_module_classe.module,
+                                   classe = emploi_module_classe.classe,
                                    professeur = prof
                                })
                           .Join(context.Emplois,
                                emploi_module => emploi_module.module.Professeur.Id,
                                emploi => emploi.Id,
-                               (emploi_module, emploi) => new {
-                                   details_Emplois = emploi_module.details_Emplois,
-                                   module = emploi_module.module,
-                                   professeur = emploi_module.professeur,
-                                   empoloi = emploi
+                               (all, emploi) => new {
+                                   details_Emplois = all.details_Emplois,
+                                   module = all.module,
+                                   classe = all.classe,
+                                   professeur = all.professeur,
+                                   emploi = emploi
                                })
                           .Where(emploi_module_prof => 
                                         emploi_module_prof.professeur.Id == professeur.Id
-                                        && emploi_module_prof.empoloi.Semaine.id == semaine.id)
-                          .ToList();
+                                        && emploi_module_prof.emploi.Semaine.id == semaine.id)
+                          .Select(all => new { module = new { all.module.Id ,all.module.NomModule }, 
+                               seance = new { all.details_Emplois.Seance.id, all.details_Emplois.Seance.Heure_debut, all.details_Emplois.Seance.Heure_fin },
+                               semaine = new { semaine.id, semaine.Code},
+                               classe = new { all.classe.Id, all.classe.Nom}
+                          }).ToList();
             
             return emploiForProfesseur;
         }
@@ -106,7 +120,10 @@ namespace GestionDesAbsence.ServicesImpl
                             .Where(all => (all.module.Id == id_module
                                            && all.details_emploi.Seance_Id == id_seance
                                            && all.details_emploi.Emploi.Semaine.id == id_semaine))
-                            .ToList();
+                            .Select(all => new {
+                                etudiants = new { all.etudiant.Id, all.etudiant.Nom, all.etudiant.Prenom },
+                                presence = new { emploi_id = all.details_emploi.Id, etudiant_id = all.etudiant.Id },
+                            }).ToList();
 
             return students;
         }

@@ -189,3 +189,17 @@ C:\Users\admin\source\repos\GestionDesAbsence\GestionDesAbsence\obj\Debug\Gestio
 C:\Users\admin\source\repos\GestionDesAbsence\GestionDesAbsence\bin\GridMvc.dll
 >>>>>>> d566ebc1fad4e5c658c603ff3915c6a79c3a24b7
 D:\mini projets\GestionDesAbsence\GestionDesAbsence\bin\GridMvc.dll
+D:\mini projets\GestionDesAbsence\GestionDesAbsence\bin\Microsoft.AspNetCore.Http.Abstractions.dll
+D:\mini projets\GestionDesAbsence\GestionDesAbsence\bin\Microsoft.AspNetCore.Http.Features.dll
+D:\mini projets\GestionDesAbsence\GestionDesAbsence\bin\Microsoft.Extensions.Primitives.dll
+D:\mini projets\GestionDesAbsence\GestionDesAbsence\bin\System.Buffers.dll
+D:\mini projets\GestionDesAbsence\GestionDesAbsence\bin\System.Memory.dll
+D:\mini projets\GestionDesAbsence\GestionDesAbsence\bin\System.Numerics.Vectors.dll
+D:\mini projets\GestionDesAbsence\GestionDesAbsence\bin\System.Text.Encodings.Web.dll
+D:\mini projets\GestionDesAbsence\GestionDesAbsence\bin\Microsoft.AspNetCore.Http.Abstractions.xml
+D:\mini projets\GestionDesAbsence\GestionDesAbsence\bin\Microsoft.AspNetCore.Http.Features.xml
+D:\mini projets\GestionDesAbsence\GestionDesAbsence\bin\Microsoft.Extensions.Primitives.xml
+D:\mini projets\GestionDesAbsence\GestionDesAbsence\bin\System.Buffers.xml
+D:\mini projets\GestionDesAbsence\GestionDesAbsence\bin\System.Memory.xml
+D:\mini projets\GestionDesAbsence\GestionDesAbsence\bin\System.Numerics.Vectors.xml
+D:\mini projets\GestionDesAbsence\GestionDesAbsence\bin\System.Text.Encodings.Web.xml
