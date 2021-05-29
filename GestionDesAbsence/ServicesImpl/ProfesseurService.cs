@@ -34,9 +34,8 @@ namespace GestionDesAbsence.ServicesImpl
         }
 
 
-        public Emploi GetEmploi(Semaine semaine, Professeur professeur)
+        public Object GetEmploi(Semaine semaine, Professeur professeur)
         {
-            var result = new Emploi();
             var emploiForProfesseur = context.Emplois
                          .Join(context.Modules,
                                emploi => emploi.Id,
@@ -56,7 +55,7 @@ namespace GestionDesAbsence.ServicesImpl
                                         && emploi_module_prof.emploi.Semaine.id == semaine.id)
                           ;
             
-            return result;
+            return emploiForProfesseur;
         }
 
     }

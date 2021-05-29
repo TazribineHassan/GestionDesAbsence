@@ -12,7 +12,7 @@ namespace GestionDesAbsence.Models
         public Module()
         {
             Classes = new HashSet<Classe>();
-            Emplois = new HashSet<Emploi>();
+            Details_Emplois = new HashSet<Details_Emploi>();
         }
 
         public int Id { get; set; }
@@ -24,6 +24,6 @@ namespace GestionDesAbsence.Models
         public virtual Professeur Professeur { get; set; }
 
         public virtual ICollection<Classe> Classes { get; set; }
-        public virtual ICollection<Emploi> Emplois { get; set; }
+        public virtual ICollection<Details_Emploi> Details_Emplois { get; set; }
     }
 }
