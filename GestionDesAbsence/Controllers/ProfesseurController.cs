@@ -29,15 +29,14 @@ namespace GestionDesAbsence.Controllers
         public ActionResult Notez()
         {
             GestionDesAbsenceContext context = new GestionDesAbsenceContext();
-
             return View(context.Etudiants.ToList());
         }
 
         [HttpPost]
-        public string Marquez(int ID)
+        public ActionResult Marquez(int id, bool presence)
         {
-            
-            return "done" + ID;
+
+            return RedirectToAction("Notez");   
         }
 
     }
