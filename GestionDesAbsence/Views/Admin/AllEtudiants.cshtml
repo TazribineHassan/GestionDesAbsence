@@ -1,0 +1,100 @@
+﻿@model IEnumerable<GestionDesAbsence.Models.Etudiant>
+
+@{
+    ViewBag.Title = "AllEtudiants";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@using GridMvc.Html
+<div class="container-fluid">
+    <h2>AllEtudiants</h2>
+    <br />
+    <p>this @ViewBag.valN</p>
+    <p>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+            Ajouter Un Etudiant
+        </button>
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    @using(Html.BeginForm("SaveEtudiant","Admin",FormMethod.Post,new {@class = "my_from" })) { 
+                        <div class="modal-body">
+
+                            <h3>Ajouter Un Etudiant</h3>
+                            <div class="form-group">
+                                <label for="cne">CNE</label>
+                                <input type="text" class="form-control" id="cne" name ="cne" placeholder="Cne">
+                            </div>
+                            <div class="form-group">
+                                <label for="nom">Nom</label>
+                                <input type="text" class="form-control" id="nom" name="nom" placeholder="Nom">
+                            </div> 
+                            <div class="form-group">
+                                <label for="preom">Preom</label>
+                                <input type="text" class="form-control" id="preom" name="prenom" placeholder="Preom">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email address</label>
+                                <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="Enter email" />
+                            </div>
+                            <div class="form-group">
+                                <label>Cycle</label>
+                                @Html.DropDownList("liste_cycle", ViewBag.list as SelectList, "Selectionnez le cycle", new { id = "liste_cycle" })
+                                
+                            </div>
+                            <div class="form-group">
+                                <label>Classe</label>
+                                <select class="form-control" id="classe" name="classe"></select>
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <input type="submit" class="btn btn-primary" id="submit" value="Ajouter Etudiant" />
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </p>
+    <br />
+    <hr />
+    <div>
+        @Html.Grid(Model).Columns(columns =>
+    {
+        columns.Add(etudiant => etudiant.Cne).Titled("Cne").Filterable(true).Sortable(true);
+        columns.Add(etudiant => etudiant.Nom).Titled("Nom").Filterable(true);
+        columns.Add(etudiant => etudiant.Prenom).Titled("Prenom").Filterable(true);
+        columns.Add(etudiant => etudiant.Email).Titled("Email").Filterable(true);
+        columns.Add(etudiant => etudiant.Id_groupe).Titled("group").Filterable(true);
+        columns.Add().Encoded(false).Sanitized(false).SetWidth(30)
+        .RenderValueAs(item => @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "btn btn-primary" }));
+        columns.Add().Encoded(false).Sanitized(false).SetWidth(30)
+        .RenderValueAs(item => @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-success" }));
+        columns.Add().Encoded(false).Sanitized(false).SetWidth(30)
+        .RenderValueAs(item => @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-danger" }));
+    }).WithPaging(10).Sortable(true)
+    </div>
+</div>
+@section Section1{
+    <script>
+        $(document).ready(function (e) {
+            $("#liste_cycle").addClass("form-control");
+            $("#liste_cycle").change(function () {
+                alert("hello");
+                $.get("/Admin/GetClass", { ID: $("#liste_cycle").val() }, function (data) {
+                    $("#classe").empty();
+                    $.each(data, function (index, ligne) {
+                        $("#classe").append("<option value='" + ligne.Id + "'>" + ligne.Nom + "</option>")
+                    });
+
+                });
+            });
+        });
+    </script>
+}

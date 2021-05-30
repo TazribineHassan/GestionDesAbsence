@@ -14,7 +14,8 @@ namespace GestionDesAbsence
 
             container.RegisterType<IProfesseurService, ProfesseurService>();
             container.RegisterType<ILoginService, LoginService>();
-            
+            container.RegisterType<IAdminService, AdminService>();
+
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));
         }
     }
