@@ -25,7 +25,8 @@ namespace GestionDesAbsence.ServicesImpl
 
         public void deleteEtudiant(Etudiant e)
         {
-            context.Etudiants.Remove(e);
+            Etudiant etud = context.Etudiants.Find(e.Id);
+            context.Etudiants.Remove(etud);
             context.SaveChanges();
         }
 

@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 212abe3c14764efc3d1b21834ef3fbf6e7194489
 D:\mini projets\GestionDesAbsence\GestionDesAbsence\bin\GestionDesAbsence.dll.config
 D:\mini projets\GestionDesAbsence\GestionDesAbsence\bin\GestionDesAbsence.dll
 D:\mini projets\GestionDesAbsence\GestionDesAbsence\bin\GestionDesAbsence.pdb
@@ -57,25 +53,10 @@ D:\mini projets\GestionDesAbsence\GestionDesAbsence\bin\roslyn\VBCSCompiler.exe.
 D:\mini projets\GestionDesAbsence\GestionDesAbsence\bin\Antlr3.Runtime.dll
 D:\mini projets\GestionDesAbsence\GestionDesAbsence\bin\EntityFramework.dll
 D:\mini projets\GestionDesAbsence\GestionDesAbsence\bin\EntityFramework.SqlServer.dll
-<<<<<<< HEAD
-D:\mini projets\GestionDesAbsence\GestionDesAbsence\bin\GridMvc.dll
-D:\mini projets\GestionDesAbsence\GestionDesAbsence\bin\Microsoft.AspNetCore.Http.Abstractions.dll
-D:\mini projets\GestionDesAbsence\GestionDesAbsence\bin\Microsoft.AspNetCore.Http.Features.dll
-D:\mini projets\GestionDesAbsence\GestionDesAbsence\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
-D:\mini projets\GestionDesAbsence\GestionDesAbsence\bin\Microsoft.Extensions.Primitives.dll
-D:\mini projets\GestionDesAbsence\GestionDesAbsence\bin\Microsoft.Web.Infrastructure.dll
-D:\mini projets\GestionDesAbsence\GestionDesAbsence\bin\Newtonsoft.Json.dll
-D:\mini projets\GestionDesAbsence\GestionDesAbsence\bin\System.Buffers.dll
-D:\mini projets\GestionDesAbsence\GestionDesAbsence\bin\System.Memory.dll
-D:\mini projets\GestionDesAbsence\GestionDesAbsence\bin\System.Numerics.Vectors.dll
-D:\mini projets\GestionDesAbsence\GestionDesAbsence\bin\System.Runtime.CompilerServices.Unsafe.dll
-D:\mini projets\GestionDesAbsence\GestionDesAbsence\bin\System.Text.Encodings.Web.dll
-=======
 D:\mini projets\GestionDesAbsence\GestionDesAbsence\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 D:\mini projets\GestionDesAbsence\GestionDesAbsence\bin\Microsoft.Web.Infrastructure.dll
 D:\mini projets\GestionDesAbsence\GestionDesAbsence\bin\Newtonsoft.Json.dll
 D:\mini projets\GestionDesAbsence\GestionDesAbsence\bin\System.Runtime.CompilerServices.Unsafe.dll
->>>>>>> 212abe3c14764efc3d1b21834ef3fbf6e7194489
 D:\mini projets\GestionDesAbsence\GestionDesAbsence\bin\System.Web.Helpers.dll
 D:\mini projets\GestionDesAbsence\GestionDesAbsence\bin\System.Web.Mvc.dll
 D:\mini projets\GestionDesAbsence\GestionDesAbsence\bin\System.Web.Optimization.dll
@@ -90,18 +71,7 @@ D:\mini projets\GestionDesAbsence\GestionDesAbsence\bin\WebGrease.dll
 D:\mini projets\GestionDesAbsence\GestionDesAbsence\bin\System.Threading.Tasks.Extensions.dll
 D:\mini projets\GestionDesAbsence\GestionDesAbsence\bin\EntityFramework.xml
 D:\mini projets\GestionDesAbsence\GestionDesAbsence\bin\EntityFramework.SqlServer.xml
-<<<<<<< HEAD
-D:\mini projets\GestionDesAbsence\GestionDesAbsence\bin\Microsoft.AspNetCore.Http.Abstractions.xml
-D:\mini projets\GestionDesAbsence\GestionDesAbsence\bin\Microsoft.AspNetCore.Http.Features.xml
-D:\mini projets\GestionDesAbsence\GestionDesAbsence\bin\Microsoft.Extensions.Primitives.xml
-D:\mini projets\GestionDesAbsence\GestionDesAbsence\bin\System.Buffers.xml
-D:\mini projets\GestionDesAbsence\GestionDesAbsence\bin\System.Memory.xml
-D:\mini projets\GestionDesAbsence\GestionDesAbsence\bin\System.Numerics.Vectors.xml
 D:\mini projets\GestionDesAbsence\GestionDesAbsence\bin\System.Runtime.CompilerServices.Unsafe.xml
-D:\mini projets\GestionDesAbsence\GestionDesAbsence\bin\System.Text.Encodings.Web.xml
-=======
-D:\mini projets\GestionDesAbsence\GestionDesAbsence\bin\System.Runtime.CompilerServices.Unsafe.xml
->>>>>>> 212abe3c14764efc3d1b21834ef3fbf6e7194489
 D:\mini projets\GestionDesAbsence\GestionDesAbsence\bin\System.Web.Helpers.xml
 D:\mini projets\GestionDesAbsence\GestionDesAbsence\bin\System.Web.Mvc.xml
 D:\mini projets\GestionDesAbsence\GestionDesAbsence\bin\System.Web.Optimization.xml
@@ -114,18 +84,11 @@ D:\mini projets\GestionDesAbsence\GestionDesAbsence\bin\Unity.Abstractions.pdb
 D:\mini projets\GestionDesAbsence\GestionDesAbsence\bin\Unity.Container.pdb
 D:\mini projets\GestionDesAbsence\GestionDesAbsence\bin\Antlr3.Runtime.pdb
 D:\mini projets\GestionDesAbsence\GestionDesAbsence\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-<<<<<<< HEAD
-D:\mini projets\GestionDesAbsence\GestionDesAbsence\obj\Debug\GestionDesAbsence.Migrations.InitialCreate.resources
-D:\mini projets\GestionDesAbsence\GestionDesAbsence\obj\Debug\GestionDesAbsence.csproj.GenerateResource.cache
-=======
->>>>>>> 212abe3c14764efc3d1b21834ef3fbf6e7194489
 D:\mini projets\GestionDesAbsence\GestionDesAbsence\obj\Debug\GestionDesAbsence.csproj.CoreCompileInputs.cache
 D:\mini projets\GestionDesAbsence\GestionDesAbsence\obj\Debug\GestionDesAbsence.csproj.CopyComplete
 D:\mini projets\GestionDesAbsence\GestionDesAbsence\obj\Debug\GestionDesAbsence.dll
 D:\mini projets\GestionDesAbsence\GestionDesAbsence\obj\Debug\GestionDesAbsence.pdb
 D:\mini projets\GestionDesAbsence\GestionDesAbsence\obj\Debug\GestionDesAbsence.csprojAssemblyReference.cache
-<<<<<<< HEAD
-=======
 C:\Users\admin\source\repos\GestionDesAbsence\GestionDesAbsence\obj\Debug\GestionDesAbsence.csprojAssemblyReference.cache
 C:\Users\admin\source\repos\GestionDesAbsence\GestionDesAbsence\obj\Debug\GestionDesAbsence.Migrations.InitailCreate.resources
 C:\Users\admin\source\repos\GestionDesAbsence\GestionDesAbsence\obj\Debug\GestionDesAbsence.csproj.GenerateResource.cache
@@ -134,8 +97,6 @@ C:\Users\admin\source\repos\GestionDesAbsence\GestionDesAbsence\obj\Debug\Gestio
 C:\Users\admin\source\repos\GestionDesAbsence\GestionDesAbsence\obj\Debug\GestionDesAbsence.pdb
 D:\mini projets\GestionDesAbsence\GestionDesAbsence\obj\Debug\GestionDesAbsence.Migrations.InitialCreate.resources
 D:\mini projets\GestionDesAbsence\GestionDesAbsence\obj\Debug\GestionDesAbsence.csproj.GenerateResource.cache
-=======
->>>>>>> 78110793db6f4fef9fcc74656eb0fc89afd5b0b2
 C:\Users\admin\source\repos\GestionDesAbsence\GestionDesAbsence\bin\GestionDesAbsence.dll.config
 C:\Users\admin\source\repos\GestionDesAbsence\GestionDesAbsence\bin\GestionDesAbsence.dll
 C:\Users\admin\source\repos\GestionDesAbsence\GestionDesAbsence\bin\GestionDesAbsence.pdb
@@ -238,11 +199,7 @@ C:\Users\admin\source\repos\GestionDesAbsence\GestionDesAbsence\bin\Unity.Contai
 C:\Users\admin\source\repos\GestionDesAbsence\GestionDesAbsence\bin\Antlr3.Runtime.pdb
 C:\Users\admin\source\repos\GestionDesAbsence\GestionDesAbsence\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 C:\Users\admin\source\repos\GestionDesAbsence\GestionDesAbsence\obj\Debug\GestionDesAbsence.Migrations.InitialCreate.resources
-C:\Users\admin\source\repos\GestionDesAbsence\GestionDesAbsence\obj\Debug\GestionDesAbsence.csproj.GenerateResource.cache
-C:\Users\admin\source\repos\GestionDesAbsence\GestionDesAbsence\obj\Debug\GestionDesAbsence.csproj.CoreCompileInputs.cache
 C:\Users\admin\source\repos\GestionDesAbsence\GestionDesAbsence\obj\Debug\GestionDesAbsence.csproj.CopyComplete
-<<<<<<< HEAD
-C:\Users\admin\source\repos\GestionDesAbsence\GestionDesAbsence\bin\GridMvc.dll
 D:\mini projets\GestionDesAbsence\GestionDesAbsence\bin\GridMvc.dll
 C:\Users\saadr\OneDrive\Desktop\projet ASP\GestionDesAbsence\bin\GestionDesAbsence.dll.config
 C:\Users\saadr\OneDrive\Desktop\projet ASP\GestionDesAbsence\bin\GestionDesAbsence.dll
@@ -338,9 +295,3 @@ C:\Users\saadr\OneDrive\Desktop\projet ASP\GestionDesAbsence\obj\Debug\GestionDe
 C:\Users\saadr\OneDrive\Desktop\projet ASP\GestionDesAbsence\obj\Debug\GestionDesAbsence.csproj.CopyComplete
 C:\Users\saadr\OneDrive\Desktop\projet ASP\GestionDesAbsence\obj\Debug\GestionDesAbsence.dll
 C:\Users\saadr\OneDrive\Desktop\projet ASP\GestionDesAbsence\obj\Debug\GestionDesAbsence.pdb
-=======
-C:\Users\admin\source\repos\GestionDesAbsence\GestionDesAbsence\obj\Debug\GestionDesAbsence.dll
-C:\Users\admin\source\repos\GestionDesAbsence\GestionDesAbsence\obj\Debug\GestionDesAbsence.pdb
-C:\Users\admin\source\repos\GestionDesAbsence\GestionDesAbsence\obj\Debug\GestionDesAbsence.csprojAssemblyReference.cache
->>>>>>> 78110793db6f4fef9fcc74656eb0fc89afd5b0b2
->>>>>>> 212abe3c14764efc3d1b21834ef3fbf6e7194489
