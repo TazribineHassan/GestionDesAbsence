@@ -76,7 +76,7 @@ namespace GestionDesAbsence.Controllers
                     }
                     else
                     {
-                        etudiants.Add(new Etudiant() { Id = 0, Cne = "D132468" + i, Nom = "TAZRIBINE" + i + "", Prenom = "Hassan" + i + "", Email = "hassan" + i + "@gmail.com", Password = Encryption.Encrypt("etudiant"), Id_groupe = 2, Id_classe = 1, Role_Id = 3 });
+                        etudiants.Add(new Etudiant() { Id = 0, Cne = "D132468" + i, Nom = "TAZRIBINE" + i + "", Prenom = "Hassan" + i + "", Email = "hassan" + i + "@gmail.com", Password = Encryption.Encrypt("etudiant"), Id_groupe = 2, Id_classe = 2, Role_Id = 3 });
                     }
 
                 db.Etudiants.AddRange(etudiants);
@@ -96,7 +96,7 @@ namespace GestionDesAbsence.Controllers
 
                 modules.Add(new Module() { Id = 0, NomModule = "Module x", id_Professeur = 2 });
 
-                modules.Add(new Module() { Id = 0, NomModule = "Module y", id_Professeur = 3 });
+                modules.Add(new Module() { Id = 0, NomModule = "JAVA", id_Professeur = 1 });
 
                 db.Modules.AddRange(modules);
                 db.SaveChanges();
@@ -147,12 +147,12 @@ namespace GestionDesAbsence.Controllers
                 // La table des details d'un emploi
                 var details = new List<Details_Emploi>();
                 details.Add(new Details_Emploi() { Id = 0, Emploi_Id = 1, Local_Id = 2, Module_Id = 1, Seance_Id = 1});
-                details.Add(new Details_Emploi() { Id = 0, Emploi_Id = 1, Local_Id = 1, Module_Id = 2, Seance_Id = 2 });
+                details.Add(new Details_Emploi() { Id = 0, Emploi_Id = 1, Local_Id = 2, Module_Id = 3, Seance_Id = 2 });
                 details.Add(new Details_Emploi() { Id = 0, Emploi_Id = 1, Local_Id = 3, Module_Id = 2, Seance_Id = 4 });
                 details.Add(new Details_Emploi() { Id = 0, Emploi_Id = 1, Local_Id = 2, Module_Id = 1, Seance_Id = 5 });
-                details.Add(new Details_Emploi() { Id = 0, Emploi_Id = 1, Local_Id = 2, Module_Id = 3, Seance_Id = 6 });
-                details.Add(new Details_Emploi() { Id = 0, Emploi_Id = 1, Local_Id = 1, Module_Id = 2, Seance_Id = 1 });
-                details.Add(new Details_Emploi() { Id = 0, Emploi_Id = 1, Local_Id = 3, Module_Id = 1, Seance_Id = 1 });
+                details.Add(new Details_Emploi() { Id = 0, Emploi_Id = 1, Local_Id = 2, Module_Id = 2, Seance_Id = 6 });
+                details.Add(new Details_Emploi() { Id = 0, Emploi_Id = 1, Local_Id = 1, Module_Id = 2, Seance_Id = 7 });
+                details.Add(new Details_Emploi() { Id = 0, Emploi_Id = 1, Local_Id = 3, Module_Id = 1, Seance_Id = 8 });
                 db.details_Emplois.AddRange(details);
                 db.SaveChanges();
 
@@ -179,29 +179,22 @@ namespace GestionDesAbsence.Controllers
 
         public object LogicTest()
         {
-            /*var result = professeurService.GetStudentsList(1, 1, 1);
-            var result2 = professeurService.GetSeancesForProf(new Semaine() { id = 1}, new Professeur() { Id = 1});
+            var result = professeurService.GetStudentsList(1, 1, 1);
 
-            var str1 =  JsonConvert.SerializeObject(result, Formatting.Indented,
-                                                    new JsonSerializerSettings
-                                                    {
-                                                        ReferenceLoopHandling = ReferenceLoopHandling.Ignore
-                                                    });
+            var str1 = JsonConvert.SerializeObject(result, Formatting.Indented,
+                                                     new JsonSerializerSettings
+                                                     {
+                                                         ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                                                     });
+
+            var result2 = professeurService.GetSeancesForProf(1 , 1);
             var str2 = JsonConvert.SerializeObject(result2, Formatting.Indented,
                                                     new JsonSerializerSettings
                                                     {
                                                         ReferenceLoopHandling = ReferenceLoopHandling.Ignore
-                                                    });*/
-            object result3;
-            var db = new GestionDesAbsenceContext();
-            result3 = db.Modules.Include("Classes").Select((m) => new { id = m.Id, name = m.NomModule, classe = m.Classes}).ToList();
-            var str3 = JsonConvert.SerializeObject(result3, Formatting.Indented,
-                                                    new JsonSerializerSettings
-                                                    {
-                                                        ReferenceLoopHandling = ReferenceLoopHandling.Ignore
                                                     });
 
-            return str3;
+            return str1;
         }
     }
 }
