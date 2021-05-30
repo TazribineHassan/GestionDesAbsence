@@ -20,16 +20,11 @@ namespace GestionDesAbsence.Controllers
             this.professeurService = professeurService;
         }
 
-        //[Authorize(Roles = "professeur,admin")]
         public ActionResult Index()
         {
-            GestionDesAbsenceContext context = new GestionDesAbsenceContext();
-            var listOfSeance = new List<object>();
-            listOfSeance.Add(context.Semaines.FirstOrDefault(s => s.id == 2));
-            listOfSeance.Add(context.Seances.Where(s => s.id >= 1 && s.id <= 3).ToList());
-            listOfSeance.Add(context.Classes.Where(c => c.Id >= 1 && c.Id <= 3).ToList());
-            listOfSeance.Add(context.Modules.Where(M => M.Id >= 1 && M.Id <= 3).ToList());
-            listOfSeance.Add(DateTime.Now.ToString("dddd-MM-yyyyy"));
+            
+            var listOfSeance = professeurService.GetSeancesForProf(1, 1);
+
 
             return View(listOfSeance);
         }

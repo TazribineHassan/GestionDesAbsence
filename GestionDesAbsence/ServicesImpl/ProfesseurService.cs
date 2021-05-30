@@ -13,9 +13,10 @@ namespace GestionDesAbsence.ServicesImpl
 
         public IEnumerable<Etudiant> FindAll()
         {
+            
             return (IEnumerable<Etudiant>)context.Professeurs.ToList();
         }
-
+        
         public Professeur GetProfesseurByEmail(string email)
         {
 
@@ -34,9 +35,10 @@ namespace GestionDesAbsence.ServicesImpl
         }
 
 
-        public Object GetSeancesForProf(int semaine_id, int professeur_id)
+        public List<SeancesForProf> GetSeancesForProf(int semaine_id, int professeur_id)
         {
-            var seances = context.details_Emplois.Where(e => e.Module.Professeur.Id == professeur_id
+            List<SeancesForProf> listSeeances = new List<SeancesForProf>();
+                var seance = context.details_Emplois.Where(e => e.Module.Professeur.Id == professeur_id
                                                              && e.Emploi.Semaine.id == semaine_id)
                                                   .Select(e => new
                                                   {
@@ -49,7 +51,7 @@ namespace GestionDesAbsence.ServicesImpl
                                                       module = new { e.Module.Id, e.Module.NomModule },
                                                       date = DateTime.Now
                                                   }).ToList();
-            return seances;
+            return listSeeances;
         }
 
         public Object GetStudentsList(int id_seance, int id_module, int id_semaine)

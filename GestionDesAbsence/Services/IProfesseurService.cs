@@ -10,7 +10,7 @@ namespace GestionDesAbsence.Services
     public interface IProfesseurService
     {
         void Save(Professeur professeur);
-        IEnumerable<Etudiant> FindAll();
+        IEnumerable<Etudiant> FindAll(); 
         Professeur GetProfesseurById(int id);
         Professeur GetProfesseurByEmail(string email);
 
@@ -22,7 +22,7 @@ namespace GestionDesAbsence.Services
           module => Id, NomModule
           date:"2021-05-30"
         }*/
-        Object GetSeancesForProf(int semaine_id, int professeur_id);
+        List<SeancesForProf> GetSeancesForProf(int semaine_id, int professeur_id);
 
         /* type de retour 
         list => {
@@ -31,6 +31,7 @@ namespace GestionDesAbsence.Services
           absence => id, estPresent
         }*/
         Object GetStudentsList(int id_seance, int id_module, int id_semaine);
+
         bool UpdateAbsence(int id_absence, bool est_present);
     }
 }
