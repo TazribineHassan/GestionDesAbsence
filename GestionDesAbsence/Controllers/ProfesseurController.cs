@@ -10,7 +10,7 @@ using System.Web.Security;
 
 namespace GestionDesAbsence.Controllers
 {
-    [Authorize(Roles = "admin")]
+    [Authorize(Roles = "professeur")]
     public class ProfesseurController : Controller
     {
         IProfesseurService professeurService;
@@ -23,7 +23,15 @@ namespace GestionDesAbsence.Controllers
         //[Authorize(Roles = "professeur")]
         public ActionResult Index()
         {
-            return View();
+            GestionDesAbsenceContext context = new GestionDesAbsenceContext();
+            var listOfSeance = new List<object>();
+            listOfSeance.Add(context.Semaines.FirstOrDefault(s => s.id == 2));
+            listOfSeance.Add(context.Seances.Where(s => s.id >= 1 && s.id <= 3).ToList());
+            listOfSeance.Add(context.Classes.Where(c => c.Id >= 1 && c.Id <= 3).ToList());
+            listOfSeance.Add(context.Modules.Where(M => M.Id >= 1 && M.Id <= 3).ToList());
+            listOfSeance.Add(DateTime.Now.ToString("dddd-MM-yyyyy"));
+
+            return View(listOfSeance);
         }
 
         public string testData()
@@ -157,6 +165,8 @@ namespace GestionDesAbsence.Controllers
         public ActionResult Notez()
         {
             GestionDesAbsenceContext context = new GestionDesAbsenceContext();
+            var listOfSeance = new List<object>();            
+           
             return View(context.Etudiants.ToList());
         }
 
