@@ -36,6 +36,12 @@ namespace GestionDesAbsence.ServicesImpl
 
         public Object GetSeancesForProf(int semaine_id, int professeur_id)
         {
+            Semaine semaine_courante;
+            using (var db = new GestionDesAbsenceContext())
+            {
+                semaine_courante = db.Semaines.Where(s => s.Date_debut.CompareTo(DateTime.Now) < 0).FirstOrDefault();
+            }
+
             var seances = context.details_Emplois.Where(e => e.Module.Professeur.Id == professeur_id
                                                              && e.Emploi.Semaine.id == semaine_id)
                                                   .Select(e => new
