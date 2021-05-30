@@ -40,11 +40,19 @@ namespace GestionDesAbsence
         {
             using (GestionDesAbsenceContext db = new GestionDesAbsenceContext())
             {
-                var user_role = db.Professeurs.Include("Role").Where(p => p.Email == username).FirstOrDefault().Role.Nome;
-                if(user_role == null)
-                    user_role = db.Administrateurs.Include("Role").Where(p => p.Email == username).FirstOrDefault().Role.Nome;
-                if (user_role == null)
-                    user_role = db.Etudiants.Include("Role").Where(p => p.Email == username).FirstOrDefault().Role.Nome;
+                string user_role = "";
+                Professeur professeur = db.Professeurs.FirstOrDefault(p => p.Email == username);
+                if (professeur != null) user_role = professeur.Role.Nome;
+                if (user_role.Equals(""))
+                {
+                    Administrateur admin = db.Administrateurs.FirstOrDefault(p => p.Email == username);
+                    if (admin != null) user_role = admin.Role.Nome;
+                }
+                if (user_role.Equals(null))
+                {
+                    Etudiant etudiant = db.Etudiants.FirstOrDefault(p => p.Email == username);
+                    if (etudiant == null) user_role = etudiant.Role.Nome;
+                }   
                 string[] role = { user_role };
                 return role;
             }
