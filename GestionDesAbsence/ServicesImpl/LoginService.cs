@@ -21,6 +21,13 @@ namespace GestionDesAbsence.ServicesImpl
         {
             if (userType.Equals("admin"))
             {
+                GestionDesAbsenceContext context = new GestionDesAbsenceContext();
+                Administrateur administrateur = context.Administrateurs.FirstOrDefault(admin => admin.Email == email);
+                if (administrateur != null)
+                {
+                    if (password.Equals(Encryption.Decrypt(administrateur.Password))) return administrateur;
+                    else return null;
+                }
                 return null;
             }
             else if (userType.Equals("Prof"))

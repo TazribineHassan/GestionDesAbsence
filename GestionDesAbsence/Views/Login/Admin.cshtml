@@ -4,7 +4,16 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<div class="login-box ">
+
+<div class="login-box justify-content-center">
+    @if (@ViewBag.Msg != null)
+    {
+        <div role="alert" aria-live="assertive" aria-atomic="true" data-autohide="true" , data-delay="3000" class="toast bg-danger text-center ml-1">
+            <div class="toast-body">
+                @ViewBag.Msg
+            </div>
+        </div>
+    }
     <!-- /.login-logo -->
     <div class="card card-outline  shadow-lg">
         <div class="card-header text-center bg-header">
@@ -13,7 +22,8 @@
         <div class="card-body">
             <p class="login-box-msg subtitle font-weight-bold">Connectez-vous</p>
 
-            <form action="../../index3.html" method="post">
+            @using (Html.BeginForm("CheckAdmin", "Login", FormMethod.Post))
+            {
                 <div class="input-group mb-3">
                     <input type="email" name="email" class="form-control" placeholder="Email" required>
                     <div class="input-group-append">
@@ -39,10 +49,12 @@
                     </div>
                     <!-- /.col -->
                 </div>
-            </form>
+            }
         </div>
         <!-- /.card-body -->
     </div>
     <!-- /.card -->
 </div>
 
+@*<script src="~/Content/jQuery.min.js"></script>
+<script src="~/Content/Toasts.js"></script>*@

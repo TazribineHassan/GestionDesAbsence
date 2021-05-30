@@ -21,13 +21,7 @@ namespace GestionDesAbsence.Controllers
         public ActionResult Index()
         {
             return View();
-        }        
-        
-        public ActionResult Admin()
-        {
-            return View();
         }
-
 
         public ActionResult IndexMsg(string msg)
         {
@@ -35,16 +29,42 @@ namespace GestionDesAbsence.Controllers
             return View("Index");
         }
 
-        [HttpPost]
-        public string CheckAdmin(string email, string password)
+        public ActionResult Admin()
         {
-            if (email == "admin@gmail.com" && password == "123")
+            return View();
+        }        
+        
+        public ActionResult AdminMsg(string msg)
+        {
+            ViewBag.Msg = msg;
+            return View("Admin");
+        }
+
+
+
+
+        [HttpPost]
+        public ActionResult CheckAdmin(string email, string password)
+        {
+            Administrateur admin = loginService.Login(email, password, "admin") as Administrateur;
+            if (admin != null)
             {
-                return "you're in";
+
+                //set the authentication cookie
+                var ticket = new FormsAuthenticationTicket(admin.Email, true, 3000);
+                string encrypt = FormsAuthentication.Encrypt(ticket);
+                var cookie = new HttpCookie(FormsAuthentication.FormsCookieName, encrypt);
+                cookie.Expires = DateTime.Now.AddDays(1);
+                Response.Cookies.Add(cookie);
+                cookie.HttpOnly = true;
+
+                //ViewBag.Nom = professeur.Nom;
+                return RedirectToAction("Index", "Professeur");
+
             }
             else
             {
-                return "please check your email";
+                return RedirectToAction("AdminMsg", new { msg = "Email or password are incorrect" });
             }
         }
 
@@ -59,12 +79,12 @@ namespace GestionDesAbsence.Controllers
                 var ticket = new FormsAuthenticationTicket(professeur.Email, true, 3000);
                 string encrypt = FormsAuthentication.Encrypt(ticket);
                 var cookie = new HttpCookie(FormsAuthentication.FormsCookieName, encrypt);
-                cookie.Expires = DateTime.Now.AddHours(3);
+                cookie.Expires = DateTime.Now.AddHours(4);
                 Response.Cookies.Add(cookie);
                 cookie.HttpOnly = true;
 
                 //ViewBag.Nom = professeur.Nom;
-                return RedirectToAction("Index", "Professeur", new { nom = professeur.Nom });
+                return RedirectToAction("Index", "Professeur");
 
             }
             else
