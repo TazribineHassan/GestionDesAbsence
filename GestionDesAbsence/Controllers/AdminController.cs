@@ -58,8 +58,9 @@ namespace GestionDesAbsence.Controllers
             return View(gestion.Etudiants.ToList());
         }
 
+        //SaveStudent
         [HttpPost]
-        public ActionResult SaveEtudiant(string cne, string nom, String prenom,string email,string cycle, string classe) 
+        public ActionResult SaveEtudiant(string cne, string nom, String prenom,string email,string cycle, int classe,int groupe) 
         {
             GestionDesAbsenceContext gestion = new GestionDesAbsenceContext();
             Etudiant e = new Etudiant();
@@ -67,14 +68,16 @@ namespace GestionDesAbsence.Controllers
             e.Nom = nom;
             e.Prenom = prenom;
             e.Email = email;
-            e.Id_groupe = 1;
+            e.Id_groupe = groupe;
+            e.Id_classe = classe;
             e.Password = Encryption.Encrypt(cne);
             AdminService service = new AdminService();
             service.saveEtudiant(e);
             ViewBag.list = new SelectList(gestion.Cycles, "Id", "Nom");
              return Redirect("/Admin/AllEtudiants");
         }
-
+        
+        //delete Student
         public ActionResult DeleteEtudiant(int id)
         {
             GestionDesAbsenceContext gestion = new GestionDesAbsenceContext();
@@ -84,11 +87,40 @@ namespace GestionDesAbsence.Controllers
             return Redirect("/Admin/AllEtudiants");
         }
 
+        //details student
         public PartialViewResult etudiantDetails(int id)
         {
             GestionDesAbsenceContext gestion = new GestionDesAbsenceContext();
             Etudiant e = gestion.Etudiants.Find(id);
             return PartialView(e);
         }
+
+        public PartialViewResult etudiantEdit(int id)
+        {
+            GestionDesAbsenceContext gestion = new GestionDesAbsenceContext();
+            ViewBag.e = id;
+            ViewBag.valN = "";
+            ViewBag.list = new SelectList(gestion.Cycles, "Id", "Nom");
+            Etudiant e = gestion.Etudiants.Find(id);
+            return PartialView(e);
+        }
+
+        //edit student
+        [HttpPost]
+        public ActionResult EditEtudiant(int editidinput, string editcne, string editnom, String editprenom, string editemail, string editcycle, int editclasse, int editgroupe)
+        {
+            GestionDesAbsenceContext gestion = new GestionDesAbsenceContext();
+            Etudiant newE = gestion.Etudiants.Find(editidinput);
+            newE.Cne = editcne;
+            newE.Nom = editnom;
+            newE.Prenom = editprenom;
+            newE.Email = editemail;
+            newE.Id_groupe = editgroupe;
+            newE.Id_classe = editclasse;
+            gestion.SaveChanges();
+            ViewBag.list = new SelectList(gestion.Cycles, "Id", "Nom");
+            return Redirect("/Admin/AllEtudiants");
+        }
+
     }
 }

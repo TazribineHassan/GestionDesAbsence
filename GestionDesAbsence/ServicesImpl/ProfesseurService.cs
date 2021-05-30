@@ -34,98 +34,87 @@ namespace GestionDesAbsence.ServicesImpl
         }
 
 
-        public Object GetSeancesForProf(Semaine semaine, Professeur professeur)
+        public Object GetSeancesForProf(int semaine_id, int professeur_id)
         {
-            var emploiForProfesseur = context.details_Emplois
-                         .Join(context.Modules,
-                               details_Emplois => details_Emplois.Id,
-                               module => module.Id,
-                               (details_Emplois, module) => new { details_Emplois, module}
-                              )
-                            .Join(context.Classes,
-                            emploi_module => emploi_module.module.Id,
-                            classe => classe.Id,
-                            (emploi_module, classe) => new {
-                                module = emploi_module.module,
-                                details_Emplois = emploi_module.details_Emplois,
-                                classe = classe
-                            })
-                          .Join(context.Professeurs,
-                               emploi_module_classe => emploi_module_classe.module.Professeur.Id,
-                               prof => prof.Id,
-                               (emploi_module_classe, prof) => new {
-                                   details_Emplois = emploi_module_classe.details_Emplois,
-                                   module = emploi_module_classe.module,
-                                   classe = emploi_module_classe.classe,
-                                   professeur = prof
-                               })
-                          .Join(context.Emplois,
-                               emploi_module => emploi_module.module.Professeur.Id,
-                               emploi => emploi.Id,
-                               (all, emploi) => new {
-                                   details_Emplois = all.details_Emplois,
-                                   module = all.module,
-                                   classe = all.classe,
-                                   professeur = all.professeur,
-                                   emploi = emploi
-                               })
-                          .Where(emploi_module_prof => 
-                                        emploi_module_prof.professeur.Id == professeur.Id
-                                        && emploi_module_prof.emploi.Semaine.id == semaine.id)
-                          .Select(all => new { module = new { all.module.Id ,all.module.NomModule }, 
-                               seance = new { all.details_Emplois.Seance.id, all.details_Emplois.Seance.Heure_debut, all.details_Emplois.Seance.Heure_fin },
-                               semaine = new { semaine.id, semaine.Code},
-                               classe = new { all.classe.Id, all.classe.Nom}
-                          }).ToList();
-            
-            return emploiForProfesseur;
+            var seances = context.details_Emplois.Where(e => e.Module.Professeur.Id == professeur_id
+                                                             && e.Emploi.Semaine.id == semaine_id)
+                                                  .Select(e => new
+                                                  {
+                                                      seance = new { e.Seance.id, e.Seance.Heure_debut, e.Seance.Heure_fin },
+                                                      classes = e.Module.Classes.Select(cl => new { 
+                                                                                            cl.Id,
+                                                                                            cl.Nom
+                                                                                        }).ToList(),
+                                                      semaine = new { e.Emploi.Semaine.id, e.Emploi.Semaine.Code},
+                                                      module = new { e.Module.Id, e.Module.NomModule },
+                                                      date = DateTime.Now
+                                                  }).ToList();
+            return seances;
         }
 
         public Object GetStudentsList(int id_seance, int id_module, int id_semaine)
         {
-            var students = context.Modules
-                            .Join(context.Classes,
-                            module => module.Id,
-                            classe => classe.Id,
-                            (module, classe) => new { 
-                                module = module, 
-                                classe = classe })
-                            .Join(context.Groupes,
-                            module_classe => module_classe.classe.Id,
-                            groupe => groupe.Id,
-                            (module_classe, groupe) => new { 
-                                module = module_classe.module, 
-                                classe = module_classe.classe,
-                                groupe = groupe
-                            })
-                            .Join(context.Etudiants,
-                            module_classe_groupe => module_classe_groupe.groupe.Id,
-                            etudiant => etudiant.Id,
-                            (module_classe_groupe, etudiant) => new { 
-                                module = module_classe_groupe.module, 
-                                classe = module_classe_groupe.classe,
-                                groupe = module_classe_groupe.groupe,
-                                etudiant = etudiant
-                            })
-                            .Join(context.details_Emplois,
-                            all => all.module.Id,
-                            details_emploi => details_emploi.Id,
-                            (all, details_emploi) => new {
-                                module = all.module,
-                                classe = all.classe,
-                                groupe = all.groupe,
-                                etudiant = all.etudiant,
-                                details_emploi = details_emploi
-                            })
-                            .Where(all => (all.module.Id == id_module
-                                           && all.details_emploi.Seance_Id == id_seance
-                                           && all.details_emploi.Emploi.Semaine.id == id_semaine))
-                            .Select(all => new {
-                                etudiants = new { all.etudiant.Id, all.etudiant.Nom, all.etudiant.Prenom },
-                                presence = new { emploi_id = all.details_emploi.Id, etudiant_id = all.etudiant.Id },
-                            }).ToList();
+            var seance_courante = context.details_Emplois.Where(r => (r.Module_Id == id_module
+                                           && r.Seance_Id == id_seance
+                                           && r.Emploi.Semaine.id == id_semaine)).FirstOrDefault();
+            var students_by_classe = context.Modules.Where(module => module.Id == id_module)
+                            .Select(module => new
+                            {
+                                classes = module.Classes.Select(c => new
+                                {
+                                    id = c.Id,
+                                    nom = c.Nom,
+                                    etudiants = c.Etudiants.Select(e => new
+                                    {
+                                        etudiant_id = e.Id,
+                                        e.Nom,
+                                        e.Prenom
+                                    })
+                                })
+                            }).FirstOrDefault();
 
-            return students;
+
+            // generer les absenses 'ils n'existent pas
+            List<object> final_result = new List<object>();
+            foreach (var classe in students_by_classe.classes)
+            {
+                foreach(var etudiant in classe.etudiants)
+                {
+                    var student_from_db = context.Etudiants.Find(etudiant.etudiant_id);
+                    if(student_from_db != null)
+                    {
+                        var absence = student_from_db.Absences.Where(a => a.Details_Emploi.Id == seance_courante.Id)
+                                                                .Select(a => new
+                                                                {
+                                                                    id = a.Id,
+                                                                    estPresent = a.EstPresent
+                                                                })
+                                                                .FirstOrDefault();
+                        if(absence == null)
+                        {
+                            var new_absence = new Absence() { Etudiant_id = student_from_db.Id, EstPresent = true};
+                            student_from_db.Absences.Add(new_absence);
+                            seance_courante.Absences.Add(new_absence);
+                            context.Absences.Add(new_absence);
+                            context.SaveChanges();
+                            absence = new { id = new_absence.Id, estPresent = new_absence.EstPresent };
+                        }
+
+                        final_result.Add(new {
+                            classe = new
+                            {
+                                id = classe.id,
+                                nom = classe.nom
+                            },
+                            etudiant = etudiant,
+                            absence = absence
+                        });
+                    }
+                    
+                }
+            }
+
+            return final_result;
         }
 
         public bool UpdateAbsence(int id_absence, bool est_present)

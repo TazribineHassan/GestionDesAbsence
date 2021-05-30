@@ -179,29 +179,22 @@ namespace GestionDesAbsence.Controllers
 
         public object LogicTest()
         {
-            /*var result = professeurService.GetStudentsList(1, 1, 1);
-            var result2 = professeurService.GetSeancesForProf(new Semaine() { id = 1}, new Professeur() { Id = 1});
+            var result = professeurService.GetStudentsList(1, 1, 1);
 
-            var str1 =  JsonConvert.SerializeObject(result, Formatting.Indented,
-                                                    new JsonSerializerSettings
-                                                    {
-                                                        ReferenceLoopHandling = ReferenceLoopHandling.Ignore
-                                                    });
+            var str1 = JsonConvert.SerializeObject(result, Formatting.Indented,
+                                                     new JsonSerializerSettings
+                                                     {
+                                                         ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                                                     });
+
+            var result2 = professeurService.GetSeancesForProf(1 , 1);
             var str2 = JsonConvert.SerializeObject(result2, Formatting.Indented,
                                                     new JsonSerializerSettings
                                                     {
                                                         ReferenceLoopHandling = ReferenceLoopHandling.Ignore
-                                                    });*/
-            object result3;
-            var db = new GestionDesAbsenceContext();
-            result3 = db.Modules.Include("Classes").Select((m) => new { id = m.Id, name = m.NomModule, classe = m.Classes}).ToList();
-            var str3 = JsonConvert.SerializeObject(result3, Formatting.Indented,
-                                                    new JsonSerializerSettings
-                                                    {
-                                                        ReferenceLoopHandling = ReferenceLoopHandling.Ignore
                                                     });
 
-            return str3;
+            return str1;
         }
     }
 }
