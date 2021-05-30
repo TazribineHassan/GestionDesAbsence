@@ -32,7 +32,7 @@ namespace GestionDesAbsence.Controllers
             {
                 
                  // La table de l'admin
-                 var admin = new Administrateur() { Email = "admin@gmail.com", Nom = "Admin", Prenom = "admin", Password = Encryption.Encrypt("admin") };
+                 var admin = new Administrateur() { Email = "admin@gmail.com", Nom = "Admin", Prenom = "admin", Password = Encryption.Encrypt("admin"), Role_Id = 1 };
                  db.Administrateurs.Add(admin);
                     db.SaveChanges();
 
@@ -62,7 +62,12 @@ namespace GestionDesAbsence.Controllers
                 // La table de l'etudiant
                 var etudiants = new List<Etudiant>();
                 for(int i = 0; i < 100; i++)
-                    etudiants.Add(new Etudiant() { Id = 0, Cne = "D132468" + i , Nom = "TAZRIBINE" + i + "", Prenom = "Hassan" + i + "", Email = "hassan" + i +"@gmail.com", Password = Encryption.Encrypt("etudiant"), Id_groupe = 1 });
+                    etudiants.Add(new Etudiant() { Id = 0, Cne = "D132468" + i , 
+                                                   Nom = "TAZRIBINE" + i + "", 
+                                                   Prenom = "Hassan" + i + "", Email = "hassan" + i +"@gmail.com", 
+                                                   Password = Encryption.Encrypt("etudiant"), 
+                                                   Id_groupe = 1,
+                                                   Role_Id = 3});
                 db.Etudiants.AddRange(etudiants);
                 db.SaveChanges();
 
@@ -92,7 +97,7 @@ namespace GestionDesAbsence.Controllers
                 db.Modules.Find(2).Classes.Add(db.Classes.Find(1));
                 //attach model to class 2
                 db.Modules.Find(3).Classes.Add(db.Classes.Find(2));
-                db.SaveChanges()
+                db.SaveChanges();
 
                 // la table des locals
                 var locals = new List<Local>();
