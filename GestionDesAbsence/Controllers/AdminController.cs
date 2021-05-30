@@ -71,16 +71,23 @@ namespace GestionDesAbsence.Controllers
             AdminService service = new AdminService();
             service.saveEtudiant(e);
             ViewBag.list = new SelectList(gestion.Cycles, "Id", "Nom");
-             return Redirect("/Admin/AllEtudiant");
+             return Redirect("/Admin/AllEtudiants");
         }
 
-        public ActionResult DeleteEtudiant(String id)
+        public ActionResult DeleteEtudiant(int id)
         {
             GestionDesAbsenceContext gestion = new GestionDesAbsenceContext();
             Etudiant e = gestion.Etudiants.Find(id);
             AdminService service = new AdminService();
             service.deleteEtudiant(e);
-            return Redirect("/Admin/AllEtudiant");
+            return Redirect("/Admin/AllEtudiants");
+        }
+
+        public PartialViewResult etudiantDetails(int id)
+        {
+            GestionDesAbsenceContext gestion = new GestionDesAbsenceContext();
+            Etudiant e = gestion.Etudiants.Find(id);
+            return PartialView(e);
         }
     }
 }
