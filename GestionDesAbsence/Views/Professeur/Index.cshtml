@@ -1,36 +1,48 @@
-﻿
+﻿@using GestionDesAbsence.Models
+
 @{
     ViewBag.Title = "Espace Des Professeurs";
     ViewBag.Nom = "Test";
     Layout = "~/Views/Shared/_LayoutProfesseur.cshtml";
 }
 
+@model List<object>
+
+@*getting our data ready*@
+@{
+    var semaine = Model[0] as Semaine;
+    var listSeance = Model[1] as List<Seance>;
+    var listClasses = Model[2] as List<Classe>;
+    var listModules = Model[3] as List<Module>;
+}
 
 @*user name = @User.Identity.Name*@
 <div class="row justify-content-center py-5 ">
     <div class="col-md-8 btn btn-outline-danger">
-        Semaine 8 - Lundi - 12/04/2021
+
+       @semaine.Code - @Model.Last()
     </div>
 </div>
 <div class="row justify-content-center">
-    @{ 
+    @{
         string[] color_list = { "info", "warning", "success", "danger" };
     }
-        @for (int i = 0; i < 4; i++)
-    {
 
+
+    @for (int i = 0; i < listSeance.Count; i++)
+    {
         <div class="col-md-3 pt-3">
             <div class="card bg-light shadow">
-                <div class="card-header text-white bg-@color_list[i] text-center">08:00 - 10:00</div>
+                <div class="card-header text-white bg-@color_list[i] text-center">@listSeance[i].Heure_debut - @listSeance[i].Heure_fin</div>
                 <div class="card-body">
-                    <h5 class="card-title text-center">4 G.Info</h5>
+                    <h5 class="card-title text-center">@listClasses[i].Nom</h5>
+                    <h5 class="card-title text-center">@listModules[i].NomModule</h5>
                     <p class="card-text">Veuillez noter la présence</p>
-                    <a href="/Professeur/Notez" class="btn btn-outline-@color_list[i]" >Notez</a>
-
+                    <a href="/Professeur/Notez" class="btn btn-outline-@color_list[i]">Notez</a>
                 </div>
             </div>
         </div>
+    }
 
-     }
 
 </div>

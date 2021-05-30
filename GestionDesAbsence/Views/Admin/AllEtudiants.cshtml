@@ -5,6 +5,14 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 @using GridMvc.Html
+@helper ButtonFor(int id)
+{
+    <button class="btn btn-success" value="@id" data-toggle="modal" data-target="#EditlModal">Edit</button>
+}
+@helper ButtonForDetails(int id)
+{
+    <button class="detailButton btn btn-primary" value="@id" data-toggle="modal" data-target="#DetailModal" data-url="@Url.Action("Admin/etudiantDetails")">Details</button>
+}
 <div class="container-fluid">
     <h2>AllEtudiants</h2>
     <br />
@@ -13,27 +21,49 @@
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
             Ajouter Un Etudiant
         </button>
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
+        <!--Details modal-->
+        <div class="modal fade" id="DetailModal" tabindex="-1" role="dialog" aria-labelledby="Details" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                        <h5 class="modal-title" id="exampleModalLongTitle">Details de l'etudiant</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    @using(Html.BeginForm("SaveEtudiant","Admin",FormMethod.Post,new {@class = "my_from" })) { 
+                    <div class="modal-body" id="detailContent">
+                        ...
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Nouveau etudiant</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    @using (Html.BeginForm("SaveEtudiant", "Admin", FormMethod.Post, new { @class = "my_from" }))
+                    {
                         <div class="modal-body">
 
                             <h3>Ajouter Un Etudiant</h3>
                             <div class="form-group">
                                 <label for="cne">CNE</label>
-                                <input type="text" class="form-control" id="cne" name ="cne" placeholder="Cne">
+                                <input type="text" class="form-control" id="cne" name="cne" placeholder="Cne">
                             </div>
                             <div class="form-group">
                                 <label for="nom">Nom</label>
                                 <input type="text" class="form-control" id="nom" name="nom" placeholder="Nom">
-                            </div> 
+                            </div>
                             <div class="form-group">
                                 <label for="preom">Preom</label>
                                 <input type="text" class="form-control" id="preom" name="prenom" placeholder="Preom">
@@ -45,7 +75,7 @@
                             <div class="form-group">
                                 <label>Cycle</label>
                                 @Html.DropDownList("liste_cycle", ViewBag.list as SelectList, "Selectionnez le cycle", new { id = "liste_cycle" })
-                                
+
                             </div>
                             <div class="form-group">
                                 <label>Classe</label>
@@ -73,11 +103,12 @@
         columns.Add(etudiant => etudiant.Email).Titled("Email").Filterable(true);
         columns.Add(etudiant => etudiant.Id_groupe).Titled("group").Filterable(true);
         columns.Add().Encoded(false).Sanitized(false).SetWidth(30)
-        .RenderValueAs(item => @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "btn btn-primary" }));
+        .RenderValueAs(item => ButtonForDetails(item.Id));
         columns.Add().Encoded(false).Sanitized(false).SetWidth(30)
-        .RenderValueAs(item => @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-success" }));
+        .RenderValueAs(item => ButtonFor(item.Id));
         columns.Add().Encoded(false).Sanitized(false).SetWidth(30)
         .RenderValueAs(item => @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-danger" }));
+
     }).WithPaging(10).Sortable(true)
     </div>
 </div>
@@ -94,6 +125,14 @@
                     });
 
                 });
+            });
+
+            $(".detailButton").click(function (e) {
+                console.log("Modalclicked");
+                var url = "etudiantDetails/" + e.target.value;
+                $.get(url, function (data) {
+                    $('#detailContent').html(data);
+                })
             });
         });
     </script>
