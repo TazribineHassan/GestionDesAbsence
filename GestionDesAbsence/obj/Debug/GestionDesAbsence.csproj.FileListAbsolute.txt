@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 D:\mini projets\GestionDesAbsence\GestionDesAbsence\bin\GestionDesAbsence.dll.config
 D:\mini projets\GestionDesAbsence\GestionDesAbsence\bin\GestionDesAbsence.dll
 D:\mini projets\GestionDesAbsence\GestionDesAbsence\bin\GestionDesAbsence.pdb
@@ -97,6 +98,8 @@ C:\Users\admin\source\repos\GestionDesAbsence\GestionDesAbsence\obj\Debug\Gestio
 C:\Users\admin\source\repos\GestionDesAbsence\GestionDesAbsence\obj\Debug\GestionDesAbsence.pdb
 D:\mini projets\GestionDesAbsence\GestionDesAbsence\obj\Debug\GestionDesAbsence.Migrations.InitialCreate.resources
 D:\mini projets\GestionDesAbsence\GestionDesAbsence\obj\Debug\GestionDesAbsence.csproj.GenerateResource.cache
+=======
+>>>>>>> 78110793db6f4fef9fcc74656eb0fc89afd5b0b2
 C:\Users\admin\source\repos\GestionDesAbsence\GestionDesAbsence\bin\GestionDesAbsence.dll.config
 C:\Users\admin\source\repos\GestionDesAbsence\GestionDesAbsence\bin\GestionDesAbsence.dll
 C:\Users\admin\source\repos\GestionDesAbsence\GestionDesAbsence\bin\GestionDesAbsence.pdb
@@ -152,10 +155,18 @@ C:\Users\admin\source\repos\GestionDesAbsence\GestionDesAbsence\bin\roslyn\VBCSC
 C:\Users\admin\source\repos\GestionDesAbsence\GestionDesAbsence\bin\Antlr3.Runtime.dll
 C:\Users\admin\source\repos\GestionDesAbsence\GestionDesAbsence\bin\EntityFramework.dll
 C:\Users\admin\source\repos\GestionDesAbsence\GestionDesAbsence\bin\EntityFramework.SqlServer.dll
+C:\Users\admin\source\repos\GestionDesAbsence\GestionDesAbsence\bin\GridMvc.dll
+C:\Users\admin\source\repos\GestionDesAbsence\GestionDesAbsence\bin\Microsoft.AspNetCore.Http.Abstractions.dll
+C:\Users\admin\source\repos\GestionDesAbsence\GestionDesAbsence\bin\Microsoft.AspNetCore.Http.Features.dll
 C:\Users\admin\source\repos\GestionDesAbsence\GestionDesAbsence\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\admin\source\repos\GestionDesAbsence\GestionDesAbsence\bin\Microsoft.Extensions.Primitives.dll
 C:\Users\admin\source\repos\GestionDesAbsence\GestionDesAbsence\bin\Microsoft.Web.Infrastructure.dll
 C:\Users\admin\source\repos\GestionDesAbsence\GestionDesAbsence\bin\Newtonsoft.Json.dll
+C:\Users\admin\source\repos\GestionDesAbsence\GestionDesAbsence\bin\System.Buffers.dll
+C:\Users\admin\source\repos\GestionDesAbsence\GestionDesAbsence\bin\System.Memory.dll
+C:\Users\admin\source\repos\GestionDesAbsence\GestionDesAbsence\bin\System.Numerics.Vectors.dll
 C:\Users\admin\source\repos\GestionDesAbsence\GestionDesAbsence\bin\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\admin\source\repos\GestionDesAbsence\GestionDesAbsence\bin\System.Text.Encodings.Web.dll
 C:\Users\admin\source\repos\GestionDesAbsence\GestionDesAbsence\bin\System.Web.Helpers.dll
 C:\Users\admin\source\repos\GestionDesAbsence\GestionDesAbsence\bin\System.Web.Mvc.dll
 C:\Users\admin\source\repos\GestionDesAbsence\GestionDesAbsence\bin\System.Web.Optimization.dll
@@ -170,7 +181,14 @@ C:\Users\admin\source\repos\GestionDesAbsence\GestionDesAbsence\bin\WebGrease.dl
 C:\Users\admin\source\repos\GestionDesAbsence\GestionDesAbsence\bin\System.Threading.Tasks.Extensions.dll
 C:\Users\admin\source\repos\GestionDesAbsence\GestionDesAbsence\bin\EntityFramework.xml
 C:\Users\admin\source\repos\GestionDesAbsence\GestionDesAbsence\bin\EntityFramework.SqlServer.xml
+C:\Users\admin\source\repos\GestionDesAbsence\GestionDesAbsence\bin\Microsoft.AspNetCore.Http.Abstractions.xml
+C:\Users\admin\source\repos\GestionDesAbsence\GestionDesAbsence\bin\Microsoft.AspNetCore.Http.Features.xml
+C:\Users\admin\source\repos\GestionDesAbsence\GestionDesAbsence\bin\Microsoft.Extensions.Primitives.xml
+C:\Users\admin\source\repos\GestionDesAbsence\GestionDesAbsence\bin\System.Buffers.xml
+C:\Users\admin\source\repos\GestionDesAbsence\GestionDesAbsence\bin\System.Memory.xml
+C:\Users\admin\source\repos\GestionDesAbsence\GestionDesAbsence\bin\System.Numerics.Vectors.xml
 C:\Users\admin\source\repos\GestionDesAbsence\GestionDesAbsence\bin\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\admin\source\repos\GestionDesAbsence\GestionDesAbsence\bin\System.Text.Encodings.Web.xml
 C:\Users\admin\source\repos\GestionDesAbsence\GestionDesAbsence\bin\System.Web.Helpers.xml
 C:\Users\admin\source\repos\GestionDesAbsence\GestionDesAbsence\bin\System.Web.Mvc.xml
 C:\Users\admin\source\repos\GestionDesAbsence\GestionDesAbsence\bin\System.Web.Optimization.xml
@@ -183,7 +201,11 @@ C:\Users\admin\source\repos\GestionDesAbsence\GestionDesAbsence\bin\Unity.Abstra
 C:\Users\admin\source\repos\GestionDesAbsence\GestionDesAbsence\bin\Unity.Container.pdb
 C:\Users\admin\source\repos\GestionDesAbsence\GestionDesAbsence\bin\Antlr3.Runtime.pdb
 C:\Users\admin\source\repos\GestionDesAbsence\GestionDesAbsence\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\admin\source\repos\GestionDesAbsence\GestionDesAbsence\obj\Debug\GestionDesAbsence.Migrations.InitialCreate.resources
+C:\Users\admin\source\repos\GestionDesAbsence\GestionDesAbsence\obj\Debug\GestionDesAbsence.csproj.GenerateResource.cache
+C:\Users\admin\source\repos\GestionDesAbsence\GestionDesAbsence\obj\Debug\GestionDesAbsence.csproj.CoreCompileInputs.cache
 C:\Users\admin\source\repos\GestionDesAbsence\GestionDesAbsence\obj\Debug\GestionDesAbsence.csproj.CopyComplete
+<<<<<<< HEAD
 C:\Users\admin\source\repos\GestionDesAbsence\GestionDesAbsence\bin\GridMvc.dll
 D:\mini projets\GestionDesAbsence\GestionDesAbsence\bin\GridMvc.dll
 C:\Users\saadr\OneDrive\Desktop\projet ASP\GestionDesAbsence\bin\GestionDesAbsence.dll.config
@@ -280,3 +302,8 @@ C:\Users\saadr\OneDrive\Desktop\projet ASP\GestionDesAbsence\obj\Debug\GestionDe
 C:\Users\saadr\OneDrive\Desktop\projet ASP\GestionDesAbsence\obj\Debug\GestionDesAbsence.csproj.CopyComplete
 C:\Users\saadr\OneDrive\Desktop\projet ASP\GestionDesAbsence\obj\Debug\GestionDesAbsence.dll
 C:\Users\saadr\OneDrive\Desktop\projet ASP\GestionDesAbsence\obj\Debug\GestionDesAbsence.pdb
+=======
+C:\Users\admin\source\repos\GestionDesAbsence\GestionDesAbsence\obj\Debug\GestionDesAbsence.dll
+C:\Users\admin\source\repos\GestionDesAbsence\GestionDesAbsence\obj\Debug\GestionDesAbsence.pdb
+C:\Users\admin\source\repos\GestionDesAbsence\GestionDesAbsence\obj\Debug\GestionDesAbsence.csprojAssemblyReference.cache
+>>>>>>> 78110793db6f4fef9fcc74656eb0fc89afd5b0b2

@@ -1,0 +1,60 @@
+﻿
+@{
+    ViewBag.Title = "Admin";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+<div class="login-box justify-content-center">
+    @if (@ViewBag.Msg != null)
+    {
+        <div role="alert" aria-live="assertive" aria-atomic="true" data-autohide="true" , data-delay="3000" class="toast bg-danger text-center ml-1">
+            <div class="toast-body">
+                @ViewBag.Msg
+            </div>
+        </div>
+    }
+    <!-- /.login-logo -->
+    <div class="card card-outline  shadow-lg">
+        <div class="card-header text-center bg-header">
+            <b class="h1" id="header-color">Admin</b>
+        </div>
+        <div class="card-body">
+            <p class="login-box-msg subtitle font-weight-bold">Connectez-vous</p>
+
+            @using (Html.BeginForm("CheckAdmin", "Login", FormMethod.Post))
+            {
+                <div class="input-group mb-3">
+                    <input type="email" name="email" class="form-control" placeholder="Email" required>
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-envelope subtitle"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="input-group mb-3">
+                    <input type="password" name="password" class="form-control" placeholder="Password" required>
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-lock subtitle"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-8">
+                    </div>
+                    <!-- /.col -->
+                    <div class="col-4">
+                        <button type="submit" class="btn bg-btn-admin btn-block" id="btn-color">Sign In</button>
+                    </div>
+                    <!-- /.col -->
+                </div>
+            }
+        </div>
+        <!-- /.card-body -->
+    </div>
+    <!-- /.card -->
+</div>
+
+@*<script src="~/Content/jQuery.min.js"></script>
+<script src="~/Content/Toasts.js"></script>*@

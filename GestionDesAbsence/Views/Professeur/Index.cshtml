@@ -1,7 +1,7 @@
 ﻿
 @{
     ViewBag.Title = "Espace Des Professeurs";
-    //ViewBag.Nom = ViewBag.nom;
+    ViewBag.Nom = "Test";
     Layout = "~/Views/Shared/_LayoutProfesseur.cshtml";
 }
 
@@ -13,24 +13,20 @@
     </div>
 </div>
 <div class="row justify-content-center">
-    @for (int i = 0; i < 4; i++)
+    @{ 
+        string[] color_list = { "info", "warning", "success", "danger" };
+    }
+        @for (int i = 0; i < 4; i++)
     {
-        @*<div class="col-md-3 card w-auto m-1">
-                <div class="card-header">Lundi</div>
-                <div class="card-body">
-                    <h5 class="card-title">08:00 - 10:00</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="btn btn-primary">Button</a>
-                </div>
-            </div>*@
+
         <div class="col-md-3 pt-3">
             <div class="card bg-light shadow">
-                <div class="card-header text-white bg-info text-center">08:00 - 10:00</div>
+                <div class="card-header text-white bg-@color_list[i] text-center">08:00 - 10:00</div>
                 <div class="card-body">
                     <h5 class="card-title text-center">4 G.Info</h5>
                     <p class="card-text">Veuillez noter la présence</p>
-                    @*<a href="~/Views/Professeur/Notez.cshtml" >Notez</a>*@
-                    @Html.ActionLink("Notez", "Notez")
+                    <a href="/Professeur/Notez" class="btn btn-outline-@color_list[i]" >Notez</a>
+
                 </div>
             </div>
         </div>

@@ -1,0 +1,97 @@
+﻿body {
+    margin: auto;
+    background: #4b6cb7; /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #182848, #4b6cb7); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #182848, #4b6cb7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+/* Set padding to keep content from hitting the edges */
+.body-content{
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+.center {
+    min-height: 35vh;
+    width:100%;
+}
+
+.img{
+    width:100px;
+    height:100px;
+}
+
+
+.navbar-width {
+    min-height: 20vh;
+}
+
+footer {
+    min-height: 10vh;
+   
+}
+#btn-color {
+
+    color: red;
+    animation: mymove 2s infinite;
+}
+
+@keyframes mymove {
+    from {
+        color: #f2fcfe;
+    }
+
+    to {
+        color: #ed4264;
+    }
+}
+
+#header-color {
+    color: red;
+    animation: mystyle 2s infinite;
+}
+
+@keyframes mystyle {
+    from {
+        color: #D66D75;
+    }
+
+    to {
+        color: #7F7FD5;
+    }
+}
+
+
+.bg-admin {
+    background: #757F9A; /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #D7DDE8, #757F9A); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #D7DDE8, #757F9A); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.bg-btn-admin {
+    color:white;
+    background: #4b6cb7; /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #182848, #4b6cb7); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #182848, #4b6cb7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+.subtitle {
+    color: #4b6cb7;
+}
+.bg-header {
+    background: #7F7FD5; /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #91EAE4, #86A8E7, #7F7FD5); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #91EAE4, #86A8E7, #7F7FD5); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}

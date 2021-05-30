@@ -1,8 +1,6 @@
 ﻿using GestionDesAbsence.Models;
 using GestionDesAbsence.Services;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
@@ -24,24 +22,49 @@ namespace GestionDesAbsence.Controllers
         {
             return View();
         }
-                
-        
+
         public ActionResult IndexMsg(string msg)
         {
             ViewBag.Msg = msg;
             return View("Index");
         }
 
-        [HttpPost]
-        public string CheckAdmin(string email, string password)
+        public ActionResult Admin()
         {
-            if (email == "admin@gmail.com" && password == "123")
+            return View();
+        }        
+        
+        public ActionResult AdminMsg(string msg)
+        {
+            ViewBag.Msg = msg;
+            return View("Admin");
+        }
+
+
+
+
+        [HttpPost]
+        public ActionResult CheckAdmin(string email, string password)
+        {
+            Administrateur admin = loginService.Login(email, password, "admin") as Administrateur;
+            if (admin != null)
             {
-                return "you're in";
+
+                //set the authentication cookie
+                var ticket = new FormsAuthenticationTicket(admin.Email, true, 3000);
+                string encrypt = FormsAuthentication.Encrypt(ticket);
+                var cookie = new HttpCookie(FormsAuthentication.FormsCookieName, encrypt);
+                cookie.Expires = DateTime.Now.AddDays(1);
+                Response.Cookies.Add(cookie);
+                cookie.HttpOnly = true;
+
+                //ViewBag.Nom = professeur.Nom;
+                return RedirectToAction("Index", "Professeur");
+
             }
             else
             {
-                return "please check your email";
+                return RedirectToAction("AdminMsg", new { msg = "Email or password are incorrect" });
             }
         }
 
@@ -49,19 +72,19 @@ namespace GestionDesAbsence.Controllers
         public ActionResult CheckTeacher(string email, string password)
         {
             Professeur professeur = loginService.Login(email, password, "Prof") as Professeur;
-            if(professeur != null)
+            if (professeur != null)
             {
 
                 //set the authentication cookie
                 var ticket = new FormsAuthenticationTicket(professeur.Email, true, 3000);
                 string encrypt = FormsAuthentication.Encrypt(ticket);
                 var cookie = new HttpCookie(FormsAuthentication.FormsCookieName, encrypt);
-                cookie.Expires = DateTime.Now.AddHours(3);
+                cookie.Expires = DateTime.Now.AddHours(4);
                 Response.Cookies.Add(cookie);
                 cookie.HttpOnly = true;
 
-               //ViewBag.Nom = professeur.Nom;
-                return RedirectToAction("Index", "Professeur", new { nom = professeur.Nom});
+                //ViewBag.Nom = professeur.Nom;
+                return RedirectToAction("Index", "Professeur");
 
             }
             else
@@ -73,9 +96,9 @@ namespace GestionDesAbsence.Controllers
         [HttpPost]
         public ActionResult CheckStudent(string email, string password)
         {
-            if(email == "student@gmail.com" && password == "123")
+            if (email == "student@gmail.com" && password == "123")
             {
-                
+
                 return View("Home");
             }
             else
