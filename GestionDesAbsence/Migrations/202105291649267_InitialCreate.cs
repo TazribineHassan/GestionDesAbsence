@@ -107,18 +107,6 @@
                 .PrimaryKey(t => t.Id);
             
             CreateTable(
-                "dbo.Groupes",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        Nom = c.String(),
-                        id_classe = c.Int(),
-                    })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Classes", t => t.id_classe)
-                .Index(t => t.id_classe);
-            
-            CreateTable(
                 "dbo.Etudiants",
                 c => new
                     {
@@ -130,12 +118,24 @@
                         Password = c.String(),
                         Role_Id = c.Int(),
                         Id_groupe = c.Int(),
+                        Id_classe = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Classes", t => t.Id_classe)
                 .ForeignKey("dbo.Groupes", t => t.Id_groupe)
                 .ForeignKey("dbo.Roles", t => t.Role_Id)
                 .Index(t => t.Role_Id)
-                .Index(t => t.Id_groupe);
+                .Index(t => t.Id_groupe)
+                .Index(t => t.Id_classe);
+            
+            CreateTable(
+                "dbo.Groupes",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Nom = c.String(),
+                    })
+                .PrimaryKey(t => t.Id);
             
             CreateTable(
                 "dbo.Roles",
@@ -214,8 +214,8 @@
             DropForeignKey("dbo.Professeurs", "Role_Id", "dbo.Roles");
             DropForeignKey("dbo.Administrateurs", "Role_Id", "dbo.Roles");
             DropForeignKey("dbo.Etudiants", "Id_groupe", "dbo.Groupes");
+            DropForeignKey("dbo.Etudiants", "Id_classe", "dbo.Classes");
             DropForeignKey("dbo.Absences", "Etudiant_Id", "dbo.Etudiants");
-            DropForeignKey("dbo.Groupes", "id_classe", "dbo.Classes");
             DropForeignKey("dbo.Classes", "id_cycle", "dbo.Cycles");
             DropForeignKey("dbo.Details_Emploi", "Local_Id", "dbo.Locals");
             DropForeignKey("dbo.Details_Emploi", "Emploi_Id", "dbo.Emplois");
@@ -225,9 +225,9 @@
             DropIndex("dbo.ClasseModules", new[] { "Classe_Id" });
             DropIndex("dbo.Professeurs", new[] { "Role_Id" });
             DropIndex("dbo.Administrateurs", new[] { "Role_Id" });
+            DropIndex("dbo.Etudiants", new[] { "Id_classe" });
             DropIndex("dbo.Etudiants", new[] { "Id_groupe" });
             DropIndex("dbo.Etudiants", new[] { "Role_Id" });
-            DropIndex("dbo.Groupes", new[] { "id_classe" });
             DropIndex("dbo.Classes", new[] { "id_cycle" });
             DropIndex("dbo.Modules", new[] { "id_Professeur" });
             DropIndex("dbo.Emplois", new[] { "Id" });
@@ -242,8 +242,8 @@
             DropTable("dbo.Professeurs");
             DropTable("dbo.Administrateurs");
             DropTable("dbo.Roles");
-            DropTable("dbo.Etudiants");
             DropTable("dbo.Groupes");
+            DropTable("dbo.Etudiants");
             DropTable("dbo.Cycles");
             DropTable("dbo.Classes");
             DropTable("dbo.Modules");

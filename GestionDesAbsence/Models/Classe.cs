@@ -10,7 +10,7 @@ namespace GestionDesAbsence.Models
     {
         public Classe()
         {
-            Groupes = new HashSet<Groupe>();
+            Etudiants = new HashSet<Etudiant>();
             Modules = new HashSet<Module>();
         }
 
@@ -21,7 +21,7 @@ namespace GestionDesAbsence.Models
         public int? id_cycle { get; set; }
 
         public virtual Cycle Cycle { get; set; }
-        public virtual ICollection<Groupe> Groupes { get; set; }
+        public virtual ICollection<Etudiant> Etudiants { get; set; }
         public virtual ICollection<Module> Modules { get; set; }
     }
 }

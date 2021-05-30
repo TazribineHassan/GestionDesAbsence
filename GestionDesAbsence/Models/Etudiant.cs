@@ -29,7 +29,12 @@ namespace GestionDesAbsence.Models
         [ForeignKey("Groupe")]
         public int? Id_groupe { get; set; }
 
+        [ForeignKey("Classe")]
+        public int? Id_classe { get; set; }
+
+
         public virtual Groupe Groupe { get; set; }
+        public virtual Classe Classe { get; set; }
         public virtual ICollection<Absence> Absences { get; set; }
 
 
