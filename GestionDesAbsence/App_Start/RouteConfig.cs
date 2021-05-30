@@ -20,6 +20,11 @@ namespace GestionDesAbsence
                 defaults: new { controller = "Admin", action = "DeleteEtudiant", id = UrlParameter.Optional }
             );
             routes.MapRoute(
+                name: "etudiantEdit",
+                url: "{controller}/EtudiantEdit/{id}",
+                defaults: new { controller = "Admin", action = "etudiantEdit", id = UrlParameter.Optional }
+            );
+            routes.MapRoute(
                 name: "Admin",
                 url: "{controller}/etudiantDetails/{id}",
                 defaults: new { controller = "Admin", action = "etudiantDetails", id = UrlParameter.Optional }
