@@ -48,10 +48,10 @@ namespace GestionDesAbsence
                     Administrateur admin = db.Administrateurs.FirstOrDefault(p => p.Email == username);
                     if (admin != null) user_role = admin.Role.Nome;
                 }
-                if (user_role.Equals(null))
+                if (user_role.Equals(""))
                 {
                     Etudiant etudiant = db.Etudiants.FirstOrDefault(p => p.Email == username);
-                    if (etudiant == null) user_role = etudiant.Role.Nome;
+                    if (etudiant != null) user_role = etudiant.Role.Nome;
                 }   
                 string[] role = { user_role };
                 return role;

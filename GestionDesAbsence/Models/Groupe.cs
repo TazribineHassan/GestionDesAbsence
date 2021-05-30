@@ -15,12 +15,6 @@ namespace GestionDesAbsence.Models
 
         public int Id { get; set; }
         public string Nom { get; set; }
-
-        [ForeignKey("Classe")]
-        public int? id_classe { get; set; }
-
-        public virtual Classe Classe { get; set; }
-
         public virtual ICollection<Etudiant> Etudiants { get; set; }
     }
 }
