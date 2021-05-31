@@ -23,8 +23,14 @@ namespace GestionDesAbsence.Controllers
 
         public ActionResult Index()
         {
-            
-            var listOfSeance = professeurService.GetSeancesForProf(1);
+            // get current professeur
+            HttpCookie coockie = Request.Cookies[FormsAuthentication.FormsCookieName];
+            string crypted_ticket = coockie.Value;
+            FormsAuthenticationTicket ticket = FormsAuthentication.Decrypt(crypted_ticket);
+            string email = ticket.Name;
+            Professeur professeur = professeurService.GetProfesseurByEmail(email);
+
+            var listOfSeance = professeurService.GetSeancesForProf(professeur.Id);
 
 
             return View(listOfSeance);
