@@ -29,6 +29,7 @@ namespace GestionDesAbsence.Controllers
             return View(listOfSeance);
         }
 
+
         public string testData()
         {
             //using (GestionDesAbsenceContext db = new GestionDesAbsenceContext())
@@ -91,7 +92,7 @@ namespace GestionDesAbsence.Controllers
 
             //    modules.Add(new Module() { Id = 0, NomModule = "Module x", id_Professeur = 2 });
 
-            //    modules.Add(new Module() { Id = 0, NomModule = "Module y", id_Professeur = 3 });
+            //    modules.Add(new Module() { Id = 0, NomModule = "Java", id_Professeur = 1 });
 
             //    db.Modules.AddRange(modules);
             //    db.SaveChanges();
@@ -129,25 +130,25 @@ namespace GestionDesAbsence.Controllers
 
             //    // La tables des semaines
             //    var semaines = new List<Semaine>();
-            //    semaines.Add(new Semaine() { id = 0, Code = "S1", Date_debut = DateTime.Parse("05/01/2021"), Date_fin = DateTime.Parse("05/07/2021") });
-            //    semaines.Add(new Semaine() { id = 0, Code = "S1", Date_debut = DateTime.Parse("05/08/2021"), Date_fin = DateTime.Parse("05/14/2021") });
-            //    semaines.Add(new Semaine() { id = 0, Code = "S1", Date_debut = DateTime.Parse("05/15/2021"), Date_fin = DateTime.Parse("05/21/2021") });
+            //    semaines.Add(new Semaine() { id = 0, Code = "S1", Date_debut = DateTime.Parse("01/05/2021"), Date_fin = DateTime.Parse("07/05/2021") });
+            //    semaines.Add(new Semaine() { id = 0, Code = "S1", Date_debut = DateTime.Parse("08/05/2021"), Date_fin = DateTime.Parse("14/05/2021") });
+            //    semaines.Add(new Semaine() { id = 0, Code = "S1", Date_debut = DateTime.Parse("15/05/2021"), Date_fin = DateTime.Parse("21/05/2021") });
             //    db.Semaines.AddRange(semaines);
             //    db.SaveChanges();
 
             //    // La table des emplois
-            //    db.Emplois.Add(new Emploi() { Id = 1});
+            //    db.Emplois.Add(new Emploi() { Id = 1 });
             //    db.SaveChanges();
 
             //    // La table des details d'un emploi
             //    var details = new List<Details_Emploi>();
-            //    details.Add(new Details_Emploi() { Id = 0, Emploi_Id = 1, Local_Id = 2, Module_Id = 1, Seance_Id = 1});
-            //    details.Add(new Details_Emploi() { Id = 0, Emploi_Id = 1, Local_Id = 1, Module_Id = 2, Seance_Id = 2 });
+            //    details.Add(new Details_Emploi() { Id = 0, Emploi_Id = 1, Local_Id = 2, Module_Id = 1, Seance_Id = 1 });
+            //    details.Add(new Details_Emploi() { Id = 0, Emploi_Id = 1, Local_Id = 1, Module_Id = 3, Seance_Id = 2 });
             //    details.Add(new Details_Emploi() { Id = 0, Emploi_Id = 1, Local_Id = 3, Module_Id = 2, Seance_Id = 4 });
             //    details.Add(new Details_Emploi() { Id = 0, Emploi_Id = 1, Local_Id = 2, Module_Id = 1, Seance_Id = 5 });
-            //    details.Add(new Details_Emploi() { Id = 0, Emploi_Id = 1, Local_Id = 2, Module_Id = 3, Seance_Id = 6 });
-            //    details.Add(new Details_Emploi() { Id = 0, Emploi_Id = 1, Local_Id = 1, Module_Id = 2, Seance_Id = 1 });
-            //    details.Add(new Details_Emploi() { Id = 0, Emploi_Id = 1, Local_Id = 3, Module_Id = 1, Seance_Id = 1 });
+            //    details.Add(new Details_Emploi() { Id = 0, Emploi_Id = 1, Local_Id = 2, Module_Id = 2, Seance_Id = 6 });
+            //    details.Add(new Details_Emploi() { Id = 0, Emploi_Id = 1, Local_Id = 1, Module_Id = 2, Seance_Id = 7 });
+            //    details.Add(new Details_Emploi() { Id = 0, Emploi_Id = 1, Local_Id = 3, Module_Id = 1, Seance_Id = 8 });
             //    db.details_Emplois.AddRange(details);
             //    db.SaveChanges();
 
