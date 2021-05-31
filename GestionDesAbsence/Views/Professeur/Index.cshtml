@@ -6,22 +6,14 @@
     Layout = "~/Views/Shared/_LayoutProfesseur.cshtml";
 }
 
-@model List<object>
-
-@*getting our data ready*@
-@{
-    var semaine = Model[0] as Semaine;
-    var listSeance = Model[1] as List<Seance>;
-    var listClasses = Model[2] as List<Classe>;
-    var listModules = Model[3] as List<Module>;
-}
+@model List<SeancesForProf>
 
 
 @*user name = @User.Identity.Name*@
 <div class="row justify-content-center py-5 ">
     <div class="col-md-8 btn btn-outline-danger">
 
-       @semaine.Code - @Model.Last()
+       @Model.First().Semaine.Code - @Model.Last().Date.ToString("dddd-MM-YYYY")
     </div>
 </div>
 <div class="row justify-content-center">
@@ -34,10 +26,13 @@
     {
         <div class="col-md-3 pt-3">
             <div class="card bg-light shadow">
-                <div class="card-header text-white bg-@color_list[0] text-center">@item - @listSeance[i].Heure_fin</div>
+                <div class="card-header text-white bg-@color_list[0] text-center">@item.Seance.Heure_debut - @item.Seance.Heure_fin</div>
                 <div class="card-body">
-                    <h5 class="card-title text-center">@listClasses[i].Nom</h5>
-                    <h5 class="card-title text-center">@listModules[i].NomModule</h5>
+                    <h5 class="card-title text-center">@item.Module.NomModule</h5>
+                    @foreach (var classe in item.Classes)
+                    {
+                        <p class="card-subtitle">@classe.Nom</p>
+                    }
                     <p class="card-text">Veuillez noter la présence</p>
                     <a href="/Professeur/Notez" class="btn btn-outline-@color_list[0]">Notez</a>
                 </div>

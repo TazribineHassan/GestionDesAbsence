@@ -1,0 +1,128 @@
+﻿@model IEnumerable<GestionDesAbsence.Models.Professeur>
+
+@{
+    ViewBag.Title = "AllProfs";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@using GridMvc.Html
+@helper ButtonFor(int id)
+{
+    <button class="editbutton btn btn-success" value="@id" data-toggle="modal" data-target="#editModal">Edit</button>
+}
+@helper ButtonForDetails(int id)
+{
+    <button class="detailButton btn btn-primary" value="@id" data-toggle="modal" data-target="#DetailModal" data-url="@Url.Action("Admin/ProfDetails")">Details</button>
+}
+<div class="container-fluid">
+    <br />
+    <h3>Les Profs de L'école Nationale des Sciences Appliquées</h3>
+    <br />
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ajoutModal">Ajouter Un Professeur</button>
+
+    <hr />
+    <!--Ajouter Etudiant modal-->
+    <div class="modal fade" id="ajoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Nouveau Professeur</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                @using (Html.BeginForm("SaveProf", "Admin", FormMethod.Post, new { @class = "my_from" }))
+                {
+                    <div class="modal-body">
+
+                        <div class="form-group">
+                            <label for="cne">Code Prof</label>
+                            <input type="text" class="form-control" id="code" name="code" placeholder="Code Prof">
+                        </div>
+                        <div class="form-group">
+                            <label for="nom">Nom</label>
+                            <input type="text" class="form-control" id="nom" name="nom" placeholder="Nom">
+                        </div>
+                        <div class="form-group">
+                            <label for="preom">Prenom</label>
+                            <input type="text" class="form-control" id="prenom" name="prenom" placeholder="Prenom">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email address</label>
+                            <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="Enter email" />
+                        </div>
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <input type="submit" class="btn btn-primary" id="submit" value="Ajouter Prof" />
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+    <!--Details modal-->
+    <div class="modal fade" id="DetailModal" tabindex="-1" role="dialog" aria-labelledby="Details" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Details de l'etudiant</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="detailContent">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--edit etudiant-->
+    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" id="detailEditContent">
+            </div>
+        </div>
+    </div>
+
+    <div>
+        @Html.Grid(Model).Columns(columns =>
+    {
+        columns.Add(professeur => professeur.Code_prof).Titled("Code Prof").Filterable(true);
+        columns.Add(professeur => professeur.Nom).Titled("Nom").Filterable(true).Sortable(true);
+        columns.Add(professeur => professeur.Prenom).Titled("Prenom").Filterable(true);
+        columns.Add(professeur => professeur.Email).Titled("Email").Filterable(true);
+
+        columns.Add().Encoded(false).Sanitized(false).SetWidth(30)
+        .RenderValueAs(item => ButtonForDetails(item.Id));
+        columns.Add().Encoded(false).Sanitized(false).SetWidth(30)
+        .RenderValueAs(item => ButtonFor(item.Id));
+        columns.Add().Encoded(false).Sanitized(false).SetWidth(30).Filterable(false)
+        .RenderValueAs(item => @Html.ActionLink("Delete", "DeleteProf", new { id = item.Id }, new { @class = "btn btn-danger" }));
+
+    }).WithPaging(10).Sortable(true)
+    </div>
+</div>
+<script>
+    $(document).ready(function (e) {
+        $(".detailButton").click(function (e) {
+            var url = "ProfDetails/" + e.target.value;
+            $.get(url, function (data) {
+                $('#detailContent').html(data);
+            })
+        });
+
+        $(".editbutton").click(function (e) {
+            var url = "ProfEdit/" + e.target.value;
+            $.get(url, function (data) {
+                $('#detailEditContent').html(data);
+            })
+        });
+    });
+</script>

@@ -53,7 +53,6 @@ namespace GestionDesAbsence.Controllers
         public ActionResult AllEtudiants()
         {
             GestionDesAbsenceContext gestion = new GestionDesAbsenceContext();
-            ViewBag.valN = "";
             ViewBag.list = new SelectList(gestion.Cycles, "Id", "Nom");
             return View(gestion.Etudiants.ToList());
         }
@@ -120,6 +119,74 @@ namespace GestionDesAbsence.Controllers
             gestion.SaveChanges();
             ViewBag.list = new SelectList(gestion.Cycles, "Id", "Nom");
             return Redirect("/Admin/AllEtudiants");
+        }
+
+        //Prof
+        public ActionResult AllProfs()
+        {
+            GestionDesAbsenceContext gestion = new GestionDesAbsenceContext();
+            return View(gestion.Professeurs.ToList());
+        }
+
+        //saveProf
+        //SaveStudent
+        [HttpPost]
+        public ActionResult SaveProf(string code, string nom, String prenom, string email)
+        {
+            GestionDesAbsenceContext gestion = new GestionDesAbsenceContext();
+            Professeur e = new Professeur();
+            e.Code_prof = code;
+            e.Nom = nom;
+            e.Prenom = prenom;
+            e.Email = email;
+            e.Password = Encryption.Encrypt(email);
+            ProfesseurService service = new ProfesseurService();
+            service.Save(e);
+            return Redirect("/Admin/AllProfs");
+        }
+
+        //Prof details PartialVies
+        public PartialViewResult ProfDetails(int id)
+        {
+            GestionDesAbsenceContext gestion = new GestionDesAbsenceContext();
+            Professeur e = gestion.Professeurs.Find(id);
+            return PartialView(e);
+        }
+
+        //delete Prof
+        public ActionResult DeleteProf(int id)
+        {
+            GestionDesAbsenceContext gestion = new GestionDesAbsenceContext();
+            Professeur e = gestion.Professeurs.Find(id);
+            ProfesseurService service = new ProfesseurService();
+            service.deleteProfesseur(e);
+            return Redirect("/Admin/AllProfs");
+        }
+
+        //editProf partialview
+        
+            public PartialViewResult ProfEdit(int id)
+        {
+            GestionDesAbsenceContext gestion = new GestionDesAbsenceContext();
+            ViewBag.e = id;
+            Professeur p = gestion.Professeurs.Find(id);
+            return PartialView(p);
+        }
+
+        //editProf (Modify)
+        
+            public ActionResult ModifyProf(int editidinput, string editcode, string editnom, String editprenom, string editemail, string editcycle)
+        {
+            GestionDesAbsenceContext gestion = new GestionDesAbsenceContext();
+            Professeur newE = gestion.Professeurs.Find(editidinput);
+            newE.Code_prof = editcode;
+            newE.Nom = editnom;
+            newE.Prenom = editprenom;
+            newE.Email = editemail;
+
+            gestion.SaveChanges();
+            ViewBag.list = new SelectList(gestion.Cycles, "Id", "Nom");
+            return Redirect("/Admin/AllPrfos");
         }
 
     }
