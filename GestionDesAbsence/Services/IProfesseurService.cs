@@ -22,7 +22,7 @@ namespace GestionDesAbsence.Services
           module => Id, NomModule
           date:"2021-05-30"
         }*/
-        List<SeancesForProf> GetSeancesForProf(int semaine_id, int professeur_id);
+        List<SeancesForProf> GetSeancesForProf(int professeur_id);
 
         /* type de retour 
         list => {
