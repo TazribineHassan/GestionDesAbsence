@@ -90,10 +90,8 @@ C:\Users\admin\source\repos\GestionDesAbsence\GestionDesAbsence\obj\Debug\Gestio
 C:\Users\admin\source\repos\GestionDesAbsence\GestionDesAbsence\obj\Debug\GestionDesAbsence.csproj.GenerateResource.cache
 C:\Users\admin\source\repos\GestionDesAbsence\GestionDesAbsence\obj\Debug\GestionDesAbsence.csproj.CoreCompileInputs.cache
 C:\Users\admin\source\repos\GestionDesAbsence\GestionDesAbsence\obj\Debug\GestionDesAbsence.csproj.CopyComplete
-<<<<<<< HEAD
 C:\Users\admin\source\repos\GestionDesAbsence\GestionDesAbsence\obj\Debug\GestionDesAbsence.dll
 C:\Users\admin\source\repos\GestionDesAbsence\GestionDesAbsence\obj\Debug\GestionDesAbsence.pdb
-=======
 D:\mini projets\GestionDesAbsence\GestionDesAbsence\bin\GridMvc.dll
 C:\Users\saadr\OneDrive\Desktop\projet ASP\GestionDesAbsence\bin\GestionDesAbsence.dll.config
 C:\Users\saadr\OneDrive\Desktop\projet ASP\GestionDesAbsence\bin\GestionDesAbsence.dll
@@ -283,7 +281,6 @@ C:\Users\saadr\OneDrive\Desktop\ASP project\GestionDesAbsence\obj\Debug\GestionD
 C:\Users\saadr\OneDrive\Desktop\ASP project\GestionDesAbsence\obj\Debug\GestionDesAbsence.csproj.CopyComplete
 C:\Users\saadr\OneDrive\Desktop\ASP project\GestionDesAbsence\obj\Debug\GestionDesAbsence.dll
 C:\Users\saadr\OneDrive\Desktop\ASP project\GestionDesAbsence\obj\Debug\GestionDesAbsence.pdb
->>>>>>> 631a371226818733a97c22bb891151d153f3d41e
 D:\mini projets\GestionDesAbsence\GestionDesAbsence\bin\GestionDesAbsence.dll.config
 D:\mini projets\GestionDesAbsence\GestionDesAbsence\bin\GestionDesAbsence.dll
 D:\mini projets\GestionDesAbsence\GestionDesAbsence\bin\GestionDesAbsence.pdb

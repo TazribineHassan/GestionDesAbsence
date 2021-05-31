@@ -3,6 +3,38 @@
     ViewBag.Title = "Home";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
+<style>
+    #navTeacherButtons {
+        height: 240px;
+        width: 200px;
+        
+    }
 
-<h2>Home</h2>
+    #navStudentsButtons {
+        height: 240px;
+        width: 200px;
+        background: url()
+    }
 
+    #buttonDiv {
+        width: auto;
+        margin-left: 200px;
+        padding: 50px;
+        margin-top : -4%;
+    }
+    .studentsAction {
+        margin-right: 100px;
+        margin-top: 40px;
+    }
+</style>
+
+<div class="container-fluid">
+    <h2>Home</h2>
+
+
+
+    <div class="buttonDiv" id="buttonDiv">
+    <a href="/Admin/AllEtudiants" class="studentsAction"><button id="#navStudentsButtons"><img height="240" width="200" src="/assets/imgs/students.png" alt="Liste des Etudants"/></button></a>
+    <a href="/Admin/AllProfs" class="studentsAction"><button id="#navStudentsButtons"><img height="240" width="200" src="/assets/imgs/female-teacher.png" alt="Liste des Professeur"/></button></a>
+</div>
+</div>

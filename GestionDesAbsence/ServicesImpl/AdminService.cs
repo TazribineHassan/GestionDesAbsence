@@ -1,4 +1,5 @@
-﻿using GestionDesAbsence.Models;
+﻿using GestionDesAbsence.Common;
+using GestionDesAbsence.Models;
 using GestionDesAbsence.Services;
 using System;
 using System.Collections.Generic;
@@ -36,5 +37,7 @@ namespace GestionDesAbsence.ServicesImpl
             etud = e;
             context.SaveChanges();
         }
+
+        
     }
 }

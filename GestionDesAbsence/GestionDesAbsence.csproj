@@ -184,7 +184,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include=".babelrc.js" />
+    <Content Include="assets\imgs\female-teacher.png" />
     <Content Include="assets\imgs\logo2.png" />
+    <Content Include="assets\imgs\students.png" />
     <Content Include="build\config\postcss.config.js" />
     <Content Include="build\config\rollup.config.js" />
     <Content Include="build\js\AdminLTE.js" />
