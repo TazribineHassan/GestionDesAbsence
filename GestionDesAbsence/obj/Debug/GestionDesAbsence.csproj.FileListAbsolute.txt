@@ -91,3 +91,4 @@ C:\Users\admin\source\repos\GestionDesAbsence\GestionDesAbsence\obj\Debug\Gestio
 C:\Users\admin\source\repos\GestionDesAbsence\GestionDesAbsence\obj\Debug\GestionDesAbsence.csproj.CopyComplete
 C:\Users\admin\source\repos\GestionDesAbsence\GestionDesAbsence\obj\Debug\GestionDesAbsence.dll
 C:\Users\admin\source\repos\GestionDesAbsence\GestionDesAbsence\obj\Debug\GestionDesAbsence.pdb
+C:\Users\admin\source\repos\GestionDesAbsence\GestionDesAbsence\obj\Debug\GestionDesAbsence.csprojAssemblyReference.cache

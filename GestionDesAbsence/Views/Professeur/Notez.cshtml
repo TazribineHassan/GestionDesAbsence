@@ -4,7 +4,7 @@
 }
 @using GridMvc.Html
 @using GestionDesAbsence.Models
-@model IEnumerable<Etudiant>
+@*@model IEnumerable<Etudiant>*@
 
 @*function to check if the student is present or not*@
 @helper CheckPresence(Etudiant etudiant)
@@ -59,24 +59,27 @@
 </div>
 <div class="row justify-content-center">
     <div class="col-md-10">
-        @Html.Grid(Model).Columns(columns =>
-   {
-       columns.Add(c => c.Id).Titled("ID").Filterable(true);
-       columns.Add(c => c.Nom).Titled("Nom").Filterable(true);
-       columns.Add(c => c.Prenom).Titled("Prénom").Filterable(true);
-       columns.Add().Titled("Présent(e)")
-       .Filterable(true)
-       .Encoded(false)
-       .Sanitized(false)
-       .RenderValueAs(c => CheckPresence(c));
-       columns.Add()
-       .Encoded(false)
-       .Sanitized(false)
-       .RenderValueAs(c => SendPresence(c));
-       columns.Add()
-       .Encoded(false)
-       .Sanitized(false)
-       .RenderValueAs(c => SendAbsence(c));
-   }).WithPaging(6).Selectable(true)
+        @*@Html.Grid(Model).Columns(columns =>
+        {
+            columns.Add(c => c.Id).Titled("ID").Filterable(true);
+            columns.Add(c => c.Nom).Titled("Nom").Filterable(true);
+            columns.Add(c => c.Prenom).Titled("Prénom").Filterable(true);
+            columns.Add().Titled("Présent(e)")
+            .Filterable(true)
+            .Encoded(false)
+            .Sanitized(false)
+            .RenderValueAs(c => CheckPresence(c));
+            columns.Add()
+            .Encoded(false)
+            .Sanitized(false)
+            .RenderValueAs(c => SendPresence(c));
+            columns.Add()
+            .Encoded(false)
+            .Sanitized(false)
+            .RenderValueAs(c => SendAbsence(c));
+        }).WithPaging(6).Selectable(true)*@
+        @ViewBag.IdProf
+        @ViewBag.IdSe
+
     </div>
 </div>

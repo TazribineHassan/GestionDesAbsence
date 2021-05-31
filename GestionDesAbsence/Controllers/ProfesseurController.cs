@@ -157,13 +157,15 @@ namespace GestionDesAbsence.Controllers
             return "well done";
         }
 
-
-        public ActionResult Notez()
+        [HttpPost]
+        public ActionResult Notez(int id_sem, int id_prof)
         {
-            GestionDesAbsenceContext context = new GestionDesAbsenceContext();
-            var listOfSeance = new List<object>();            
-           
-            return View(context.Etudiants.ToList());
+            //GestionDesAbsenceContext context = new GestionDesAbsenceContext();
+            //var listOfSeance = new List<object>();            
+            //context.Etudiants.ToList()
+            ViewBag.IdProf = id_sem;
+            ViewBag.IdSe = id_prof;
+            return View();
         }
 
         [HttpPost]
