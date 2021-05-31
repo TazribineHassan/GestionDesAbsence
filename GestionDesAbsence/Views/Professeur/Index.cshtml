@@ -37,7 +37,7 @@
 
                         </ul>
 
-                        @using (Html.BeginForm("Notez", "Professeur", FormMethod.Post))
+                        @using (Html.BeginForm("Notez", "Professeur", FormMethod.Get))
                         {
                             <input type="hidden" name="id_semaine" value="@Model.First().Semaine.id" />
                             <input type="hidden" name="id_seance" value="@item.Seance.id" />
