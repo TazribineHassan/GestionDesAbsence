@@ -150,5 +150,12 @@ namespace GestionDesAbsence.ServicesImpl
             var result = context.SaveChanges();
             return result >= 1; //return true if more than one record updated successfully
         }
+
+        public void deleteProfesseur(Professeur p)
+        {
+            Professeur prof = context.Professeurs.Find(p.Id);
+            context.Professeurs.Remove(prof);
+            context.SaveChanges();
+        }
     }
 }
