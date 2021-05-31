@@ -40,7 +40,7 @@ namespace GestionDesAbsence.ServicesImpl
 
             string[] jours = { "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche" };
 
-            DateTime aujourdhui = DateTime.Parse("01/05/2021");
+            DateTime aujourdhui = DateTime.Parse("05/01/2021");
             Semaine semaine_courante;
             using (var db = new GestionDesAbsenceContext())
             {
@@ -102,13 +102,9 @@ namespace GestionDesAbsence.ServicesImpl
                                         etudiant_id = e.Id,
                                         e.Nom,
                                         e.Prenom,
-<<<<<<< HEAD
-                                        e.Id_groupe,
-                                        e.Groupe
-=======
                                         id_groupe = e.Groupe.Id,
                                         nom_groupe = e.Groupe.Nom
->>>>>>> 509929ef39533a4a631776a81add5ce2a46b50fe
+
                                     })
                                 })
                             }).FirstOrDefault();

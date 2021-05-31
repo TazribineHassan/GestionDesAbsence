@@ -72,7 +72,7 @@ namespace GestionDesAbsence.Controllers
             //        }
             //        else
             //        {
-            //            etudiants.Add(new Etudiant() { Id = 0, Cne = "D132468" + i, Nom = "TAZRIBINE" + i + "", Prenom = "Hassan" + i + "", Email = "hassan" + i + "@gmail.com", Password = Encryption.Encrypt("etudiant"), Id_groupe = 2, Id_classe = 1, Role_Id = 3 });
+            //            etudiants.Add(new Etudiant() { Id = 0, Cne = "D132468" + i, Nom = "TAZRIBINE" + i + "", Prenom = "Hassan" + i + "", Email = "hassan" + i + "@gmail.com", Password = Encryption.Encrypt("etudiant"), Id_groupe = 2, Id_classe = 2, Role_Id = 3 });
             //        }
 
             //    db.Etudiants.AddRange(etudiants);
@@ -166,10 +166,12 @@ namespace GestionDesAbsence.Controllers
         }
 
         [HttpPost]
-        public ActionResult Marquez(int id, bool presence)
+        public ActionResult Marquez(int id, bool presence, string url)
         {
+            professeurService.UpdateAbsence(id, presence);
 
-            return RedirectToAction("Notez");   
+
+            return Redirect(url);   
         }
 
         public object LogicTest()
