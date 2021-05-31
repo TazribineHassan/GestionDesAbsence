@@ -59,7 +59,7 @@ namespace GestionDesAbsence.Controllers
                 cookie.HttpOnly = true;
 
                 //ViewBag.Nom = professeur.Nom;
-                return RedirectToAction("Index", "Professeur");
+                return RedirectToAction("Home", "Admin");
 
             }
             else

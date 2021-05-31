@@ -9,6 +9,7 @@ using System.Web.Mvc;
 
 namespace GestionDesAbsence.Controllers
 {
+    [Authorize(Roles = "admin")]
     public class AdminController : Controller
     {
         // GET: Admin
