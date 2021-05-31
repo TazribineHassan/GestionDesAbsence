@@ -5,6 +5,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 
@@ -174,6 +175,19 @@ namespace GestionDesAbsence.Controllers
 
         public object LogicTest()
         {
+            // get current professeur
+            HttpCookie coockie = Request.Cookies[FormsAuthentication.FormsCookieName];
+            string crypted_ticket = coockie.Value;
+            FormsAuthenticationTicket ticket = FormsAuthentication.Decrypt(crypted_ticket);
+            string email = ticket.Name;
+            Professeur professeur = professeurService.GetProfesseurByEmail(email);
+
+            Semaine semaine_courante;
+            using (var db = new GestionDesAbsenceContext())
+            {
+                semaine_courante = db.Semaines.Where(s => s.Date_debut.CompareTo(DateTime.Now) < 0).FirstOrDefault();
+            }
+
             var result = professeurService.GetStudentsList(1, 1, 1);
 
             var str1 = JsonConvert.SerializeObject(result, Formatting.Indented,

@@ -37,8 +37,15 @@ namespace GestionDesAbsence.ServicesImpl
 
         public List<SeancesForProf> GetSeancesForProf(int semaine_id, int professeur_id)
         {
+            Semaine semaine_courante;
+            using (var db = new GestionDesAbsenceContext())
+            {
+                semaine_courante = db.Semaines.Where(s => s.Date_debut.CompareTo(DateTime.Now) < 0).FirstOrDefault();
+            }
+
             List<SeancesForProf> listSeeances = new List<SeancesForProf>();
-                var seance = context.details_Emplois.Where(e => e.Module.Professeur.Id == professeur_id
+
+            var seances = context.details_Emplois.Where(e => e.Module.Professeur.Id == professeur_id
                                                              && e.Emploi.Semaine.id == semaine_id)
                                                   .Select(e => new
                                                   {
@@ -51,6 +58,23 @@ namespace GestionDesAbsence.ServicesImpl
                                                       module = new { e.Module.Id, e.Module.NomModule },
                                                       date = DateTime.Now
                                                   }).ToList();
+            foreach(var seance in seances)
+            {
+                List<Classe> classes = new List<Classe>();
+                foreach(var cl in seance.classes)
+                {
+                    classes.Add(new Classe() { Id = cl.Id, Nom = cl.Nom });
+                }
+
+                SeancesForProf seancesForProf = new SeancesForProf() { 
+                                                                        Classes = classes,
+                                                                        Date = seance.date,
+                                                                        Module = new Module() { Id = seance.module.Id, NomModule = seance.module.NomModule},
+                                                                        Seance = new Seance() { id = seance.seance.id, Heure_debut = seance.seance.Heure_debut, Heure_fin = seance.seance.Heure_fin},
+                                                                        Semaine = new Semaine() { id = seance.semaine.id, Code = seance.semaine.Code}
+                                                                      };
+                listSeeances.Add(seancesForProf);
+            }
             return listSeeances;
         }
 
@@ -77,7 +101,7 @@ namespace GestionDesAbsence.ServicesImpl
 
 
             // generer les absenses 'ils n'existent pas
-            List<object> final_result = new List<object>();
+            List<StudentsList> final_result = new List<StudentsList>();
             foreach (var classe in students_by_classe.classes)
             {
                 foreach(var etudiant in classe.etudiants)
@@ -102,14 +126,14 @@ namespace GestionDesAbsence.ServicesImpl
                             absence = new { id = new_absence.Id, estPresent = new_absence.EstPresent };
                         }
 
-                        final_result.Add(new {
-                            classe = new
+                        final_result.Add(new StudentsList() {
+                            Classe = new Classe()
                             {
-                                id = classe.id,
-                                nom = classe.nom
+                                Id = classe.id,
+                                Nom = classe.nom
                             },
-                            etudiant = etudiant,
-                            absence = absence
+                            Etudiant = new Etudiant() { Id = etudiant.etudiant_id, Nom = etudiant.Nom, Prenom = etudiant.Prenom},
+                            Absence = new Absence() { Id = absence.id, EstPresent = absence.estPresent }
                         });
                     }
                     

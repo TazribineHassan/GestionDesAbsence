@@ -170,7 +170,9 @@
     <Compile Include="Models\Professeur.cs" />
     <Compile Include="Models\Role.cs" />
     <Compile Include="Models\Seance.cs" />
+    <Compile Include="Models\SeancesForProf.cs" />
     <Compile Include="Models\Semaine.cs" />
+    <Compile Include="Models\StudentsList.cs" />
     <Compile Include="MyRoleProvider.cs" />
     <Compile Include="ServicesImpl\AdminService.cs" />
     <Compile Include="ServicesImpl\LoginService.cs" />
