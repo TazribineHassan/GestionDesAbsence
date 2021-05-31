@@ -103,7 +103,7 @@ namespace GestionDesAbsence.ServicesImpl
                                         e.Nom,
                                         e.Prenom,
                                         e.Id_groupe,
-                                        nom_groupe = e.Groupe.Nom
+                                        e.Groupe
                                     })
                                 })
                             }).FirstOrDefault();
@@ -141,7 +141,7 @@ namespace GestionDesAbsence.ServicesImpl
                                 Id = classe.id,
                                 Nom = classe.nom
                             },
-                            Etudiant = new Etudiant() { Id = etudiant.etudiant_id, Nom = etudiant.Nom, Prenom = etudiant.Prenom, Id_groupe = etudiant.Id_groupe, Groupe = etudiant.Groupe},
+                            Etudiant = new Etudiant() { Id = etudiant.etudiant_id, Nom = etudiant.Nom, Prenom = etudiant.Prenom, Id_groupe = etudiant.Id_groupe},
                             Absence = new Absence() { Id = absence.id, EstPresent = absence.estPresent }
                         });
                     }

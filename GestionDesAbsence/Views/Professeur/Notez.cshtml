@@ -53,32 +53,32 @@
 }
 
 <div class="row justify-content-center py-2 ">
-    <div class="col-md-8 btn btn-outline-success">
-        Semaine 8 - Lundi - 12/04/2021 - [ 08:00 - 10:00]
+    <div class="col-md-8 btn btn-info">
+          @Model.First().Classe.Nom
     </div>
 </div>
 <div class="row justify-content-center">
     <div class="col-md-10">
         @Html.Grid(Model).Columns(columns =>
-        {
-            columns.Add(c => c.Etudiant.Id).Titled("ID").Filterable(true);
-            columns.Add(c => c.Etudiant.Nom).Titled("Nom").Filterable(true);
-            columns.Add(c => c.Etudiant.Prenom).Titled("Prénom").Filterable(true);
-            columns.Add(c => c.Etudiant.Id_groupe).Titled("Groupe").Filterable(true);
-            columns.Add().Titled("Présent(e)")
-            .Filterable(true)
-            .Encoded(false)
-            .Sanitized(false)
-            .RenderValueAs(c => CheckPresence(c));
-            columns.Add()
-            .Encoded(false)
-            .Sanitized(false)
-            .RenderValueAs(c => SendPresence(c));
-            columns.Add()
-            .Encoded(false)
-            .Sanitized(false)
-            .RenderValueAs(c => SendAbsence(c));
-        }).WithPaging(6).Selectable(true)
+   {
+       columns.Add(c => c.Etudiant.Id).Titled("ID").Filterable(true);
+       columns.Add(c => c.Etudiant.Nom).Titled("Nom").Filterable(true);
+       columns.Add(c => c.Etudiant.Prenom).Titled("Prénom").Filterable(true);
+       //columns.Add(c => c.Etudiant.Id_groupe).Titled("Groupe").Filterable(true);
+       columns.Add().Titled("Présent(e)")
+       .Filterable(true)
+       .Encoded(false)
+       .Sanitized(false)
+       .RenderValueAs(c => CheckPresence(c));
+       columns.Add()
+       .Encoded(false)
+       .Sanitized(false)
+       .RenderValueAs(c => SendPresence(c));
+       columns.Add()
+       .Encoded(false)
+       .Sanitized(false)
+       .RenderValueAs(c => SendAbsence(c));
+   }).WithPaging(6).Sortable(true)
 
     </div>
 </div>
