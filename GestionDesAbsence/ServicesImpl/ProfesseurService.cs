@@ -40,12 +40,12 @@ namespace GestionDesAbsence.ServicesImpl
 
             string[] jours = { "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche" };
 
-            DateTime aujourdhui = DateTime.Parse("20/05/2021");
+            DateTime aujourdhui = DateTime.Parse("1/05/2021");
             Semaine semaine_courante;
             using (var db = new GestionDesAbsenceContext())
             {
-                semaine_courante = db.Semaines.Where(s => s.Date_debut.CompareTo(aujourdhui) < 0
-                                                          && s.Date_fin.CompareTo(aujourdhui) > 0).FirstOrDefault();
+                semaine_courante = db.Semaines.Where(s => s.Date_debut.CompareTo(aujourdhui) <= 0
+                                                          && s.Date_fin.CompareTo(aujourdhui) >= 0).FirstOrDefault();
             }
             long jour_indexer = (long)(aujourdhui - semaine_courante.Date_debut).TotalDays;
             string aujourdhui_string = jours[jour_indexer];
