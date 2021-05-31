@@ -35,18 +35,25 @@ namespace GestionDesAbsence.ServicesImpl
         }
 
 
-        public List<SeancesForProf> GetSeancesForProf(int semaine_id, int professeur_id)
+        public List<SeancesForProf> GetSeancesForProf(int professeur_id)
         {
+
+            string[] jours = { "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche" };
+
+            DateTime aujourdhui = DateTime.Parse("20/05/2021");
             Semaine semaine_courante;
             using (var db = new GestionDesAbsenceContext())
             {
-                semaine_courante = db.Semaines.Where(s => s.Date_debut.CompareTo(DateTime.Now) < 0).FirstOrDefault();
+                semaine_courante = db.Semaines.Where(s => s.Date_debut.CompareTo(aujourdhui) < 0
+                                                          && s.Date_fin.CompareTo(aujourdhui) > 0).FirstOrDefault();
             }
-
+            long jour_indexer = (long)(aujourdhui - semaine_courante.Date_debut).TotalDays;
+            string aujourdhui_string = jours[jour_indexer];
             List<SeancesForProf> listSeeances = new List<SeancesForProf>();
 
             var seances = context.details_Emplois.Where(e => e.Module.Professeur.Id == professeur_id
-                                                             && e.Emploi.Semaine.id == semaine_id)
+                                                             && e.Emploi.Semaine.id == semaine_courante.id
+                                                             && e.Seance.Jour.Equals(aujourdhui_string))
                                                   .Select(e => new
                                                   {
                                                       seance = new { e.Seance.id, e.Seance.Heure_debut, e.Seance.Heure_fin },
@@ -56,7 +63,7 @@ namespace GestionDesAbsence.ServicesImpl
                                                                                         }).ToList(),
                                                       semaine = new { e.Emploi.Semaine.id, e.Emploi.Semaine.Code},
                                                       module = new { e.Module.Id, e.Module.NomModule },
-                                                      date = DateTime.Now
+                                                      date = aujourdhui
                                                   }).ToList();
             foreach(var seance in seances)
             {
