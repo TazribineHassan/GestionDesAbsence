@@ -32,5 +32,7 @@ namespace GestionDesAbsence.Services
         }*/
         Object GetStudentsList(int id_seance, int id_module, int id_semaine);
         bool UpdateAbsence(int id_absence, bool est_present);
+
+        void deleteProfesseur(Professeur p);
     }
 }
