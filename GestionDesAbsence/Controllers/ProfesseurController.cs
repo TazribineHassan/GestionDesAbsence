@@ -160,7 +160,7 @@ namespace GestionDesAbsence.Controllers
         [HttpPost]
         public ActionResult Notez(int id_seance, int id_module, int id_semaine)
         {
-            //var listOfStudents = professeurService.GetStudentsList(id_seance, id_module, id_semaine);
+            var listOfStudents = professeurService.GetStudentsList(id_seance, id_module, id_semaine);
             ViewBag.Id_seance = id_seance;
             ViewBag.IdSe = id_semaine;
             ViewBag.Id_module = id_module;            return View();
@@ -183,7 +183,7 @@ namespace GestionDesAbsence.Controllers
             Professeur professeur = professeurService.GetProfesseurByEmail(email);
 
             Semaine semaine_courante;
-            DateTime testDay = DateTime.Parse("05/20/2021");
+            DateTime testDay = DateTime.Parse("20/05/2021");
             var db = new GestionDesAbsenceContext();
             semaine_courante = db.Semaines.Where(s => s.Date_debut.CompareTo(testDay) < 0
                                                           && s.Date_fin.CompareTo(testDay) >0).FirstOrDefault();
@@ -202,7 +202,8 @@ namespace GestionDesAbsence.Controllers
                                                     {
                                                         ReferenceLoopHandling = ReferenceLoopHandling.Ignore
                                                     });
-
+            //bool c = Boolean.Parse(Request.QueryString["c"]);
+            //bool absence = professeurService.UpdateAbsence(1, c);
             return str2;
         }
 
