@@ -9,19 +9,10 @@
 @model List<SeancesForProf>
 
 
-@{
-    var data =
-        new Dictionary<string, int>
-        {
-            {"Id_P", Model.First().Semaine.id},
-            {"Id_S", 1}
-                };
-}
 
 @*user name = @User.Identity.Name*@
 <div class="row justify-content-center py-5 ">
     <div class="col-md-8 btn btn-outline-danger">
-
         @Model.First().Semaine.Code - @Model.Last().Date.ToString("dddd-MM-yyyyy")
     </div>
 </div>
@@ -31,29 +22,32 @@
     }
 
 
-    @foreach (var item in Model)
-    {
-        <div class="col-md-3 pt-3">
-            <div class="card bg-light shadow">
-                <div class="card-header text-white bg-@color_list[0] text-center">@item.Seance.Heure_debut - @item.Seance.Heure_fin</div>
-                <div class="card-body">
-                    <h5 class="card-title text-center">@item.Module.NomModule</h5>
-                    @foreach (var classe in item.Classes)
-                    {
-                        <p class="card-subtitle">@classe.Nom</p>
-                    }
-                    <p class="card-text">Veuillez noter la présence</p>
-                    @using (Html.BeginForm("Notez", "Professeur", FormMethod.Post))
-                    {
-                        <input type="hidden" name="id_sem" value="@Model.First().Semaine.id" />
-                        <input type="hidden" name="id_prof" value="1" />
-                        <input type="submit" class="btn btn-outline-info" name="name" value="Notez" />
-                    }
-                    </div>
-            </div>
-        </div>
-    }
+    @foreach ((SeancesForProf item, Int32 i) in Model.Select((value, i) => (value, i)))
+        {
+            <div class="col-md-3 pt-3">
+                <div class="card bg-light shadow">
+                    <div class="card-header text-white bg-@color_list[@i] text-center">@item.Seance.Heure_debut - @item.Seance.Heure_fin</div>
+                    <div class="card-body">
+                        <h5 class="card-title text-center">Module: <span class="text-primary">@item.Module.NomModule</span></h5>
+                        <ul>
+                            @foreach (var classe in item.Classes)
+                            {
+                                <li class="card-text ">@classe.Nom</li>
+                            }
 
+                        </ul>
+
+                        @using (Html.BeginForm("Notez", "Professeur", FormMethod.Post))
+                        {
+                            <input type="hidden" name="id_semaine" value="@Model.First().Semaine.id" />
+                            <input type="hidden" name="id_seance" value="@item.Seance.id" />
+                            <input type="hidden" name="id_module" value="@item.Module.Id" />
+                            <input type="submit" class="btn btn-outline-@color_list[@i]" name="name" value="Notez" />
+                        }
+                    </div>
+                </div>
+            </div>
+        }
 
 
 </div>

@@ -40,7 +40,7 @@ namespace GestionDesAbsence.ServicesImpl
 
             string[] jours = { "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche" };
 
-            DateTime aujourdhui = DateTime.Parse("1/05/2021");
+            DateTime aujourdhui = DateTime.Parse("05/01/2021");
             Semaine semaine_courante;
             using (var db = new GestionDesAbsenceContext())
             {

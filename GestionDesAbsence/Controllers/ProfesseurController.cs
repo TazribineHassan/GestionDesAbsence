@@ -23,15 +23,8 @@ namespace GestionDesAbsence.Controllers
 
         public ActionResult Index()
         {
-            // get current professeur
-            HttpCookie coockie = Request.Cookies[FormsAuthentication.FormsCookieName];
-            string crypted_ticket = coockie.Value;
-            FormsAuthenticationTicket ticket = FormsAuthentication.Decrypt(crypted_ticket);
-            string email = ticket.Name;
-            Professeur professeur = professeurService.GetProfesseurByEmail(email);
 
-            var listOfSeance = professeurService.GetSeancesForProf(professeur.Id);
-
+            var listOfSeance = professeurService.GetSeancesForProf(GetProfesseurIdFromCockie());
 
             return View(listOfSeance);
         }
@@ -164,14 +157,12 @@ namespace GestionDesAbsence.Controllers
         }
 
         [HttpPost]
-        public ActionResult Notez(int id_sem, int id_prof)
+        public ActionResult Notez(int id_seance, int id_module, int id_semaine)
         {
-            //GestionDesAbsenceContext context = new GestionDesAbsenceContext();
-            //var listOfSeance = new List<object>();            
-            //context.Etudiants.ToList()
-            ViewBag.IdProf = id_sem;
-            ViewBag.IdSe = id_prof;
-            return View();
+            //var listOfStudents = professeurService.GetStudentsList(id_seance, id_module, id_semaine);
+            ViewBag.Id_seance = id_seance;
+            ViewBag.IdSe = id_semaine;
+            ViewBag.Id_module = id_module;            return View();
         }
 
         [HttpPost]
@@ -191,7 +182,7 @@ namespace GestionDesAbsence.Controllers
             Professeur professeur = professeurService.GetProfesseurByEmail(email);
 
             Semaine semaine_courante;
-            DateTime testDay = DateTime.Parse("20/05/2021");
+            DateTime testDay = DateTime.Parse("05/20/2021");
             var db = new GestionDesAbsenceContext();
             semaine_courante = db.Semaines.Where(s => s.Date_debut.CompareTo(testDay) < 0
                                                           && s.Date_fin.CompareTo(testDay) >0).FirstOrDefault();
@@ -212,6 +203,15 @@ namespace GestionDesAbsence.Controllers
                                                     });
 
             return str2;
+        }
+
+        private int GetProfesseurIdFromCockie()
+        {
+            HttpCookie coockie = Request.Cookies[FormsAuthentication.FormsCookieName];
+            string crypted_ticket = coockie.Value;
+            FormsAuthenticationTicket ticket = FormsAuthentication.Decrypt(crypted_ticket);
+            string email = ticket.Name;
+            return professeurService.GetProfesseurByEmail(email).Id;
         }
     }
 }
