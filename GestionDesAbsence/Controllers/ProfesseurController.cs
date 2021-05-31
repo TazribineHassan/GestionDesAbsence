@@ -23,8 +23,14 @@ namespace GestionDesAbsence.Controllers
 
         public ActionResult Index()
         {
-            
-            var listOfSeance = professeurService.GetSeancesForProf(1, 1);
+            // get current professeur
+            HttpCookie coockie = Request.Cookies[FormsAuthentication.FormsCookieName];
+            string crypted_ticket = coockie.Value;
+            FormsAuthenticationTicket ticket = FormsAuthentication.Decrypt(crypted_ticket);
+            string email = ticket.Name;
+            Professeur professeur = professeurService.GetProfesseurByEmail(email);
+
+            var listOfSeance = professeurService.GetSeancesForProf(professeur.Id);
 
 
             return View(listOfSeance);
@@ -183,27 +189,27 @@ namespace GestionDesAbsence.Controllers
             Professeur professeur = professeurService.GetProfesseurByEmail(email);
 
             Semaine semaine_courante;
-            using (var db = new GestionDesAbsenceContext())
-            {
-                semaine_courante = db.Semaines.Where(s => s.Date_debut.CompareTo(DateTime.Now) < 0).FirstOrDefault();
-            }
+            DateTime testDay = DateTime.Parse("20/05/2021");
+            var db = new GestionDesAbsenceContext();
+            semaine_courante = db.Semaines.Where(s => s.Date_debut.CompareTo(testDay) < 0
+                                                          && s.Date_fin.CompareTo(testDay) >0).FirstOrDefault();
 
             var result = professeurService.GetStudentsList(1, 1, 1);
 
-            var str1 = JsonConvert.SerializeObject(result, Formatting.Indented,
+            var str1 = JsonConvert.SerializeObject(semaine_courante, Formatting.Indented,
                                                      new JsonSerializerSettings
                                                      {
                                                          ReferenceLoopHandling = ReferenceLoopHandling.Ignore
                                                      });
 
-            var result2 = professeurService.GetSeancesForProf(1 , 1);
+            var result2 = professeurService.GetSeancesForProf(1);
             var str2 = JsonConvert.SerializeObject(result2, Formatting.Indented,
                                                     new JsonSerializerSettings
                                                     {
                                                         ReferenceLoopHandling = ReferenceLoopHandling.Ignore
                                                     });
 
-            return str1;
+            return str2;
         }
     }
 }
