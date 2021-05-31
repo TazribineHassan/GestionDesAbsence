@@ -30,7 +30,7 @@ namespace GestionDesAbsence.Services
           etudiant => id, nom, prenom
           absence => id, estPresent
         }*/
-        Object GetStudentsList(int id_seance, int id_module, int id_semaine);
+        List<StudentsList> GetStudentsList(int id_seance, int id_module, int id_semaine);
 
         bool UpdateAbsence(int id_absence, bool est_present);
 

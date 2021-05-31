@@ -85,7 +85,7 @@ namespace GestionDesAbsence.ServicesImpl
             return listSeeances;
         }
 
-        public Object GetStudentsList(int id_seance, int id_module, int id_semaine)
+        public List<StudentsList> GetStudentsList(int id_seance, int id_module, int id_semaine)
         {
             var seance_courante = context.details_Emplois.Where(r => (r.Module_Id == id_module
                                            && r.Seance_Id == id_seance
@@ -101,7 +101,9 @@ namespace GestionDesAbsence.ServicesImpl
                                     {
                                         etudiant_id = e.Id,
                                         e.Nom,
-                                        e.Prenom
+                                        e.Prenom,
+                                        e.Id_groupe,
+                                        nom_groupe = e.Groupe.Nom
                                     })
                                 })
                             }).FirstOrDefault();
@@ -139,7 +141,7 @@ namespace GestionDesAbsence.ServicesImpl
                                 Id = classe.id,
                                 Nom = classe.nom
                             },
-                            Etudiant = new Etudiant() { Id = etudiant.etudiant_id, Nom = etudiant.Nom, Prenom = etudiant.Prenom},
+                            Etudiant = new Etudiant() { Id = etudiant.etudiant_id, Nom = etudiant.Nom, Prenom = etudiant.Prenom, Id_groupe = etudiant.Id_groupe, Groupe = etudiant.Groupe},
                             Absence = new Absence() { Id = absence.id, EstPresent = absence.estPresent }
                         });
                     }
