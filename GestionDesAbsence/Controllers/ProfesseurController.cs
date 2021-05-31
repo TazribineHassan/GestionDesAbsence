@@ -190,7 +190,7 @@ namespace GestionDesAbsence.Controllers
 
             var result = professeurService.GetStudentsList(1, 1, 1);
 
-            var str1 = JsonConvert.SerializeObject(semaine_courante, Formatting.Indented,
+            var str1 = JsonConvert.SerializeObject(result, Formatting.Indented,
                                                      new JsonSerializerSettings
                                                      {
                                                          ReferenceLoopHandling = ReferenceLoopHandling.Ignore
