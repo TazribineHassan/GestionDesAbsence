@@ -1,4 +1,5 @@
 ﻿using GestionDesAbsence.Models;
+using GestionDesAbsence.ServicesImpl;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -27,6 +28,24 @@ namespace GestionDesAbsence
                     db.Roles.Add(etudiantRole);
                     db.SaveChanges();
 
+                }
+                if(db.Administrateurs.Count() == 0)
+                {
+                    Administrateur sari = new Administrateur();
+                    sari.Email = "saricool@gmail.com";
+                    sari.Prenom = "sari";
+                    sari.Nom = "cool";
+                    sari.Role_Id = 1;
+                    sari.Password = Common.Encryption.Encrypt("123456");
+                    db.Administrateurs.Add(sari);
+                    Administrateur admin = new Administrateur();
+                    admin.Email = "admin";
+                    admin.Prenom = "admin";
+                    admin.Nom = "admin";
+                    admin.Role_Id = 1;
+                    admin.Password = Common.Encryption.Encrypt("admin");
+                    db.Administrateurs.Add(admin);
+                    db.SaveChanges();
                 }
             }
 

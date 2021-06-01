@@ -1,20 +1,15 @@
 ﻿using GestionDesAbsence.Common;
 using GestionDesAbsence.Models;
 using GestionDesAbsence.ServicesImpl;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Data;
-using System.Data.OleDb;
-using System.Configuration;
-using System.Data.SqlClient;
-using System.Web.Mvc;
-using LinqToExcel;
-using System.Data.Entity.Validation;
-using System.IO;
 using NPOI.HSSF.UserModel;
 using NPOI.XSSF.UserModel;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.IO;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
 
 namespace GestionDesAbsence.Controllers
 {
@@ -70,13 +65,13 @@ namespace GestionDesAbsence.Controllers
         public ActionResult AllEtudiants()
         {
             GestionDesAbsenceContext gestion = new GestionDesAbsenceContext();
-            ViewBag.valN = "";
             ViewBag.list = new SelectList(gestion.Cycles, "Id", "Nom");
             return View(gestion.Etudiants.ToList());
         }
 
+        //SaveStudent
         [HttpPost]
-        public ActionResult SaveEtudiant(string cne, string nom, String prenom, string email, string cycle, string classe)
+        public ActionResult SaveEtudiant(string cne, string nom, String prenom,string email,string cycle, int classe,int groupe) 
         {
             GestionDesAbsenceContext gestion = new GestionDesAbsenceContext();
             Etudiant e = new Etudiant();
@@ -84,15 +79,17 @@ namespace GestionDesAbsence.Controllers
             e.Nom = nom;
             e.Prenom = prenom;
             e.Email = email;
-            e.Id_groupe = 1;
+            e.Id_groupe = groupe;
+            e.Id_classe = classe;
             e.Password = Encryption.Encrypt(cne);
             AdminService service = new AdminService();
             service.saveEtudiant(e);
             ViewBag.list = new SelectList(gestion.Cycles, "Id", "Nom");
-            return Redirect("/Admin/AllEtudiant");
+             return Redirect("/Admin/AllEtudiant");
         }
-
-        public ActionResult DeleteEtudiant(String id)
+        
+        //delete Student
+        public ActionResult DeleteEtudiant(int id)
         {
             GestionDesAbsenceContext gestion = new GestionDesAbsenceContext();
             Etudiant e = gestion.Etudiants.Find(id);

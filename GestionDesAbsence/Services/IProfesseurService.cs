@@ -10,11 +10,30 @@ namespace GestionDesAbsence.Services
     public interface IProfesseurService
     {
         void Save(Professeur professeur);
-        IEnumerable<Etudiant> FindAll();
+        IEnumerable<Etudiant> FindAll(); 
         Professeur GetProfesseurById(int id);
         Professeur GetProfesseurByEmail(string email);
-        Object GetSeancesForProf(Semaine semaine, Professeur professeur);
-        Object GetStudentsList(int id_seance, int id_module, int id_semaine);
+
+        /* type de retour 
+        list => {
+          seance => id, heur_debut, heur_fin
+          classes => list { Id, Nom }
+          semaine => id, Code
+          module => Id, NomModule
+          date:"2021-05-30"
+        }*/
+        List<SeancesForProf> GetSeancesForProf(int professeur_id);
+
+        /* type de retour 
+        list => {
+          classe => id, nom
+          etudiant => id, nom, prenom
+          absence => id, estPresent
+        }*/
+        List<StudentsList> GetStudentsList(int id_seance, int id_module, int id_semaine);
+
         bool UpdateAbsence(int id_absence, bool est_present);
+
+        void deleteProfesseur(Professeur p);
     }
 }

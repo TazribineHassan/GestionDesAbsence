@@ -1,36 +1,53 @@
-﻿
+﻿@using GestionDesAbsence.Models
+
 @{
     ViewBag.Title = "Espace Des Professeurs";
     ViewBag.Nom = "Test";
     Layout = "~/Views/Shared/_LayoutProfesseur.cshtml";
 }
 
+@model List<SeancesForProf>
+
+
 
 @*user name = @User.Identity.Name*@
 <div class="row justify-content-center py-5 ">
     <div class="col-md-8 btn btn-outline-danger">
-        Semaine 8 - Lundi - 12/04/2021
+        @Model.First().Semaine.Code - @Model.Last().Date.ToString("dddd-MM-yyyyy")
     </div>
 </div>
 <div class="row justify-content-center">
-    @{ 
+    @{
         string[] color_list = { "info", "warning", "success", "danger" };
     }
-        @for (int i = 0; i < 4; i++)
-    {
 
-        <div class="col-md-3 pt-3">
-            <div class="card bg-light shadow">
-                <div class="card-header text-white bg-@color_list[i] text-center">08:00 - 10:00</div>
-                <div class="card-body">
-                    <h5 class="card-title text-center">4 G.Info</h5>
-                    <p class="card-text">Veuillez noter la présence</p>
-                    <a href="/Professeur/Notez" class="btn btn-outline-@color_list[i]" >Notez</a>
 
+    @foreach ((SeancesForProf item, Int32 i) in Model.Select((value, i) => (value, i)))
+        {
+            <div class="col-md-3 pt-3">
+                <div class="card bg-light shadow">
+                    <div class="card-header text-white bg-@color_list[@i] text-center">@item.Seance.Heure_debut - @item.Seance.Heure_fin</div>
+                    <div class="card-body">
+                        <h5 class="card-title text-center">Module: <span class="text-primary">@item.Module.NomModule</span></h5>
+                        <ul>
+                            @foreach (var classe in item.Classes)
+                            {
+                                <li class="card-text ">@classe.Nom</li>
+                            }
+
+                        </ul>
+
+                        @using (Html.BeginForm("Notez", "Professeur", FormMethod.Get))
+                        {
+                            <input type="hidden" name="id_semaine" value="@Model.First().Semaine.id" />
+                            <input type="hidden" name="id_seance" value="@item.Seance.id" />
+                            <input type="hidden" name="id_module" value="@item.Module.Id" />
+                            <input type="submit" class="btn btn-outline-@color_list[@i]" name="name" value="Notez" />
+                        }
+                    </div>
                 </div>
             </div>
-        </div>
+        }
 
-     }
 
 </div>

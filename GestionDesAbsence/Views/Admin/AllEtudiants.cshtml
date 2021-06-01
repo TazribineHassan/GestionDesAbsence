@@ -5,38 +5,65 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 @using GridMvc.Html
+@helper ButtonFor(int id)
+{
+    <button class="editbutton btn btn-success" value="@id" data-toggle="modal" data-target="#editModal">Edit</button>
+}
+@helper ButtonForDetails(int id)
+{
+    <button class="detailButton btn btn-primary" value="@id" data-toggle="modal" data-target="#DetailModal" data-url="@Url.Action("Admin/etudiantDetails")">Details</button>
+}
 <div class="container-fluid">
-    <h2>AllEtudiants</h2>
-    <br />
-    <p>this @ViewBag.valN</p>
+    <h2>Les Etudiants de L'école Nationale des Sciences Appliquées</h2>
     <p>
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
             Ajouter Un Etudiant
         </button>
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
+        <!--Details modal-->
+        <div class="modal fade" id="DetailModal" tabindex="-1" role="dialog" aria-labelledby="Details" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <div class="modal-header modaldetailsheader">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Details de l'etudiant</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    @using(Html.BeginForm("SaveEtudiant","Admin",FormMethod.Post,new {@class = "my_from" })) { 
+                    <div class="modal-body" id="detailContent">
+                        ...
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Ajouter Etudiant modal-->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Nouveau etudiant</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    @using (Html.BeginForm("SaveEtudiant", "Admin", FormMethod.Post, new { @class = "my_from" }))
+                    {
                         <div class="modal-body">
 
-                            <h3>Ajouter Un Etudiant</h3>
                             <div class="form-group">
                                 <label for="cne">CNE</label>
-                                <input type="text" class="form-control" id="cne" name ="cne" placeholder="Cne">
+                                <input type="text" class="form-control" id="cne" name="cne" placeholder="Cne">
                             </div>
                             <div class="form-group">
                                 <label for="nom">Nom</label>
                                 <input type="text" class="form-control" id="nom" name="nom" placeholder="Nom">
-                            </div> 
+                            </div>
                             <div class="form-group">
-                                <label for="preom">Preom</label>
-                                <input type="text" class="form-control" id="preom" name="prenom" placeholder="Preom">
+                                <label for="preom">Prenom</label>
+                                <input type="text" class="form-control" id="prenom" name="prenom" placeholder="Preom">
                             </div>
                             <div class="form-group">
                                 <label for="email">Email address</label>
@@ -45,11 +72,19 @@
                             <div class="form-group">
                                 <label>Cycle</label>
                                 @Html.DropDownList("liste_cycle", ViewBag.list as SelectList, "Selectionnez le cycle", new { id = "liste_cycle" })
-                                
+
                             </div>
                             <div class="form-group">
                                 <label>Classe</label>
                                 <select class="form-control" id="classe" name="classe"></select>
+                            </div>
+                            <div class="form-group">
+                                <label>Groupe</label>
+                                <select class="form-control" id="groupe" name="groupe">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                </select>
                             </div>
 
                         </div>
@@ -62,39 +97,66 @@
             </div>
         </div>
     </p>
+    <!--edit etudiant-->
+    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" id="detailEditContent">
+            </div>
+        </div>
+    </div>
     <br />
     <hr />
     <div>
         @Html.Grid(Model).Columns(columns =>
     {
-        columns.Add(etudiant => etudiant.Cne).Titled("Cne").Filterable(true).Sortable(true);
-        columns.Add(etudiant => etudiant.Nom).Titled("Nom").Filterable(true);
+        columns.Add(etudiant => etudiant.Cne).Titled("Cne").Filterable(true);
+        columns.Add(etudiant => etudiant.Nom).Titled("Nom").Filterable(true).Sortable(true);
         columns.Add(etudiant => etudiant.Prenom).Titled("Prenom").Filterable(true);
         columns.Add(etudiant => etudiant.Email).Titled("Email").Filterable(true);
+        columns.Add(etudiant => etudiant.Classe.Nom).Titled("classe").Filterable(true);
         columns.Add(etudiant => etudiant.Id_groupe).Titled("group").Filterable(true);
         columns.Add().Encoded(false).Sanitized(false).SetWidth(30)
-        .RenderValueAs(item => @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "btn btn-primary" }));
+        .RenderValueAs(item => ButtonForDetails(item.Id));
         columns.Add().Encoded(false).Sanitized(false).SetWidth(30)
-        .RenderValueAs(item => @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-success" }));
-        columns.Add().Encoded(false).Sanitized(false).SetWidth(30)
+        .RenderValueAs(item => ButtonFor(item.Id));
+        columns.Add().Encoded(false).Sanitized(false).SetWidth(30).Filterable(false)
         .RenderValueAs(item => @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-danger" }));
+
     }).WithPaging(10).Sortable(true)
     </div>
 </div>
-@section Section1{
-    <script>
-        $(document).ready(function (e) {
-            $("#liste_cycle").addClass("form-control");
-            $("#liste_cycle").change(function () {
-                alert("hello");
-                $.get("/Admin/GetClass", { ID: $("#liste_cycle").val() }, function (data) {
-                    $("#classe").empty();
-                    $.each(data, function (index, ligne) {
-                        $("#classe").append("<option value='" + ligne.Id + "'>" + ligne.Nom + "</option>")
-                    });
+            @section Section1{
+                <script>
+                    $(document).ready(function (e) {
+                        $("#liste_cycle").addClass("form-control");
+                        
+                        $("#liste_cycle").change(function () {
+                            $.get("/Admin/GetClass", { ID: $("#liste_cycle").val() }, function (data) {
+                                $("#classe").empty();
+                                $.each(data, function (index, ligne) {
+                                    $("#classe").append("<option value='" + ligne.Id + "'>" + ligne.Nom + "</option>")
+                                });
 
-                });
-            });
-        });
-    </script>
-}
+                            });
+                        });
+
+                       
+
+                        $(".detailButton").click(function (e) {
+                            var url = "etudiantDetails/" + e.target.value;
+                            $.get(url, function (data) {
+                                $('#detailContent').html(data);
+                            })
+                        });
+
+                        $(".editbutton").click(function (e) {
+                            var url = "etudiantEdit/" + e.target.value;
+                            $.get(url, function (data) {
+                                $('#detailEditContent').html(data);
+                            })
+                        });
+
+                        
+                    });
+                </script>
+            }

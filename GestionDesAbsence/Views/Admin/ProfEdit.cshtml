@@ -1,0 +1,34 @@
+﻿<div class="modaleditheader modal-header">
+    <h5 class="modal-title" id="exampleModalLabel">Nouveau Professeur</h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+@using (Html.BeginForm("ModifyProf", "Admin", FormMethod.Post, new { @class = "my_from" }))
+{
+<div class="modal-body">
+    <input type="hidden" id="editidinput" value="@ViewBag.e" name="editidinput" />
+    <div class="form-group">
+        <label for="cne">Code Prof</label>
+        <input type="text" class="form-control" id="editcode" name="editcode" placeholder="Code Prof" value="@Model.Code_prof">
+    </div>
+    <div class="form-group">
+        <label for="nom">Nom</label>
+        <input type="text" class="form-control" id="editnom" name="editnom" placeholder="Nom" value="@Model.Nom">
+    </div>
+    <div class="form-group">
+        <label for="preom">Prenom</label>
+        <input type="text" class="form-control" id="editprenom" name="editprenom" placeholder="Prenom" value="@Model.Prenom">
+    </div>
+    <div class="form-group">
+        <label for="email">Email address</label>
+        <input type="email" class="form-control" id="editemail" name="editemail" aria-describedby="emailHelp" placeholder="Enter email" value="@Model.Email" />
+    </div>
+
+
+</div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
+        <input type="submit" class="btn btn-primary" id="submit" value="Modifier Prof" />
+    </div>
+}

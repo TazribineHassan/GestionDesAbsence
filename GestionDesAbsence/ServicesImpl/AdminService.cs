@@ -1,4 +1,5 @@
-﻿using GestionDesAbsence.Models;
+﻿using GestionDesAbsence.Common;
+using GestionDesAbsence.Models;
 using GestionDesAbsence.Services;
 using System;
 using System.Collections.Generic;
@@ -25,7 +26,8 @@ namespace GestionDesAbsence.ServicesImpl
 
         public void deleteEtudiant(Etudiant e)
         {
-            context.Etudiants.Remove(e);
+            Etudiant etud = context.Etudiants.Find(e.Id);
+            context.Etudiants.Remove(etud);
             context.SaveChanges();
         }
 
@@ -35,5 +37,7 @@ namespace GestionDesAbsence.ServicesImpl
             etud = e;
             context.SaveChanges();
         }
+
+        
     }
 }

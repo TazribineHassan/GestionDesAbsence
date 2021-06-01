@@ -4,12 +4,13 @@
 }
 @using GridMvc.Html
 @using GestionDesAbsence.Models
-@model IEnumerable<Etudiant>
+@model List<StudentsList>
+
 
 @*function to check if the student is present or not*@
-@helper CheckPresence(Etudiant etudiant)
+@helper CheckPresence(StudentsList etudiant)
 {
-    if (etudiant.Id % 2 == 0)
+    if (etudiant.Absence.EstPresent)
     {
         <i class='fas fa-check text-success'></i>
     }
@@ -20,28 +21,34 @@
 }
 
 @*function to check if the student is present or not*@
-@helper SendPresence(Etudiant etudiant)
+@helper SendPresence(StudentsList etudiant)
 {
-    if (etudiant.Id % 2 == 0)
+    string absoluteurl = HttpContext.Current.Request.Url.AbsoluteUri;
+
+    if (etudiant.Absence.EstPresent)
     {
         <button type='submit' class='btn btn-success' disabled>P</button>
     }
     else
     {
         <form action='Marquez' method='post'>
-            <input type='hidden' name='id' value="@etudiant.Id" />
+            <input type='hidden' name='id' value="@etudiant.Absence.Id" />
             <input type='hidden' name='presence' value="true" />
+            <input type='hidden' name='url' value="@absoluteurl" />
             <button type='submit' class='btn btn-success' value=''>P</button>
         </form>
     }
 }
-@helper SendAbsence(Etudiant etudiant)
+@helper SendAbsence(StudentsList etudiant)
 {
-    if (etudiant.Id % 2 == 0)
+    string absoluteurl = HttpContext.Current.Request.Url.AbsoluteUri;
+
+    if (etudiant.Absence.EstPresent)
     {
         <form action='Marquez' method='post'>
-            <input type='hidden' name='id' value="@etudiant.Id" />
+            <input type='hidden' name='id' value="@etudiant.Absence.Id" />
             <input type='hidden' name='presence' value="false" />
+            <input type='hidden' name='url' value="@absoluteurl" />
             <button type='submit' class='btn btn-danger' value=''>A</button>
         </form>
 
@@ -53,17 +60,18 @@
 }
 
 <div class="row justify-content-center py-2 ">
-    <div class="col-md-8 btn btn-outline-success">
-        Semaine 8 - Lundi - 12/04/2021 - [ 08:00 - 10:00]
+    <div class="col-md-8 btn btn-info">
+          @Model.First().Classe.Nom
     </div>
 </div>
 <div class="row justify-content-center">
     <div class="col-md-10">
         @Html.Grid(Model).Columns(columns =>
    {
-       columns.Add(c => c.Id).Titled("ID").Filterable(true);
-       columns.Add(c => c.Nom).Titled("Nom").Filterable(true);
-       columns.Add(c => c.Prenom).Titled("Prénom").Filterable(true);
+       columns.Add(c => c.Etudiant.Id).Titled("ID").Filterable(true);
+       columns.Add(c => c.Etudiant.Nom).Titled("Nom").Filterable(true);
+       columns.Add(c => c.Etudiant.Prenom).Titled("Prénom").Filterable(true);
+       columns.Add(c => c.Etudiant.Groupe.Nom).Titled("Groupe").Filterable(true);
        columns.Add().Titled("Présent(e)")
        .Filterable(true)
        .Encoded(false)
@@ -77,6 +85,7 @@
        .Encoded(false)
        .Sanitized(false)
        .RenderValueAs(c => SendAbsence(c));
-   }).WithPaging(6).Selectable(true)
+   }).WithPaging(6).Sortable(true)
+
     </div>
 </div>
