@@ -23,18 +23,12 @@ namespace GestionDesAbsence.Controllers
 
         public ActionResult Index()
         {
-            // get current professeur
-            HttpCookie coockie = Request.Cookies[FormsAuthentication.FormsCookieName];
-            string crypted_ticket = coockie.Value;
-            FormsAuthenticationTicket ticket = FormsAuthentication.Decrypt(crypted_ticket);
-            string email = ticket.Name;
-            Professeur professeur = professeurService.GetProfesseurByEmail(email);
 
-            var listOfSeance = professeurService.GetSeancesForProf(professeur.Id);
-
+            var listOfSeance = professeurService.GetSeancesForProf(GetProfesseurIdFromCockie());
 
             return View(listOfSeance);
         }
+
 
         public string testData()
         {
@@ -78,7 +72,7 @@ namespace GestionDesAbsence.Controllers
             //        }
             //        else
             //        {
-            //            etudiants.Add(new Etudiant() { Id = 0, Cne = "D132468" + i, Nom = "TAZRIBINE" + i + "", Prenom = "Hassan" + i + "", Email = "hassan" + i + "@gmail.com", Password = Encryption.Encrypt("etudiant"), Id_groupe = 2, Id_classe = 1, Role_Id = 3 });
+            //            etudiants.Add(new Etudiant() { Id = 0, Cne = "D132468" + i, Nom = "TAZRIBINE" + i + "", Prenom = "Hassan" + i + "", Email = "hassan" + i + "@gmail.com", Password = Encryption.Encrypt("etudiant"), Id_groupe = 2, Id_classe = 2, Role_Id = 3 });
             //        }
 
             //    db.Etudiants.AddRange(etudiants);
@@ -98,7 +92,7 @@ namespace GestionDesAbsence.Controllers
 
             //    modules.Add(new Module() { Id = 0, NomModule = "Module x", id_Professeur = 2 });
 
-            //    modules.Add(new Module() { Id = 0, NomModule = "Module y", id_Professeur = 3 });
+            //    modules.Add(new Module() { Id = 0, NomModule = "Java", id_Professeur = 1 });
 
             //    db.Modules.AddRange(modules);
             //    db.SaveChanges();
@@ -143,18 +137,18 @@ namespace GestionDesAbsence.Controllers
             //    db.SaveChanges();
 
             //    // La table des emplois
-            //    db.Emplois.Add(new Emploi() { Id = 1});
+            //    db.Emplois.Add(new Emploi() { Id = 1 });
             //    db.SaveChanges();
 
             //    // La table des details d'un emploi
             //    var details = new List<Details_Emploi>();
-            //    details.Add(new Details_Emploi() { Id = 0, Emploi_Id = 1, Local_Id = 2, Module_Id = 1, Seance_Id = 1});
-            //    details.Add(new Details_Emploi() { Id = 0, Emploi_Id = 1, Local_Id = 1, Module_Id = 2, Seance_Id = 2 });
+            //    details.Add(new Details_Emploi() { Id = 0, Emploi_Id = 1, Local_Id = 2, Module_Id = 1, Seance_Id = 1 });
+            //    details.Add(new Details_Emploi() { Id = 0, Emploi_Id = 1, Local_Id = 1, Module_Id = 3, Seance_Id = 2 });
             //    details.Add(new Details_Emploi() { Id = 0, Emploi_Id = 1, Local_Id = 3, Module_Id = 2, Seance_Id = 4 });
             //    details.Add(new Details_Emploi() { Id = 0, Emploi_Id = 1, Local_Id = 2, Module_Id = 1, Seance_Id = 5 });
-            //    details.Add(new Details_Emploi() { Id = 0, Emploi_Id = 1, Local_Id = 2, Module_Id = 3, Seance_Id = 6 });
-            //    details.Add(new Details_Emploi() { Id = 0, Emploi_Id = 1, Local_Id = 1, Module_Id = 2, Seance_Id = 1 });
-            //    details.Add(new Details_Emploi() { Id = 0, Emploi_Id = 1, Local_Id = 3, Module_Id = 1, Seance_Id = 1 });
+            //    details.Add(new Details_Emploi() { Id = 0, Emploi_Id = 1, Local_Id = 2, Module_Id = 2, Seance_Id = 6 });
+            //    details.Add(new Details_Emploi() { Id = 0, Emploi_Id = 1, Local_Id = 1, Module_Id = 2, Seance_Id = 7 });
+            //    details.Add(new Details_Emploi() { Id = 0, Emploi_Id = 1, Local_Id = 3, Module_Id = 1, Seance_Id = 8 });
             //    db.details_Emplois.AddRange(details);
             //    db.SaveChanges();
 
@@ -163,20 +157,21 @@ namespace GestionDesAbsence.Controllers
             return "well done";
         }
 
-
-        public ActionResult Notez()
+        
+        public ActionResult Notez(int id_seance, int id_module, int id_semaine)
         {
-            GestionDesAbsenceContext context = new GestionDesAbsenceContext();
-            var listOfSeance = new List<object>();            
-           
-            return View(context.Etudiants.ToList());
+            var listOfStudents = professeurService.GetStudentsList(id_seance, id_module, id_semaine);
+            
+            return View(listOfStudents);
         }
 
         [HttpPost]
-        public ActionResult Marquez(int id, bool presence)
+        public ActionResult Marquez(int id, bool presence, string url)
         {
+            professeurService.UpdateAbsence(id, presence);
 
-            return RedirectToAction("Notez");   
+
+            return Redirect(url);   
         }
 
         public object LogicTest()
@@ -189,7 +184,7 @@ namespace GestionDesAbsence.Controllers
             Professeur professeur = professeurService.GetProfesseurByEmail(email);
 
             Semaine semaine_courante;
-            DateTime testDay = DateTime.Parse("20/05/2021");
+            DateTime testDay = DateTime.Parse("05/20/2021");
             var db = new GestionDesAbsenceContext();
             semaine_courante = db.Semaines.Where(s => s.Date_debut.CompareTo(testDay) < 0
                                                           && s.Date_fin.CompareTo(testDay) >0).FirstOrDefault();
@@ -210,6 +205,15 @@ namespace GestionDesAbsence.Controllers
                                                     });
 
             return str2;
+        }
+
+        private int GetProfesseurIdFromCockie()
+        {
+            HttpCookie coockie = Request.Cookies[FormsAuthentication.FormsCookieName];
+            string crypted_ticket = coockie.Value;
+            FormsAuthenticationTicket ticket = FormsAuthentication.Decrypt(crypted_ticket);
+            string email = ticket.Name;
+            return professeurService.GetProfesseurByEmail(email).Id;
         }
     }
 }

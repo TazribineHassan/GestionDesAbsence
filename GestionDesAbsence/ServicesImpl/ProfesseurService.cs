@@ -40,7 +40,7 @@ namespace GestionDesAbsence.ServicesImpl
 
             string[] jours = { "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche" };
 
-            DateTime aujourdhui = DateTime.Parse("1/05/2021");
+            DateTime aujourdhui = DateTime.Parse("05/01/2021");
             Semaine semaine_courante;
             using (var db = new GestionDesAbsenceContext())
             {
@@ -85,7 +85,7 @@ namespace GestionDesAbsence.ServicesImpl
             return listSeeances;
         }
 
-        public Object GetStudentsList(int id_seance, int id_module, int id_semaine)
+        public List<StudentsList> GetStudentsList(int id_seance, int id_module, int id_semaine)
         {
             var seance_courante = context.details_Emplois.Where(r => (r.Module_Id == id_module
                                            && r.Seance_Id == id_seance
@@ -101,7 +101,10 @@ namespace GestionDesAbsence.ServicesImpl
                                     {
                                         etudiant_id = e.Id,
                                         e.Nom,
-                                        e.Prenom
+                                        e.Prenom,
+                                        id_groupe = e.Groupe.Id,
+                                        nom_groupe = e.Groupe.Nom
+
                                     })
                                 })
                             }).FirstOrDefault();
@@ -139,7 +142,7 @@ namespace GestionDesAbsence.ServicesImpl
                                 Id = classe.id,
                                 Nom = classe.nom
                             },
-                            Etudiant = new Etudiant() { Id = etudiant.etudiant_id, Nom = etudiant.Nom, Prenom = etudiant.Prenom},
+                            Etudiant = new Etudiant() { Id = etudiant.etudiant_id, Nom = etudiant.Nom, Prenom = etudiant.Prenom, Id_groupe = etudiant.id_groupe, Groupe = new Groupe() { Id = etudiant.id_groupe, Nom = etudiant.nom_groupe } },
                             Absence = new Absence() { Id = absence.id, EstPresent = absence.estPresent }
                         });
                     }
