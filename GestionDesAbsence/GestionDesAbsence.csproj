@@ -184,6 +184,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="GlobalSettings.cs" />
     <Compile Include="Migrations\202105291649267_InitialCreate.cs" />
     <Compile Include="Migrations\202105291649267_InitialCreate.designer.cs">
       <DependentUpon>202105291649267_InitialCreate.cs</DependentUpon>
@@ -205,7 +206,9 @@
     <Compile Include="Models\Professeur.cs" />
     <Compile Include="Models\Role.cs" />
     <Compile Include="Models\Seance.cs" />
+    <Compile Include="Models\SeancesForProf.cs" />
     <Compile Include="Models\Semaine.cs" />
+    <Compile Include="Models\StudentsList.cs" />
     <Compile Include="MyRoleProvider.cs" />
     <Compile Include="ServicesImpl\AdminService.cs" />
     <Compile Include="ServicesImpl\LoginService.cs" />
@@ -2598,6 +2601,13 @@
     <Content Include="Views\Admin\AllEtudiants.cshtml" />
     <Content Include="Views\Admin\AjouterEtudiants.cshtml" />
     <Content Include="Views\Admin\AjouterProfesseur.cshtml" />
+    <Content Include="Views\Admin\AllProfs.cshtml" />
+    <Content Include="Views\Admin\DeleteEtudiant.cshtml" />
+    <Content Include="Views\Shared\_LayoutAdminLogin.cshtml" />
+    <Content Include="Views\Admin\etudiantDetails.cshtml" />
+    <Content Include="Views\Admin\etudiantEdit.cshtml" />
+    <Content Include="Views\Admin\ProfDetails.cshtml" />
+    <Content Include="Views\Admin\ProfEdit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

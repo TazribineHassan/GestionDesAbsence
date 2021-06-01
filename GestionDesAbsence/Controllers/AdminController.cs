@@ -282,6 +282,18 @@ namespace GestionDesAbsence.Controllers
                 }
             }
             // return View();
+
+        }
+
+        public ActionResult AjouterProfesseur()
+        {
+            return View();
+        }
+        public ActionResult AjouterEtudiants()
+        {
+            GestionDesAbsenceContext gestion = new GestionDesAbsenceContext();
+            ViewBag.list = new SelectList(gestion.Cycles, "Id", "Nom");
+            return View();
         }
     }
 }
