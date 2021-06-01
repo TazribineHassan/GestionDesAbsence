@@ -1,0 +1,46 @@
+﻿
+@{
+    ViewBag.Title = "AjouterEtudiants";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<div class="container-fluid">
+
+    <br />
+    <h2>Ajouter Des Etudiants </h2>
+    <br />
+    <h4>Via Excel File </h4>
+
+    <hr />
+
+    @using (Html.BeginForm("Index", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+
+        @Html.DropDownList("liste_cycle", ViewBag.list as SelectList, "Selectionnez le cycle", new { id = "liste_cycle" })
+        <select id="etudiants" name="myclass"></select><br /><br />
+        <h4>Sélectionez un fichier </h4>
+        <input name="file" type="file" id="file" />
+        <input type="submit" id="fileup" class="btn btn-info" value="submit" />
+        <br /><br />
+        <a href="/Admin/AllEtudiants" class="stretched-link"> Consulter la liste des étudiants</a>
+
+    }
+
+
+</div>
+
+    @section Section1{
+        <script>
+            $(document).ready(function (e) {
+                $("#liste_cycle").change(function () {
+                    $.get("/Admin/GetClass", { ID: $("#liste_cycle").val() }, function (data) {
+                        $("#etudiants").empty();
+                        $.each(data, function (index, ligne) {
+                            $("#etudiants").append("<option value='" + ligne.Id + "'>" + ligne.Nom + "</option>")
+                        });
+
+                    });
+                });
+            });
+        </script>
+    }
+

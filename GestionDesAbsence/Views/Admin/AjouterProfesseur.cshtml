@@ -1,0 +1,24 @@
+﻿
+@{
+    ViewBag.Title = "AjouterProfesseur";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<div class="container-fluid">
+    <br />
+    <h2>Ajouter Les Professeurs </h2>
+    <br />
+    <h4>Via Excel File </h4>
+    <img src="/dist/img/prof.png" alt="User Avatar" class="img-size-50 mr-3 img-circle">
+    <hr />
+
+    @using (Html.BeginForm("AddProfs", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <h4>Sélectionez un fichier </h4><br />
+        <input name="file" class="form-control-file" id="exampleFormControlFile1" type="file" id="file" />
+        <br />
+        <input type="submit" id="fileup" class="btn btn-info" value="Submit" />
+<br /><br/>
+<a href="/Admin/AllProfesseur" class="stretched-link"> Consulter la liste des professeurs</a>
+    }
+
+</div>

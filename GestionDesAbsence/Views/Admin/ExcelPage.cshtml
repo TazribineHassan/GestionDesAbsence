@@ -3,31 +3,5 @@
     ViewBag.Title = "ExcelPage";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
+<br /><br />
 
-<h2>ExcelPage</h2>
-
-@using (Html.BeginForm("ImportExcel", "Admin", FormMethod.Post))
-{
-    <h2>Liste desFilieres : </h2>
-
-    <br />
-    @Html.DropDownList("liste_cycle", ViewBag.list as SelectList, "Selectionnez le cycle", new { id = "liste_cycle" })
-    <select id="etudiants" name="etudiants"></select>
-    <input type="submit" value="send" />
-}
-@section Section1{
-    <script>
-    $(document).ready(function (e) {
-        $("#liste_cycle").change(function () {
-            alert("hello");
-            $.get("/Admin/GetClass", { ID: $("#liste_cycle").val()}, function (data){
-                $("#etudiants").empty();
-                $.each(data, function (index, ligne) {
-                    $("#etudiants").append("<option value='" + ligne.Id + "'>" + ligne.Nom + "</option>")
-                });
-
-            });
-    });
-        });
-    </script>
-}
