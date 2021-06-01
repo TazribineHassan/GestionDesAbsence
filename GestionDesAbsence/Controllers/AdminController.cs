@@ -177,6 +177,7 @@ namespace GestionDesAbsence.Controllers
         
             public ActionResult ModifyProf(int editidinput, string editcode, string editnom, String editprenom, string editemail, string editcycle)
         {
+
             GestionDesAbsenceContext gestion = new GestionDesAbsenceContext();
             Professeur newE = gestion.Professeurs.Find(editidinput);
             newE.Code_prof = editcode;
