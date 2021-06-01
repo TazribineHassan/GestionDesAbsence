@@ -86,6 +86,119 @@ namespace GestionDesAbsence.Controllers
             return Redirect("/Admin/AllEtudiants");
         }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         //details student
         public PartialViewResult etudiantDetails(int id)
         {
@@ -164,8 +277,8 @@ namespace GestionDesAbsence.Controllers
         }
 
         //editProf partialview
-        
-            public PartialViewResult ProfEdit(int id)
+
+        public PartialViewResult ProfEdit(int id)
         {
             GestionDesAbsenceContext gestion = new GestionDesAbsenceContext();
             ViewBag.e = id;
@@ -174,8 +287,8 @@ namespace GestionDesAbsence.Controllers
         }
 
         //editProf (Modify)
-        
-            public ActionResult ModifyProf(int editidinput, string editcode, string editnom, String editprenom, string editemail, string editcycle)
+
+        public ActionResult ModifyProf(int editidinput, string editcode, string editnom, String editprenom, string editemail, string editcycle)
         {
 
             GestionDesAbsenceContext gestion = new GestionDesAbsenceContext();
