@@ -1,11 +1,16 @@
 ﻿using GestionDesAbsence.Common;
 using GestionDesAbsence.Models;
 using GestionDesAbsence.ServicesImpl;
+using NPOI.HSSF.UserModel;
+using NPOI.XSSF.UserModel;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+
 
 namespace GestionDesAbsence.Controllers
 {
@@ -192,5 +197,91 @@ namespace GestionDesAbsence.Controllers
             return Redirect("/Admin/AllPrfos");
         }
 
+
+        GestionDesAbsenceContext db = new GestionDesAbsenceContext();
+
+        [ActionName("Index")]
+        [HttpPost]
+        public ActionResult import(int myclass)
+        {
+            HttpPostedFileBase file = Request.Files["file"];
+            if (file == null || file.ContentLength <= 0)
+            {
+                return Json("please select excel file", JsonRequestBehavior.AllowGet);
+            }
+            Stream streamfile = file.InputStream;
+            DataTable dt = new DataTable();
+            string FileName = Path.GetExtension(file.FileName);
+            if (FileName != ".xls" && FileName != ".xlsx")
+            {
+                return Json("Only excel file", JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                try
+                {
+                    if (FileName == ".xls")
+                    {
+                        HSSFWorkbook workbook = new HSSFWorkbook(streamfile);
+                        dt = excel.Import(dt, workbook, db, myclass);
+                    }
+                    else
+                    {
+                        XSSFWorkbook workbook = new XSSFWorkbook(streamfile);
+                        dt = excel.Import(dt, workbook, db, myclass);
+                    }
+                    return Json("OK", JsonRequestBehavior.AllowGet);
+                }
+
+                catch (Exception e)
+                {
+
+                    return Json(e.ToString(), JsonRequestBehavior.AllowGet);
+                }
+            }
+            // return View();
+        }
+
+
+        [HttpPost]
+        public ActionResult AddProfs()
+        {
+            HttpPostedFileBase file = Request.Files["file"];
+            if (file == null || file.ContentLength <= 0)
+            {
+                return Json("please select excel file", JsonRequestBehavior.AllowGet);
+            }
+            Stream streamfile = file.InputStream;
+            DataTable dt = new DataTable();
+            string FileName = Path.GetExtension(file.FileName);
+            if (FileName != ".xls" && FileName != ".xlsx")
+            {
+                return Json("Only excel file", JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                try
+                {
+                    if (FileName == ".xls")
+                    {
+                        HSSFWorkbook workbook = new HSSFWorkbook(streamfile);
+                        dt = ExcelP.Importing(dt, workbook, db);
+                    }
+                    else
+                    {
+                        XSSFWorkbook workbook = new XSSFWorkbook(streamfile);
+                        dt = ExcelP.Importing(dt, workbook, db);
+                    }
+                    return Json("OK", JsonRequestBehavior.AllowGet);
+                }
+
+                catch (Exception e)
+                {
+
+                    return Json(e.ToString(), JsonRequestBehavior.AllowGet);
+                }
+            }
+            // return View();
+        }
     }
 }
