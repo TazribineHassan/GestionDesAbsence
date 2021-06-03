@@ -179,6 +179,7 @@
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="Common\Encryption.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\EtudiantController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ProfesseurController.cs" />
     <Compile Include="Global.asax.cs">
@@ -2608,6 +2609,8 @@
     <Content Include="Views\Admin\etudiantEdit.cshtml" />
     <Content Include="Views\Admin\ProfDetails.cshtml" />
     <Content Include="Views\Admin\ProfEdit.cshtml" />
+    <Content Include="Views\Shared\_LayoutEtudiant.cshtml" />
+    <Content Include="Views\Etudiant\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
