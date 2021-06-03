@@ -11,7 +11,7 @@ using System.Web.Security;
 
 namespace GestionDesAbsence.Controllers
 {
-    [Authorize(Roles = "professeur")]
+    /*[Authorize(Roles = "professeur")]*/
     public class ProfesseurController : Controller
     {
         IProfesseurService professeurService;
@@ -32,8 +32,8 @@ namespace GestionDesAbsence.Controllers
 
         public string testData()
         {
-            //using (GestionDesAbsenceContext db = new GestionDesAbsenceContext())
-            //{
+            using (GestionDesAbsenceContext db = new GestionDesAbsenceContext())
+            {
 
             //    // // La table de l'admin
             //    var admin = new Administrateur() { Email = "admin@gmail.com", Nom = "Admin", Prenom = "admin", Password = Encryption.Encrypt("admin"), Role_Id = 1 };
@@ -128,32 +128,32 @@ namespace GestionDesAbsence.Controllers
             //    db.Seances.AddRange(seances);
             //    db.SaveChanges();
 
-            //    // La tables des semaines
-            //    var semaines = new List<Semaine>();
-            //    semaines.Add(new Semaine() { id = 0, Code = "S1", Date_debut = DateTime.Parse("05/01/2021"), Date_fin = DateTime.Parse("05/07/2021") });
-            //    semaines.Add(new Semaine() { id = 0, Code = "S1", Date_debut = DateTime.Parse("05/08/2021"), Date_fin = DateTime.Parse("05/14/2021") });
-            //    semaines.Add(new Semaine() { id = 0, Code = "S1", Date_debut = DateTime.Parse("05/15/2021"), Date_fin = DateTime.Parse("05/21/2021") });
-            //    db.Semaines.AddRange(semaines);
-            //    db.SaveChanges();
+                // La tables des semaines
+                var semaines = new List<Semaine>();
+                semaines.Add(new Semaine() { id = 0, Code = "S1", Date_debut = DateTime.Parse("01/05/2021"), Date_fin = DateTime.Parse("07/05/2021") });
+                semaines.Add(new Semaine() { id = 0, Code = "S1", Date_debut = DateTime.Parse("08/05/2021"), Date_fin = DateTime.Parse("14/05/2021") });
+                semaines.Add(new Semaine() { id = 0, Code = "S1", Date_debut = DateTime.Parse("15/05/2021"), Date_fin = DateTime.Parse("21/05/2021") });
+                db.Semaines.AddRange(semaines);
+                db.SaveChanges();
 
-            //    // La table des emplois
-            //    db.Emplois.Add(new Emploi() { Id = 1 });
-            //    db.SaveChanges();
+                // La table des emplois
+                db.Emplois.Add(new Emploi() { Id = 1 });
+                db.SaveChanges();
 
-            //    // La table des details d'un emploi
-            //    var details = new List<Details_Emploi>();
-            //    details.Add(new Details_Emploi() { Id = 0, Emploi_Id = 1, Local_Id = 2, Module_Id = 1, Seance_Id = 1 });
-            //    details.Add(new Details_Emploi() { Id = 0, Emploi_Id = 1, Local_Id = 1, Module_Id = 3, Seance_Id = 2 });
-            //    details.Add(new Details_Emploi() { Id = 0, Emploi_Id = 1, Local_Id = 3, Module_Id = 2, Seance_Id = 4 });
-            //    details.Add(new Details_Emploi() { Id = 0, Emploi_Id = 1, Local_Id = 2, Module_Id = 1, Seance_Id = 5 });
-            //    details.Add(new Details_Emploi() { Id = 0, Emploi_Id = 1, Local_Id = 2, Module_Id = 2, Seance_Id = 6 });
-            //    details.Add(new Details_Emploi() { Id = 0, Emploi_Id = 1, Local_Id = 1, Module_Id = 2, Seance_Id = 7 });
-            //    details.Add(new Details_Emploi() { Id = 0, Emploi_Id = 1, Local_Id = 3, Module_Id = 1, Seance_Id = 8 });
-            //    db.details_Emplois.AddRange(details);
-            //    db.SaveChanges();
+                // La table des details d'un emploi
+                var details = new List<Details_Emploi>();
+                details.Add(new Details_Emploi() { Id = 0, Emploi_Id = 1, Local_Id = 2, Module_Id = 1, Seance_Id = 1 });
+                details.Add(new Details_Emploi() { Id = 0, Emploi_Id = 1, Local_Id = 1, Module_Id = 3, Seance_Id = 2 });
+                details.Add(new Details_Emploi() { Id = 0, Emploi_Id = 1, Local_Id = 3, Module_Id = 2, Seance_Id = 4 });
+                details.Add(new Details_Emploi() { Id = 0, Emploi_Id = 1, Local_Id = 2, Module_Id = 1, Seance_Id = 5 });
+                details.Add(new Details_Emploi() { Id = 0, Emploi_Id = 1, Local_Id = 2, Module_Id = 2, Seance_Id = 6 });
+                details.Add(new Details_Emploi() { Id = 0, Emploi_Id = 1, Local_Id = 1, Module_Id = 2, Seance_Id = 7 });
+                details.Add(new Details_Emploi() { Id = 0, Emploi_Id = 1, Local_Id = 3, Module_Id = 1, Seance_Id = 8 });
+                db.details_Emplois.AddRange(details);
+                db.SaveChanges();
 
 
-            //}
+            }
             return "well done";
         }
 
