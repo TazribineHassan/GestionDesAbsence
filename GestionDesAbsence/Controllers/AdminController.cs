@@ -140,6 +140,7 @@ namespace GestionDesAbsence.Controllers
         [HttpPost]
         public ActionResult SaveProf(string code, string nom, String prenom, string email)
         {
+
             GestionDesAbsenceContext gestion = new GestionDesAbsenceContext();
             Professeur e = new Professeur();
             e.Code_prof = code;
