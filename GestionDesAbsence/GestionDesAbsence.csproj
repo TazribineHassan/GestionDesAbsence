@@ -212,8 +212,10 @@
     <Compile Include="Models\StudentsList.cs" />
     <Compile Include="MyRoleProvider.cs" />
     <Compile Include="ServicesImpl\AdminService.cs" />
+    <Compile Include="ServicesImpl\EtudiantService.cs" />
     <Compile Include="ServicesImpl\LoginService.cs" />
     <Compile Include="ServicesImpl\ProfesseurService.cs" />
+    <Compile Include="Services\IEtudiantService.cs" />
     <Compile Include="Services\ILoginService.cs" />
     <Compile Include="Services\IAdminService.cs" />
     <Compile Include="Services\IProfesseurService.cs" />

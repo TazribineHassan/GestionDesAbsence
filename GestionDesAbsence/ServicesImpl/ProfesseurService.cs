@@ -20,7 +20,7 @@ namespace GestionDesAbsence.ServicesImpl
         public Professeur GetProfesseurByEmail(string email)
         {
 
-            return context.Professeurs.FirstOrDefault(prof => prof.Email == email); ;
+            return context.Professeurs.FirstOrDefault(prof => prof.Email == email); 
         }
 
         public Professeur GetProfesseurById(int id)

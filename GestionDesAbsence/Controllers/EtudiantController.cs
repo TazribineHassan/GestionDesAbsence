@@ -1,17 +1,36 @@
-﻿using System;
+﻿using GestionDesAbsence.Common;
+using GestionDesAbsence.Models;
+using GestionDesAbsence.Services;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace GestionDesAbsence.Controllers
 {
-    public class EtudiantController : Controller
-    {
+
+        //[Authorize(Roles = "etudiant")]
+        public class EtudiantController : Controller
+        {
+            IEtudiantService etudiantService;
+
+            public EtudiantController(IEtudiantService etudiantService)
+            {
+                this.etudiantService = etudiantService;
+            }
+
+        Etudiant etd = new Etudiant();
+       
+       
+    
         // GET: Etudiant
         public ActionResult Index()
-        {
-            return View();
+            {
+                
+                return View();
+            }
         }
     }
-}
