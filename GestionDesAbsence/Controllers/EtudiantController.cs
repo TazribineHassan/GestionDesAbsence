@@ -21,10 +21,6 @@ namespace GestionDesAbsence.Controllers
             {
                 this.etudiantService = etudiantService;
             }
-
-        Etudiant etd = new Etudiant();
-       
-       
     
         // GET: Etudiant
         public ActionResult Index()

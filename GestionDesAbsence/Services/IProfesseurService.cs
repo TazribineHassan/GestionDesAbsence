@@ -13,6 +13,8 @@ namespace GestionDesAbsence.Services
         IEnumerable<Etudiant> FindAll(); 
         Professeur GetProfesseurById(int id);
         Professeur GetProfesseurByEmail(string email);
+   
+
 
         /* type de retour 
         list => {

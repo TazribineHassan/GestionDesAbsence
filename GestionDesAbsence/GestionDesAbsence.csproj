@@ -192,6 +192,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Absence.cs" />
+    <Compile Include="Models\AbsenceList.cs" />
     <Compile Include="Models\Administrateur.cs" />
     <Compile Include="Models\Classe.cs" />
     <Compile Include="Models\Cycle.cs" />

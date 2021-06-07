@@ -3,26 +3,10 @@
     ViewBag.Title = "Espace de l'étudiant";
     Layout = "~/Views/Shared/_LayoutEtudiant.cshtml";
 }
+@using GridMvc.Html
+@using GestionDesAbsence.Models
 
-<table class="table table-hover">
-    <tr class="btn-primary">
-        <th>ID Etudiant</th>
-        <th>Groupe</th>
-        <th>Module</th>
-        <th>Seance</th>   
-    </tr>
 
-    @foreach(var item in Model){
-        <tr>
-            <td>@item.Id</td>
-            <td>@item.Groupe</td>
-            <td>@item.Module</td>
-            <td>@item.Seance</td>
-            <td>
-                <a href=" @Url.Action("Absence",new {item.Id, item.Groupe, item.Module, item.Seance})"></a>
-            </td>
 
-        </tr>
-    }
-</table>
-
+    </div>
+</div>

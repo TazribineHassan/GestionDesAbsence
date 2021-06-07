@@ -1,6 +1,7 @@
 ﻿using GestionDesAbsence.Common;
 using GestionDesAbsence.Models;
 using GestionDesAbsence.Services;
+using GestionDesAbsence.ServicesImpl;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -184,7 +185,7 @@ namespace GestionDesAbsence.Controllers
             Professeur professeur = professeurService.GetProfesseurByEmail(email);
 
             Semaine semaine_courante;
-            DateTime testDay = DateTime.Parse("05/20/2021");
+            DateTime testDay = DateTime.Parse("20/05/2021");
             var db = new GestionDesAbsenceContext();
             semaine_courante = db.Semaines.Where(s => s.Date_debut.CompareTo(testDay) < 0
                                                           && s.Date_fin.CompareTo(testDay) >0).FirstOrDefault();
@@ -203,8 +204,15 @@ namespace GestionDesAbsence.Controllers
                                                     {
                                                         ReferenceLoopHandling = ReferenceLoopHandling.Ignore
                                                     });
+            var etudiantService = new EtudiantService();
+            var result3 = etudiantService.GetAbsence(1);
+            var str3 = JsonConvert.SerializeObject(result3, Formatting.Indented,
+                                                    new JsonSerializerSettings
+                                                    {
+                                                        ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                                                    });
 
-            return str2;
+            return str3;
         }
 
         private int GetProfesseurIdFromCockie()
