@@ -61,10 +61,7 @@ namespace GestionDesAbsence.ServicesImpl
             return result;
         }
 
-        internal static object GetAbsence(object etudiant_id)
-        {
-            throw new NotImplementedException();
-        }
+     
 
         public Etudiant GetEtudiantByEmail(string email)
         {

@@ -18,16 +18,16 @@ namespace GestionDesAbsence.Controllers
         {
             IEtudiantService etudiantService;
 
-            public EtudiantController(IEtudiantService etudiantService)
+            public EtudiantController()
             {
-                this.etudiantService = etudiantService;
+            this.etudiantService = new EtudiantService();
             }
 
         // GET: Etudiant
         public ActionResult Index()
         {
 
-            var listOfAbsence = EtudiantService.GetAbsence(GetEtudiantIdFromCockie());
+            var listOfAbsence = etudiantService.GetAbsence(GetEtudiantIdFromCockie());
 
             return View(listOfAbsence);
         }

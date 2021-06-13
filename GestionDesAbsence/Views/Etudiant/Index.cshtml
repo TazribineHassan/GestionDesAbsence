@@ -5,7 +5,8 @@
 }
 @using GridMvc.Html
 @using GestionDesAbsence.Models
-@model List<Absence>
+
+@model List<AbsenceList>
 
 <table class="table table-hover">
     <thead>
@@ -19,10 +20,10 @@
   @foreach (var item in Model)
             {
       <tr>
-          <td>@item.Details_Emploi.Emploi.Semaine.Code</td>
-          <td>@item.Details_Emploi.Module.NomModule</td>
-          <td>@item.Details_Emploi.Seance.Heure_debut</td>
-          <td>@item.Details_Emploi.Seance.Heure_fin</td>
+          <td>@item.semaine.Code</td>
+          <td>@item.module.NomModule</td>
+          <td>@item.seance.Heure_debut</td>
+          <td>@item.seance.Heure_fin</td>
       </tr>
 
             }  

@@ -11,10 +11,13 @@ namespace GestionDesAbsence.ServicesImpl
     public class LoginService : ILoginService
     {
         ProfesseurService professeurService;
+        EtudiantService etudiantService;
+
 
         public LoginService(ProfesseurService professeurService)
         {
             this.professeurService = professeurService;
+            this.etudiantService = new EtudiantService();
         }
 
         public object Login(string email, string password, string userType)
@@ -40,10 +43,24 @@ namespace GestionDesAbsence.ServicesImpl
                 }
                 return null;
             }
+            else if (userType.Equals("etudiant"))
+            {
+                     Etudiant etudiant = etudiantService.GetEtudiantByEmail(email);
+                if (etudiant != null)
+                {
+                    if (password.Equals(Encryption.Decrypt(etudiant.Password))) return etudiant;
+                    else return null;
+                }
+                return null;
+
+            }
             else
             {
+
                 return null;
+
             }
+
         }
     }
 }

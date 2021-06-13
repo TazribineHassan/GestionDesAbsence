@@ -96,17 +96,26 @@ namespace GestionDesAbsence.Controllers
         [HttpPost]
         public ActionResult CheckStudent(string email, string password)
         {
-            if (email == "student@gmail.com" && password == "123")
+            Etudiant etudiant = loginService.Login(email, password, "etudiant") as Etudiant;
+            
+            if (etudiant != null)
             {
+                //set the authentication cookie
+                var ticket = new FormsAuthenticationTicket(etudiant.Email, true, 3000);
+                string encrypt = FormsAuthentication.Encrypt(ticket);
+                var cookie = new HttpCookie(FormsAuthentication.FormsCookieName, encrypt);
+                cookie.Expires = DateTime.Now.AddHours(4);
+                Response.Cookies.Add(cookie);
+                cookie.HttpOnly = true;
 
-                return View("Home");
+                return RedirectToAction("Index", "Etudiant");
             }
             else
             {
                 return RedirectToAction("IndexMsg", new { msg = "Email or password are incorrect" });
             }
         }
-
+         
         [HttpGet]
         public ActionResult Logout()
         {
