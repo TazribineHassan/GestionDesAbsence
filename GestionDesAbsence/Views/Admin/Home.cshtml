@@ -3,6 +3,7 @@
     ViewBag.Title = "Home";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
+
 <style>
     #navTeacherButtons {
         height: 240px;
@@ -30,6 +31,10 @@
 
 <div class="container-fluid">
     <h2>Home</h2>
+    @foreach(var item in Model){
+        <div>this @item.Jour</div>
+
+    }
 
 
 

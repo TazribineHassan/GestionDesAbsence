@@ -1,0 +1,12 @@
+﻿@{
+    ViewBag.Title = "Home";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@foreach(var item in Model)
+{
+    <div>
+        @item.nom de la calsse @item.nomClass est absent @item.absence_count fois 
+    </div>
+    <br />
+}

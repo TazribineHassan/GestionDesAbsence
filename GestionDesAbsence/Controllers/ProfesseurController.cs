@@ -184,7 +184,7 @@ namespace GestionDesAbsence.Controllers
             Professeur professeur = professeurService.GetProfesseurByEmail(email);
 
             Semaine semaine_courante;
-            DateTime testDay = DateTime.Parse("05/20/2021");
+            DateTime testDay = DateTime.Parse("01/5/2021");
             var db = new GestionDesAbsenceContext();
             semaine_courante = db.Semaines.Where(s => s.Date_debut.CompareTo(testDay) < 0
                                                           && s.Date_fin.CompareTo(testDay) >0).FirstOrDefault();

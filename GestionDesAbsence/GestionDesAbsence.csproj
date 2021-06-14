@@ -197,6 +197,7 @@
     <Compile Include="Models\Details_Emploi.cs" />
     <Compile Include="Models\Emploi.cs" />
     <Compile Include="Models\Etudiant.cs" />
+    <Compile Include="Models\EtudiantAbsent.cs" />
     <Compile Include="Models\excel.cs" />
     <Compile Include="Models\ExcelP.cs" />
     <Compile Include="Models\GestionDesAbsenceContext.cs" />
@@ -2608,6 +2609,7 @@
     <Content Include="Views\Admin\etudiantEdit.cshtml" />
     <Content Include="Views\Admin\ProfDetails.cshtml" />
     <Content Include="Views\Admin\ProfEdit.cshtml" />
+    <Content Include="Views\Admin\Statistiques.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
