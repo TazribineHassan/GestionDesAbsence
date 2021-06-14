@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Web;
 
 namespace GestionDesAbsence.Models
 {
-    public class Seance
+    public class Seance : ISerializable
     {
         public Seance()
         {
@@ -19,5 +20,10 @@ namespace GestionDesAbsence.Models
         public string Heure_fin { get; set; }
 
         public virtual ICollection<Details_Emploi> Details_Emplois { get; set; }
+
+        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -37,7 +37,11 @@
     }
 
 
-
+    <p> this count home @ViewBag.e </p>
+    @foreach (var @item in Model)
+    {
+        <div>hey you  @item.Jour @item.Heure_debut @item.id </div>
+    }
     <div class="buttonDiv" id="buttonDiv">
     <a href="/Admin/AllEtudiants" class="studentsAction"><button id="#navStudentsButtons"><img height="240" width="200" src="/assets/imgs/students.png" alt="Liste des Etudants"/></button></a>
     <a href="/Admin/AllProfs" class="studentsAction"><button id="#navStudentsButtons"><img height="240" width="200" src="/assets/imgs/female-teacher.png" alt="Liste des Professeur"/></button></a>

@@ -31,6 +31,7 @@ namespace GestionDesAbsence.Controllers
 
         public ActionResult Home()
         {
+<<<<<<< HEAD
             /*using (GestionDesAbsenceContext db = new GestionDesAbsenceContext())
             {
 
@@ -153,6 +154,8 @@ namespace GestionDesAbsence.Controllers
                 
 
             }*/
+=======
+>>>>>>> 9c9932426e298468380b069a0834213217917813
             GestionDesAbsenceContext gestion = new GestionDesAbsenceContext();
             gestion.Configuration.ProxyCreationEnabled = false;
             var classe = gestion.details_Emplois.Where(p => p.Module_Id == 1);
@@ -163,11 +166,17 @@ namespace GestionDesAbsence.Controllers
             {
                 seances.Add(gestion.Seances.Find(p.Seance_Id));
             }
+<<<<<<< HEAD
             if (this.ControllerContext.HttpContext.Request.Cookies.AllKeys.Contains("Cookie"))
             {
                 String s = this.ControllerContext.HttpContext.Request.Cookies["AdminName"].Value;
                 ViewBag.adminName = s;
             }
+=======
+
+            ViewBag.e = seances.Count();
+
+>>>>>>> 9c9932426e298468380b069a0834213217917813
             return View(seances);
         }
 
@@ -309,6 +318,7 @@ namespace GestionDesAbsence.Controllers
         [HttpPost]
         public ActionResult SaveProf(string code, string nom, String prenom, string email)
         {
+
             GestionDesAbsenceContext gestion = new GestionDesAbsenceContext();
             Professeur e = new Professeur();
             e.Code_prof = code;
@@ -479,6 +489,7 @@ namespace GestionDesAbsence.Controllers
             return View();
         }
 
+<<<<<<< HEAD
         public ActionResult Statistiques()
         {
             int idSemaine = 1;
@@ -512,5 +523,53 @@ namespace GestionDesAbsence.Controllers
 
             return View(result3);
         }
+=======
+        public ActionResult CorrectAbs()
+        {
+            GestionDesAbsenceContext gestion = new GestionDesAbsenceContext();
+            ViewBag.list = new SelectList(gestion.Professeurs, "Id", "Nom");
+            ViewBag.listSemaines = new SelectList(gestion.Semaines, "Id", "Code");
+
+            return View();
+        }
+
+        public JsonResult GetModule(int id)
+        {
+            GestionDesAbsenceContext gestion = new GestionDesAbsenceContext();
+            gestion.Configuration.ProxyCreationEnabled = false;
+            var classe = gestion.Modules.Where(p => p.id_Professeur == id);
+
+            return Json(classe, JsonRequestBehavior.AllowGet);
+
+        }
+
+        public JsonResult GetSeances(int id)
+        {
+            GestionDesAbsenceContext gestion = new GestionDesAbsenceContext();
+
+            var myclasse = gestion.details_Emplois.Where(p => p.Module_Id == id);
+
+            List<int> ids = new List<int>();
+
+            foreach (var p in myclasse)
+            {
+
+                if (gestion.Seances.Find(p.Seance_Id) != null)
+                    ids.Add(gestion.Seances.Find(p.Seance_Id).id);
+
+            }
+
+            //ids.Add(1);
+            //ids.Add(2);
+            GestionDesAbsenceContext db = new GestionDesAbsenceContext();
+            db.Configuration.ProxyCreationEnabled = false;
+            var seances = db.Seances.Where(s => ids.Contains(s.id));
+
+            return Json(seances, JsonRequestBehavior.AllowGet);
+
+        }
+
+
+>>>>>>> 9c9932426e298468380b069a0834213217917813
     }
 }

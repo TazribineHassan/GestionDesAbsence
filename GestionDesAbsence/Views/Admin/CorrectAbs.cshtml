@@ -1,0 +1,74 @@
+﻿@{
+    ViewBag.Title = "AjouterProfesseur";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@using GridMvc.Html
+@using GestionDesAbsence.Models
+@model List<StudentsList>
+
+
+<div class="container-fluid">
+    <br />
+    <blockquote class="blockquote">
+
+        <h1 class="mb-0" style="font-size:large">
+            <img src="/dist/img/abs.png" alt="User Avatar" class="img-size-50 mr-3 img-circle">
+            Modifier l'absence
+        </h1>
+        <footer class="blockquote-footer"> Admin task </footer>
+    </blockquote>
+    <hr />
+
+    @using (Html.BeginForm("Index", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <h4>Listes des Semaines </h4>
+        @Html.DropDownList("liste_Semaines", ViewBag.listSemaines as SelectList, "Selectionnez la semaine", new { id = "liste_Semaines" }) <br />
+        <h4>Listes des Professeurs </h4>
+        @Html.DropDownList("liste_prof", ViewBag.list as SelectList, "Selectionnez le Prof", new { id = "liste_prof" }) <br />
+        <h4>Listes des Modules </h4>
+        <select id="Modules" name="myclass" class="form-control"></select><br />
+        <h4>Listes des Seances </h4>
+        <select id="Seances" name="myclass" class="form-control"></select><br />
+        <br />
+
+        <br /><br />
+
+
+    }
+    <a href="/Admin/AllEtudiants"> Consulter la liste des étudiants</a>
+
+
+</div>
+
+@section Section1{
+    <script>
+       $(document).ready(function (e) {
+            $("#liste_prof").addClass("form-control");
+
+            $("#liste_prof").change(function () {
+                $.get("/Admin/GetModule", { ID: $("#liste_prof").val() }, function (data) {
+                    $("#Modules").empty();
+                    $.each(data, function (index, ligne) {
+                        $("#Modules").append("<option value='" + ligne.Id + "'>" + ligne.NomModule + "</option>")
+                    });
+
+                });
+            });
+        
+            $("#Modules").addClass("form-control");
+
+            $("#Modules").change(function () {
+                alert($("#Modules").val());
+
+                $.get("/Admin/GetSeances", { ID: $("#Modules").val() }, function (data) {
+                    $("#Seances").empty();
+                    $.each(data, function (index, madata) {
+                        $("#Seances").append("<option value='" + madata.id + "'>" + madata.Jour + madata.Heure_debut +  madata.Heure_fin + "</option>")
+                    });
+
+                })
+            });
+        });
+    </script>
+}
