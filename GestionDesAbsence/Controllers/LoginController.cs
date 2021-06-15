@@ -56,8 +56,7 @@ namespace GestionDesAbsence.Controllers
                 var cookie = new HttpCookie(FormsAuthentication.FormsCookieName, encrypt);
                 HttpCookie cookieNom = new HttpCookie("AdminName");
                 cookieNom.Value = admin.Nom + " "+ admin.Prenom;
-                this.ControllerContext.HttpContext.Response.Cookies.
-                Add(cookieNom);
+                this.ControllerContext.HttpContext.Response.Cookies.Add(cookieNom);
                 cookie.Expires = DateTime.Now.AddDays(1);
                 Response.Cookies.Add(cookie);
                 cookie.HttpOnly = true;
