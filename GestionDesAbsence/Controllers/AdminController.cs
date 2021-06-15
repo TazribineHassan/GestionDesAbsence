@@ -1,5 +1,6 @@
 ﻿using GestionDesAbsence.Common;
 using GestionDesAbsence.Models;
+using GestionDesAbsence.Services;
 using GestionDesAbsence.ServicesImpl;
 using NPOI.HSSF.UserModel;
 using NPOI.XSSF.UserModel;
@@ -17,6 +18,13 @@ namespace GestionDesAbsence.Controllers
     [Authorize(Roles = "admin")]
     public class AdminController : Controller
     {
+        IAdminService AdminService;
+
+        public AdminController(IAdminService AdminService)
+        {
+
+            this.AdminService = AdminService;
+        }
         // GET: Admin
         public ActionResult Index()
         {
@@ -481,6 +489,23 @@ namespace GestionDesAbsence.Controllers
         {
             return new Rotativa.ActionAsPdf("StatistiquesPDF");
         }
+
+        public ActionResult ListeEtudiants(int seances, int modules, int liste_Semaines)
+        {
+            var listOfStudents = AdminService.GetStudentsList(seances, modules, liste_Semaines);
+
+            return View(listOfStudents);
+        }
+
+        [HttpPost]
+        public ActionResult Marquez(int id, bool presence, string url)
+        {
+            AdminService.UpdateAbsence(id, presence);
+
+
+            return Redirect(url);
+        }
+
 
 
     }

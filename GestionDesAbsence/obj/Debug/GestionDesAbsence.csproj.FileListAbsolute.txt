@@ -165,7 +165,6 @@ C:\Users\safae\Desktop\GestionDesAbsence\GestionDesAbsence\bin\roslyn\vbc.rsp
 C:\Users\safae\Desktop\GestionDesAbsence\GestionDesAbsence\bin\roslyn\VBCSCompiler.exe
 C:\Users\safae\Desktop\GestionDesAbsence\GestionDesAbsence\bin\roslyn\VBCSCompiler.exe.config
 C:\Users\safae\Desktop\GestionDesAbsence\GestionDesAbsence\bin\Antlr3.Runtime.dll
-C:\Users\safae\Desktop\GestionDesAbsence\GestionDesAbsence\bin\BouncyCastle.Crypto.dll
 C:\Users\safae\Desktop\GestionDesAbsence\GestionDesAbsence\bin\EntityFramework.dll
 C:\Users\safae\Desktop\GestionDesAbsence\GestionDesAbsence\bin\EntityFramework.SqlServer.dll
 C:\Users\safae\Desktop\GestionDesAbsence\GestionDesAbsence\bin\GridMvc.dll
@@ -195,7 +194,6 @@ C:\Users\safae\Desktop\GestionDesAbsence\GestionDesAbsence\bin\Unity.Container.d
 C:\Users\safae\Desktop\GestionDesAbsence\GestionDesAbsence\bin\Unity.Mvc5.dll
 C:\Users\safae\Desktop\GestionDesAbsence\GestionDesAbsence\bin\WebGrease.dll
 C:\Users\safae\Desktop\GestionDesAbsence\GestionDesAbsence\bin\System.Threading.Tasks.Extensions.dll
-C:\Users\safae\Desktop\GestionDesAbsence\GestionDesAbsence\bin\BouncyCastle.Crypto.xml
 C:\Users\safae\Desktop\GestionDesAbsence\GestionDesAbsence\bin\EntityFramework.xml
 C:\Users\safae\Desktop\GestionDesAbsence\GestionDesAbsence\bin\EntityFramework.SqlServer.xml
 C:\Users\safae\Desktop\GestionDesAbsence\GestionDesAbsence\bin\ICSharpCode.SharpZipLib.pdb
@@ -259,3 +257,10 @@ C:\Users\saadr\OneDrive\Desktop\ASP project\GestionDesAbsence\bin\fr\System.Web.
 C:\Users\saadr\OneDrive\Desktop\ASP project\GestionDesAbsence\bin\fr\System.Web.WebPages.resources.dll
 C:\Users\saadr\OneDrive\Desktop\ASP project\GestionDesAbsence\bin\fr\System.Web.WebPages.Deployment.resources.dll
 C:\Users\saadr\OneDrive\Desktop\ASP project\GestionDesAbsence\bin\fr\System.Web.WebPages.Razor.resources.dll
+C:\Users\safae\Desktop\GestionDesAbsence\GestionDesAbsence\bin\Rotativa.dll
+C:\Users\safae\Desktop\GestionDesAbsence\GestionDesAbsence\bin\fr\System.Web.Helpers.resources.dll
+C:\Users\safae\Desktop\GestionDesAbsence\GestionDesAbsence\bin\fr\System.Web.Mvc.resources.dll
+C:\Users\safae\Desktop\GestionDesAbsence\GestionDesAbsence\bin\fr\System.Web.Razor.resources.dll
+C:\Users\safae\Desktop\GestionDesAbsence\GestionDesAbsence\bin\fr\System.Web.WebPages.resources.dll
+C:\Users\safae\Desktop\GestionDesAbsence\GestionDesAbsence\bin\fr\System.Web.WebPages.Deployment.resources.dll
+C:\Users\safae\Desktop\GestionDesAbsence\GestionDesAbsence\bin\fr\System.Web.WebPages.Razor.resources.dll
