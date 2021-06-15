@@ -1,6 +1,5 @@
 ﻿using GestionDesAbsence.Common;
 using GestionDesAbsence.Models;
-using GestionDesAbsence.Services;
 using GestionDesAbsence.ServicesImpl;
 using NPOI.HSSF.UserModel;
 using NPOI.XSSF.UserModel;
@@ -11,46 +10,62 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-
+using System.Web.Security;
 
 namespace GestionDesAbsence.Controllers
 {
     [Authorize(Roles = "admin")]
     public class AdminController : Controller
     {
-        IAdminService AdminService;
-
-        public AdminController(IAdminService AdminService)
-        {
-
-             this.AdminService = AdminService;
-        }
-
         // GET: Admin
         public ActionResult Index()
         {
+            if (this.ControllerContext.HttpContext.Request.Cookies.AllKeys.Contains("AdminName")) {
+                String s = this.ControllerContext.HttpContext.Request.Cookies["AdminName"].Value;
+                ViewBag.adminName = s;
+            }
+
             return View();
         }
 
 
         public ActionResult Home()
         {
-          
+            if (this.ControllerContext.HttpContext.Request.Cookies.AllKeys.Contains("AdminName"))
+            {
+                String s = this.ControllerContext.HttpContext.Request.Cookies["AdminName"].Value;
+                ViewBag.adminName = s;
+            }
             return View();
         }
 
         public ActionResult AllFilieres()
         {
+            if (this.ControllerContext.HttpContext.Request.Cookies.AllKeys.Contains("AdminName"))
+            {
+                String s = this.ControllerContext.HttpContext.Request.Cookies["AdminName"].Value;
+                ViewBag.adminName = s;
+            }
             return View();
         }
 
         public ActionResult AjouterClasse()
         {
+            if (this.ControllerContext.HttpContext.Request.Cookies.AllKeys.Contains("AdminName"))
+            {
+                String s = this.ControllerContext.HttpContext.Request.Cookies["AdminName"].Value;
+                ViewBag.adminName = s;
+            }
             return View();
         }
 
         public ActionResult ExcelPage()
         {
+            if (this.ControllerContext.HttpContext.Request.Cookies.AllKeys.Contains("AdminName"))
+            {
+                String s = this.ControllerContext.HttpContext.Request.Cookies["AdminName"].Value;
+                ViewBag.adminName = s;
+            }
             GestionDesAbsenceContext gestion = new GestionDesAbsenceContext();
             ViewBag.list = new SelectList(gestion.Cycles, "Id", "Nom");
 
@@ -68,6 +83,11 @@ namespace GestionDesAbsence.Controllers
 
         public ActionResult AllEtudiants()
         {
+            if (this.ControllerContext.HttpContext.Request.Cookies.AllKeys.Contains("AdminName"))
+            {
+                String s = this.ControllerContext.HttpContext.Request.Cookies["AdminName"].Value;
+                ViewBag.adminName = s;
+            }
             GestionDesAbsenceContext gestion = new GestionDesAbsenceContext();
             ViewBag.list = new SelectList(gestion.Cycles, "Id", "Nom");
             return View(gestion.Etudiants.ToList());
@@ -106,6 +126,8 @@ namespace GestionDesAbsence.Controllers
         //details student
         public PartialViewResult etudiantDetails(int id)
         {
+            //String s = this.ControllerContext.HttpContext.Request.Cookies["AdminName"].Value;
+            //ViewBag.adminName = s;
             GestionDesAbsenceContext gestion = new GestionDesAbsenceContext();
             Etudiant e = gestion.Etudiants.Find(id);
             return PartialView(e);
@@ -141,6 +163,11 @@ namespace GestionDesAbsence.Controllers
         //Prof
         public ActionResult AllProfs()
         {
+            if (this.ControllerContext.HttpContext.Request.Cookies.AllKeys.Contains("AdminName"))
+            {
+                String s = this.ControllerContext.HttpContext.Request.Cookies["AdminName"].Value;
+                ViewBag.adminName = s;
+            }
             GestionDesAbsenceContext gestion = new GestionDesAbsenceContext();
             return View(gestion.Professeurs.ToList());
         }
@@ -166,6 +193,8 @@ namespace GestionDesAbsence.Controllers
         //Prof details PartialVies
         public PartialViewResult ProfDetails(int id)
         {
+            //String s = this.ControllerContext.HttpContext.Request.Cookies["AdminName"].Value;
+            //ViewBag.adminName = s;
             GestionDesAbsenceContext gestion = new GestionDesAbsenceContext();
             Professeur e = gestion.Professeurs.Find(id);
             return PartialView(e);
@@ -195,6 +224,7 @@ namespace GestionDesAbsence.Controllers
 
         public ActionResult ModifyProf(int editidinput, string editcode, string editnom, String editprenom, string editemail, string editcycle)
         {
+            
 
             GestionDesAbsenceContext gestion = new GestionDesAbsenceContext();
             Professeur newE = gestion.Professeurs.Find(editidinput);
@@ -257,6 +287,7 @@ namespace GestionDesAbsence.Controllers
         [HttpPost]
         public ActionResult AddProfs()
         {
+
             HttpPostedFileBase file = Request.Files["file"];
             if (file == null || file.ContentLength <= 0)
             {
@@ -298,10 +329,20 @@ namespace GestionDesAbsence.Controllers
 
         public ActionResult AjouterProfesseur()
         {
+            if (this.ControllerContext.HttpContext.Request.Cookies.AllKeys.Contains("AdminName"))
+            {
+                String s = this.ControllerContext.HttpContext.Request.Cookies["AdminName"].Value;
+                ViewBag.adminName = s;
+            }
             return View();
         }
         public ActionResult AjouterEtudiants()
         {
+            if (this.ControllerContext.HttpContext.Request.Cookies.AllKeys.Contains("AdminName"))
+            {
+                String s = this.ControllerContext.HttpContext.Request.Cookies["AdminName"].Value;
+                ViewBag.adminName = s;
+            }
             GestionDesAbsenceContext gestion = new GestionDesAbsenceContext();
             ViewBag.list = new SelectList(gestion.Cycles, "Id", "Nom");
             return View();
@@ -309,6 +350,11 @@ namespace GestionDesAbsence.Controllers
 
         public ActionResult CorrectAbs()
         {
+            if (this.ControllerContext.HttpContext.Request.Cookies.AllKeys.Contains("AdminName"))
+            {
+                String s = this.ControllerContext.HttpContext.Request.Cookies["AdminName"].Value;
+                ViewBag.adminName = s;
+            }
             GestionDesAbsenceContext gestion = new GestionDesAbsenceContext();
             ViewBag.list = new SelectList(gestion.Professeurs, "Id", "Nom");
             ViewBag.listSemaines = new SelectList(gestion.Semaines, "Id", "Code");
@@ -352,20 +398,88 @@ namespace GestionDesAbsence.Controllers
 
         }
 
-        public ActionResult ListeEtudiants( int seances, int modules, int liste_Semaines)
+        public ActionResult Statistiques()
         {
-            var listOfStudents = AdminService.GetStudentsList(seances, modules,liste_Semaines);
+            int idSemaine = 1;
+            int[] tabSem = { 1, 2, 3 };
+            if (this.ControllerContext.HttpContext.Request.Cookies.AllKeys.Contains("AdminName"))
+            {
+                String s = this.ControllerContext.HttpContext.Request.Cookies["AdminName"].Value;
+                ViewBag.adminName = s;
+            }
+            GestionDesAbsenceContext db = new GestionDesAbsenceContext();
+            var result2 = db.Etudiants.Select(etudiant => new EtudiantAbsent()
+            {
+                nomClass = etudiant.Classe.Nom,
+                id = etudiant.Id,
+                nom = etudiant.Nom,
+                prenom = etudiant.Prenom,
+                absence_count = etudiant.Absences.Where(absence => !absence.EstPresent).Count()
+            }).ToList();
 
-            return View(listOfStudents);
+            var result3 = db.Etudiants.Join(db.Absences,
+                etudiant => etudiant.Id,
+                absence => absence.Etudiant.Id,
+
+                (etudiant, absence) => new EtudiantAbsent()
+                {
+                    nomClass = etudiant.Classe.Nom,
+                    id = etudiant.Id,
+                    nom = etudiant.Nom,
+                    prenom = etudiant.Prenom,
+                    absence_count = etudiant.Absences.Where(myabsence => !absence.EstPresent && tabSem.Contains(myabsence.Details_Emploi.Emploi.Semaine.id)).Count()
+                }).ToList();
+
+            return View(result3);
         }
 
-        [HttpPost]
-        public ActionResult Marquez(int id, bool presence, string url)
+        public ActionResult StatistiquesPDF()
         {
-           AdminService.UpdateAbsence(id, presence);
+            int idSemaine = 1;
+            int[] tabSem = { 1, 2, 3 };
+            if (this.ControllerContext.HttpContext.Request.Cookies.AllKeys.Contains("AdminName"))
+            {
+                String s = this.ControllerContext.HttpContext.Request.Cookies["AdminName"].Value;
+                ViewBag.adminName = s;
+            }
+            GestionDesAbsenceContext db = new GestionDesAbsenceContext();
+            var result2 = db.Etudiants.Select(etudiant => new EtudiantAbsent()
+            {
+                nomClass = etudiant.Classe.Nom,
+                id = etudiant.Id,
+                nom = etudiant.Nom,
+                prenom = etudiant.Prenom,
+                absence_count = etudiant.Absences.Where(absence => !absence.EstPresent).Count()
+            }).ToList();
 
+            List<EtudiantAbsent> elist = db.Etudiants.Join(db.Absences,
+                etudiant => etudiant.Id,
+                absence => absence.Etudiant.Id,
 
-            return Redirect(url);
+                (etudiant, absence) => new EtudiantAbsent()
+                {
+                    nomClass = etudiant.Classe.Nom,
+                    id = etudiant.Id,
+                    nom = etudiant.Nom,
+                    prenom = etudiant.Prenom,
+                    absence_count = etudiant.Absences.Where(myabsence => !absence.EstPresent && tabSem.Contains(myabsence.Details_Emploi.Emploi.Semaine.id)).Count()
+                }).ToList();
+
+            List<EtudiantAbsent> filtredList = new List<EtudiantAbsent>();
+
+            for (int i = 0; i < elist.Count; i++)
+            {
+                if(elist[i].absence_count > 1)
+                {
+                    filtredList.Add(elist[i]);
+                }
+            }
+            return View(filtredList);
+        }
+
+        public ActionResult GeneratePDF()
+        {
+            return new Rotativa.ActionAsPdf("StatistiquesPDF");
         }
 
 

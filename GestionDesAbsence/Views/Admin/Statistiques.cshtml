@@ -1,0 +1,24 @@
+﻿@model IEnumerable<GestionDesAbsence.Models.EtudiantAbsent>
+
+@{
+    ViewBag.Title = "AllEtudiants";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<div class="flex-column">
+<h1>Listes des absences des Etudiants</h1>
+<hr />
+<p>
+    <a class="btn btn-primary" href="GeneratePDF">Generate PDF</a>
+</p>
+
+@using GridMvc.Html
+
+<div>
+    @Html.Grid(Model).Columns(columns =>
+ {
+     columns.Add(etudiant => etudiant.nom).Titled("Nom").Filterable(true).Sortable(true);
+     columns.Add(etudiant => etudiant.prenom).Titled("Prenom").Filterable(true);
+     columns.Add(etudiant => etudiant.nomClass).Titled("classe").Filterable(true);
+     columns.Add(etudiant => etudiant.absence_count).Titled("absence").Filterable(true); }).WithPaging(10).Sortable(true)
+</div>
+ </div>
