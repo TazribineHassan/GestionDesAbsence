@@ -7,7 +7,6 @@
 @using GestionDesAbsence.Models
 @model List<StudentsList>
 
-
 <div class="container-fluid">
     <br />
     <blockquote class="blockquote">
@@ -20,23 +19,25 @@
     </blockquote>
     <hr />
 
-    @using (Html.BeginForm("Index", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    @using (Html.BeginForm("ListeEtudiants", "Admin", FormMethod.Get, new { enctype = "multipart/form-data" }))
     {
         <h4>Listes des Semaines </h4>
-        @Html.DropDownList("liste_Semaines", ViewBag.listSemaines as SelectList, "Selectionnez la semaine", new { id = "liste_Semaines" }) <br />
+        @Html.DropDownList("liste_Semaines", ViewBag.listSemaines as SelectList, "Selectionnez la semaine", new { @class = "form-control" }) <br />
         <h4>Listes des Professeurs </h4>
         @Html.DropDownList("liste_prof", ViewBag.list as SelectList, "Selectionnez le Prof", new { id = "liste_prof" }) <br />
         <h4>Listes des Modules </h4>
-        <select id="Modules" name="myclass" class="form-control"></select><br />
+        <select id="Modules" name="modules" class="form-control"></select><br />
         <h4>Listes des Seances </h4>
-        <select id="Seances" name="myclass" class="form-control"></select><br />
+        <select id="Seances" name="seances" class="form-control"></select><br />
         <br />
+
+        <input type="submit" id="fileup" class="btn btn-primary" data-toggle="modal" value=" Afficher la liste des étudiants " />
+
 
         <br /><br />
 
 
     }
-    <a href="/Admin/AllEtudiants"> Consulter la liste des étudiants</a>
 
 
 </div>
@@ -59,12 +60,10 @@
             $("#Modules").addClass("form-control");
 
             $("#Modules").change(function () {
-                alert($("#Modules").val());
-
                 $.get("/Admin/GetSeances", { ID: $("#Modules").val() }, function (data) {
                     $("#Seances").empty();
                     $.each(data, function (index, madata) {
-                        $("#Seances").append("<option value='" + madata.id + "'>" + madata.Jour + madata.Heure_debut +  madata.Heure_fin + "</option>")
+                        $("#Seances").append("<option value='" + madata.id + "'>" + madata.Jour + ": "+ madata.Heure_debut + " à "+ madata.Heure_fin + "</option>")
                     });
 
                 })

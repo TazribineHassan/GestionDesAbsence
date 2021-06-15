@@ -7,13 +7,16 @@ using System.Threading.Tasks;
 
 namespace GestionDesAbsence.Services
 {
-    interface IAdminService
+    public interface IAdminService
     {
 
         void Save(Administrateur admin);
         void saveEtudiant(Etudiant e);
         void deleteEtudiant(Etudiant e);
         void updateEtudiant(Etudiant e);
+        List<StudentsList> GetStudentsList(int id_seance, int id_module, int id_semaine);
+        bool UpdateAbsence(int id_absence, bool est_present);
+
 
     }
 }

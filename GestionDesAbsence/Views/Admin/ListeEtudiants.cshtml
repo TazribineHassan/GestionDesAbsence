@@ -1,0 +1,91 @@
+﻿@{
+    ViewBag.Title = "AjouterProfesseur";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@using GridMvc.Html
+@using GestionDesAbsence.Models
+@model List<StudentsList>
+
+<br /> <br /> <br />
+<div class="container-fluid">
+
+    @*function to check if the student is present or not*@
+    @helper CheckPresence(StudentsList etudiant)
+    {
+        if (etudiant.Absence.EstPresent)
+        {
+            <i class='fas fa-check text-success'></i>
+        }
+        else
+        {
+            <i class='fas fa-times text-danger'></i>
+        }
+    }
+
+    @*function to check if the student is present or not*@
+    @helper SendPresence(StudentsList etudiant)
+    {
+        string absoluteurl = HttpContext.Current.Request.Url.AbsoluteUri;
+
+        if (etudiant.Absence.EstPresent)
+        {
+            <button type='submit' class='btn btn-success' disabled>P</button>
+        }
+        else
+        {
+            <form action='Marquez' method='post'>
+                <input type='hidden' name='id' value="@etudiant.Absence.Id" />
+                <input type='hidden' name='presence' value="true" />
+                <input type='hidden' name='url' value="@absoluteurl" />
+                <button type='submit' class='btn btn-success' value=''>P</button>
+            </form>
+        }
+    }
+    @helper SendAbsence(StudentsList etudiant)
+    {
+        string absoluteurl = HttpContext.Current.Request.Url.AbsoluteUri;
+
+        if (etudiant.Absence.EstPresent)
+        {
+            <form action='Marquez' method='post'>
+                <input type='hidden' name='id' value="@etudiant.Absence.Id" />
+                <input type='hidden' name='presence' value="false" />
+                <input type='hidden' name='url' value="@absoluteurl" />
+                <button type='submit' class='btn btn-danger' value=''>A</button>
+            </form>
+
+        }
+        else
+        {
+            <button type='submit' class='btn btn-danger' disabled>A</button>
+        }
+    }
+
+
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            @Html.Grid(Model).Columns(columns =>
+       {
+           columns.Add(c => c.Etudiant.Id).Titled("ID").Filterable(true);
+           columns.Add(c => c.Etudiant.Nom).Titled("Nom").Filterable(true);
+           columns.Add(c => c.Etudiant.Prenom).Titled("Prénom").Filterable(true);
+           columns.Add(c => c.Etudiant.Groupe.Nom).Titled("Groupe").Filterable(true);
+           columns.Add().Titled("Présent(e)")
+           .Filterable(true)
+           .Encoded(false)
+           .Sanitized(false)
+           .RenderValueAs(c => CheckPresence(c));
+           columns.Add()
+           .Encoded(false)
+           .Sanitized(false)
+           .RenderValueAs(c => SendPresence(c));
+           columns.Add()
+           .Encoded(false)
+           .Sanitized(false)
+           .RenderValueAs(c => SendAbsence(c));
+       }).WithPaging(6).Sortable(true)
+
+        </div>
+    </div>
+</div>
